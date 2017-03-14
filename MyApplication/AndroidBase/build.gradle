@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
+
+    //Rxjava
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+    //Json解析库
+    compile 'com.alibaba:fastjson:1.1.54.android'
+    //图片加载、缓存库
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
+    //6.0权限处理库
+    compile 'pub.devrel:easypermissions:0.2.0'
+    //Retrofit网络请求
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    compile 'org.ligboy.retrofit2:converter-fastjson-android:2.0.2'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+    //Fragment解决库
+    compile 'me.yokeyword:fragmentation:0.7.10'
+    //Log工具类
+    compile 'com.apkfuns.logutils:library:1.4.2'
+    //Recyclerview分割线
+    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+    compile 'com.nineoldandroids:library:2.4.0'
+    //base-adapter
+    compile 'com.zhy:base-rvadapter:3.0.3'
+    compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
+    //butterknife
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    compile 'me.zhanghai.android.materialprogressbar:library:1.1.6'
+}
