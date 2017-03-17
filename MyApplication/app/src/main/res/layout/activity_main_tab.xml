@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.bricks.widgets.viewpager.NoScrollViewPager
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"></com.bricks.widgets.viewpager.NoScrollViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cecece"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rbtn_homepage"
+                style="@style/style_maintab_radio"
+                android:drawableTop="@drawable/main_tab_homepage"/>
+            <RadioButton
+                android:id="@+id/rbtn_learning"
+                style="@style/style_maintab_radio"
+                android:drawableTop="@drawable/main_tab_learning"/>
+            <RadioButton
+                android:id="@+id/rbtn_task"
+                style="@style/style_maintab_radio"
+                android:drawableTop="@drawable/main_tab_task"/>
+            <RadioButton
+                android:id="@+id/rbtn_me"
+                style="@style/style_maintab_radio"
+                android:drawableTop="@drawable/main_tab_me"/>
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>
