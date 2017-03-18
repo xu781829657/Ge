@@ -6,5 +6,5 @@ import com.android.base.frame.fragment.BaseFragment;
  * Created by xudengwang on 2017/3/14.
  */
 
-public abstract class CommonFragment extends BaseFragment {
+public abstract class CommonBaseFragment extends BaseFragment {
 }

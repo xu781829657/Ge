@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">GeApp</string>
+
+    <string name="tab_homepage">首页</string>
+    <string name="tab_learning">学习</string>
+    <string name="tab_task">任务</string>
+    <string name="tab_me">我的</string>
+
 </resources>
