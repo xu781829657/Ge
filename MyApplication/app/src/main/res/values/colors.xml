@@ -6,4 +6,7 @@
 
     <color name="bg_transparent">#00000000</color>
     <color name="white">#ffffffff</color>
+    <color name="text_black">#333333</color>
+    <color name="bg_line">#e4e4e4</color>
+    <color name="progress_tv_color">#45C88A</color>
 </resources>
