@@ -1,14 +1,14 @@
 package com.android.ge.network.error;
 
+import android.net.ParseException;
+
 import com.alibaba.fastjson.JSONException;
 import com.google.gson.JsonParseException;
 
 import java.net.ConnectException;
 
-import cz.msebera.android.httpclient.ParseException;
 import retrofit2.adapter.rxjava.HttpException;
 
-import static com.loopj.android.http.LogInterface.ERROR;
 
 /**
  * Created by xudengwang on 16/11/15.

@@ -1,7 +1,5 @@
 package com.android.ge.network;
 
-import com.iwexun.iweixun.base.MyApplication;
-import com.iwexun.iweixun.constant.AppConfig;
 
 /**
  * Created by xudengwang on 2016/10/8.

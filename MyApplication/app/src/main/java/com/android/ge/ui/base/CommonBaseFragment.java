@@ -1,5 +1,7 @@
 package com.android.ge.ui.base;
 
+import android.content.Context;
+
 import com.android.base.frame.fragment.BaseFragment;
 
 /**
@@ -7,4 +9,10 @@ import com.android.base.frame.fragment.BaseFragment;
  */
 
 public abstract class CommonBaseFragment extends BaseFragment {
+
+
+    public Context getMContext(){
+
+        return getContext();
+    }
 }

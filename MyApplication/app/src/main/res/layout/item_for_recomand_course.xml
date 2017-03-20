@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/bg_transparent_50"/>
-        
+
         <TextView
             android:id="@+id/tv_begin"
             android:layout_width="81dp"
@@ -49,11 +49,11 @@
         android:textSize="12sp" />
 
     <TextView
-        android:id="@+id/tv_course_progress"
+        android:id="@+id/tv_course_descrip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="总进度:60%"
-        android:textColor="#45C88A"
+        android:text="来自新东方"
+        android:textColor="#999999"
         android:textSize="11sp" />
 
 </LinearLayout>
