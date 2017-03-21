@@ -30,5 +30,7 @@ public class RequiredAdapter extends CommonAdapter<CourseBean> {
         params.height = (int) params.width * 86 / 171;
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
+        holder.setText(R.id.tv_course_title, courseBean.getTitle());
+
     }
 }

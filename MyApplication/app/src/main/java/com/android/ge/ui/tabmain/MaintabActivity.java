@@ -20,15 +20,16 @@ import butterknife.Bind;
  * Created by xudengwang on 2017/3/14.
  */
 
-public class MaintabActivity extends CommonBaseActivity{
+public class MaintabActivity extends CommonBaseActivity {
     String value = "1/10";
     @Bind(R.id.rg_tab)
     RadioGroup mRgTab;
     @Bind(R.id.vp_tab)
     NoScrollViewPager mVpTab;
+
     @Override
     protected int getContentViewId() {
-        return R.layout.activity_main_tab ;
+        return R.layout.activity_main_tab;
     }
 
     @Override
@@ -37,10 +38,10 @@ public class MaintabActivity extends CommonBaseActivity{
         mRgTab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
-                switch (checkId){
+                switch (checkId) {
                     case R.id.rbtn_homepage:
-                    mVpTab.setCurrentItem(0);
-                    break;
+                        mVpTab.setCurrentItem(0);
+                        break;
                     case R.id.rbtn_learning:
                         mVpTab.setCurrentItem(1);
                         break;

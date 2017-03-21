@@ -32,6 +32,7 @@
                 android:id="@+id/rbtn_homepage"
                 style="@style/style_main_tab_radio"
                 android:text="@string/tab_homepage"
+                android:checked="true"
                 android:drawableTop="@drawable/main_tab_homepage"/>
             <RadioButton
                 android:id="@+id/rbtn_learning"

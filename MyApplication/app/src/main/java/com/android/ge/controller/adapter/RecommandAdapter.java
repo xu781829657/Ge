@@ -16,7 +16,7 @@ import java.util.List;
  * Created by xudengwang on 17/3/20.
  */
 
-public class RecommandAdapter extends CommonAdapter<CourseBean>{
+public class RecommandAdapter extends CommonAdapter<CourseBean> {
 
     public RecommandAdapter(Context context, List<CourseBean> datas) {
         super(context, R.layout.item_for_recomand_course, datas);
@@ -29,7 +29,7 @@ public class RecommandAdapter extends CommonAdapter<CourseBean>{
         params.height = (int) params.width * 86 / 171;
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
-
-
+        holder.setText(R.id.tv_course_title, courseBean.getTitle());
+        holder.setText(R.id.tv_course_descrip, courseBean.getDesc());
     }
 }
