@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rel_cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_course_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_line"/>
+
+        <View
+            android:id="@+id/view_bg_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_transparent_50"/>
+
+        <TextView
+            android:id="@+id/tv_begin"
+            android:layout_width="81dp"
+            android:layout_height="23dp"
+            android:layout_centerInParent="true"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_course_item_start_bg"
+            android:text="@string/begin_learn"/>
+
+
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:id="@+id/tv_course_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="国际教育，课程学习方法概论"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/text_black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_course_descrip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="来自新东方"
+        android:textColor="#999999"
+        android:textSize="11sp" />
+
+</LinearLayout>
