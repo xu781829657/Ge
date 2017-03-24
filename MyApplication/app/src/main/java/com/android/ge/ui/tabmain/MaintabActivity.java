@@ -7,8 +7,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 
+import com.android.base.util.ArraysUtils;
 import com.android.ge.R;
 import com.android.ge.ui.base.CommonBaseActivity;
+import com.android.ge.ui.base.CommonBaseFragment;
 import com.android.ge.widgets.view.NoScrollViewPager;
 
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ public class MaintabActivity extends CommonBaseActivity {
     RadioGroup mRgTab;
     @Bind(R.id.vp_tab)
     NoScrollViewPager mVpTab;
+
+    private List<CommonBaseFragment> mFragments = new ArrayList<>();
 
     @Override
     protected int getContentViewId() {
@@ -56,42 +60,85 @@ public class MaintabActivity extends CommonBaseActivity {
 
             }
         });
+        mFragments.add(new HomePageFragment());
+        mFragments.add(new LearningFragment());
+        mFragments.add(new TaskFragment());
+        mFragments.add(new MeFragment());
+ //       TabAdapter adapter = new TabAdapter(getSupportFragmentManager());
+//        adapter.addFragment(new HomePageFragment());
+//        adapter.addFragment(new LearningFragment());
+//        adapter.addFragment(new TaskFragment());
+//        adapter.addFragment(new MeFragment());
 
-        TabAdapter adapter = new TabAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomePageFragment());
-        adapter.addFragment(new LearningFragment());
-        adapter.addFragment(new TaskFragment());
-        adapter.addFragment(new MeFragment());
-
+        PageFragmentAdapter adapter = new PageFragmentAdapter(getSupportFragmentManager(), mFragments);
+        mVpTab.setOffscreenPageLimit(mFragments.size());
         mVpTab.setAdapter(adapter);
         mVpTab.setCurrentItem(0);
 
     }
 
 
-    static class TabAdapter extends FragmentPagerAdapter {
-        private List<Fragment> mFragments = new ArrayList<>();
+//    static class TabAdapter extends FragmentPagerAdapter {
+//        private List<Fragment> mFragments = new ArrayList<>();
+//
+//        public TabAdapter(FragmentManager fm,L) {
+//            super(fm);
+//        }
+//
+//        public void addFragment(Fragment fragment) {
+//            mFragments.add(fragment);
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            return mFragments.get(position);
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return mFragments.size();
+//        }
+//
+//        public List<Fragment> getmFragments() {
+//            return mFragments;
+//        }
+//    }
 
-        public TabAdapter(FragmentManager fm) {
+    public class PageFragmentAdapter extends FragmentPagerAdapter {
+
+        private List<CommonBaseFragment> dataFragmentList;
+
+        public PageFragmentAdapter(FragmentManager fm) {
             super(fm);
         }
 
-        public void addFragment(Fragment fragment) {
-            mFragments.add(fragment);
+        public PageFragmentAdapter(FragmentManager fm, List<CommonBaseFragment> argDataFragmentList) {
+            super(fm);
+            this.dataFragmentList = argDataFragmentList;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return mFragments.get(position);
+            return dataFragmentList.get(position);
         }
 
         @Override
         public int getCount() {
-            return mFragments.size();
+            if (ArraysUtils.isNotEmpty(dataFragmentList)) {
+                return dataFragmentList.size();
+            }
+            return 0;
         }
 
-        public List<Fragment> getmFragments() {
-            return mFragments;
+        @Override
+        public void notifyDataSetChanged() {
+            super.notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+
+            return super.getItemPosition(object);
         }
     }
 }

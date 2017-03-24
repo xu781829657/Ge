@@ -8,9 +8,11 @@ import com.android.ge.controller.adapter.Itemviewdelegate.CourseItemViewDelegate
 import com.android.ge.controller.adapter.Itemviewdelegate.CourseTypeItemViewDelegate;
 import com.android.ge.model.BaseCourseTypeInfo;
 import com.android.ge.model.learning.BaseLearningItem;
+import com.android.ge.model.learning.TitleItemInfo;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +20,8 @@ import java.util.List;
  */
 
 public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearningItem> implements MultiItemTypeAdapter.OnItemClickListener{
+
+    private List<BaseLearningItem> mDatas = new ArrayList<>();
 
     public LearningCourseTypeAdapter(Context context, List<BaseLearningItem> datas) {
         super(context, datas);
@@ -28,6 +32,7 @@ public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearning
 
     @Override
     public void convert(ViewHolder holder, BaseLearningItem item) {
+
 
         super.convert(holder, item);
     }

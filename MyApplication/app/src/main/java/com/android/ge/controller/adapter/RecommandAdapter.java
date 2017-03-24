@@ -1,9 +1,11 @@
 package com.android.ge.controller.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.android.base.frame.Base;
 import com.android.base.util.ScreenUtils;
 import com.android.ge.R;
 import com.android.ge.model.CourseBean;
@@ -24,6 +26,16 @@ public class RecommandAdapter extends CommonAdapter<CourseBean> {
 
     @Override
     protected void convert(ViewHolder holder, CourseBean courseBean, int position) {
+        GridLayoutManager.LayoutParams itemParams = (GridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
+        itemParams.width = GridLayoutManager.LayoutParams.MATCH_PARENT;
+        itemParams.height = GridLayoutManager.LayoutParams.WRAP_CONTENT;
+        if (position % 2 == 0) {
+            itemParams.setMargins((int) (ScreenUtils.getScreenDensity(Base.getContext()) * 12), 0, (int) (ScreenUtils.getScreenDensity(Base.getContext()) * 5),
+                    (int) (ScreenUtils.getScreenDensity(Base.getContext()) * 10));
+        } else {
+            itemParams.setMargins((int) (ScreenUtils.getScreenDensity(Base.getContext()) * 5), 0, (int) (ScreenUtils.getScreenDensity(Base.getContext()) * 12),
+                    (int) (ScreenUtils.getScreenDensity(Base.getContext()) * 10));
+        }
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.getView(R.id.rel_cover).getLayoutParams();
         params.width = (int) (ScreenUtils.getScreenWidth(mContext) - 34 * ScreenUtils.getScreenDensity(mContext)) / 2;
         params.height = (int) params.width * 86 / 171;

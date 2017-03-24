@@ -48,10 +48,14 @@ public class HomePageFragment extends CommonBaseFragment {
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onResume() {
         refreshNewsAdapter();
         refreshRequiredAdapter(null);
         refreshRecommandAdapter(null);
-
+        super.onResume();
     }
 
     //刷新最新资讯
@@ -99,8 +103,8 @@ public class HomePageFragment extends CommonBaseFragment {
             manager.setOrientation(GridLayoutManager.VERTICAL);
             mRvRequires.setLayoutManager(manager);
             mRvRequires.setHasFixedSize(true);
-            mRvRequires.addItemDecoration(new RecycleViewDivider(
-                    getMContext(), GridLayoutManager.HORIZONTAL, (int) (ScreenUtils.getScreenDensity(getMContext()) * 10), getResources().getColor(R.color.white)));
+//            mRvRequires.addItemDecoration(new RecycleViewDivider(
+//                    getMContext(), GridLayoutManager.HORIZONTAL, (int) (ScreenUtils.getScreenDensity(getMContext()) * 10), getResources().getColor(R.color.white)));
             RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.view_rv_header);
             TextView tv_title = (TextView) header.findViewById(R.id.tv_type_title);
             tv_title.setText(info.getTitle());
@@ -133,8 +137,8 @@ public class HomePageFragment extends CommonBaseFragment {
             manager.setOrientation(GridLayoutManager.VERTICAL);
             mRvRecommand.setLayoutManager(manager);
             mRvRecommand.setHasFixedSize(true);
-            mRvRecommand.addItemDecoration(new RecycleViewDivider(
-                    getMContext(), GridLayoutManager.HORIZONTAL, (int) (ScreenUtils.getScreenDensity(getMContext()) * 10), getResources().getColor(R.color.white)));
+//            mRvRecommand.addItemDecoration(new RecycleViewDivider(
+//                    getMContext(), GridLayoutManager.HORIZONTAL, (int) (ScreenUtils.getScreenDensity(getMContext()) * 10), getResources().getColor(R.color.white)));
             RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.view_rv_header);
             TextView tv_title = (TextView) header.findViewById(R.id.tv_type_title);
             tv_title.setText(info.getTitle());

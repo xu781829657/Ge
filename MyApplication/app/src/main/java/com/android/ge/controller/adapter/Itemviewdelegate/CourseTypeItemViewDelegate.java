@@ -1,6 +1,8 @@
 package com.android.ge.controller.adapter.Itemviewdelegate;
 
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.android.base.frame.Base;
@@ -30,6 +32,12 @@ public class CourseTypeItemViewDelegate implements ItemViewDelegate<BaseLearning
 
     @Override
     public void convert(ViewHolder holder, BaseLearningItem baseItemInfo, int position) {
+        final ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+        if (lp instanceof StaggeredGridLayoutManager.LayoutParams) {
+            StaggeredGridLayoutManager.LayoutParams sglp = (StaggeredGridLayoutManager.LayoutParams) lp;
+            sglp.setFullSpan(true);
+            holder.itemView.setLayoutParams(sglp);
+        }
         TitleItemInfo info = baseItemInfo.getTitleItemInfo();
         holder.setText(R.id.tv_type_title, info.getTitle());
         int total_count = Integer.valueOf(info.getTotal_count());
@@ -38,6 +46,7 @@ public class CourseTypeItemViewDelegate implements ItemViewDelegate<BaseLearning
         } else {
             holder.getView(R.id.tv_more).setVisibility(View.GONE);
         }
+
 
 
     }

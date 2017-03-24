@@ -13,6 +13,9 @@ public class BaseLearningItem {
     private TitleItemInfo titleItemInfo;
     private CourseBean courseBean;
 
+    private int originalPosition;//item在原始列表中的位置
+    private boolean isOriginalLast;//是否为原始位置中最后一个
+
     public TitleItemInfo getTitleItemInfo() {
         return titleItemInfo;
     }
@@ -50,5 +53,21 @@ public class BaseLearningItem {
 
     public void setCourse(boolean course) {
         isCourse = course;
+    }
+
+    public int getOriginalPosition() {
+        return originalPosition;
+    }
+
+    public void setOriginalPosition(int originalPosition) {
+        this.originalPosition = originalPosition;
+    }
+
+    public boolean isOriginalLast() {
+        return isOriginalLast;
+    }
+
+    public void setOriginalLast(boolean originalLast) {
+        isOriginalLast = originalLast;
     }
 }

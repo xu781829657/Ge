@@ -9,9 +9,9 @@ package com.android.ge.model.learning;
  */
 
 public class TitleItemInfo {
-    private String id;
-    private String title;
-    private String total_count;
+    private String id;//指定类型id
+    private String title;//课程类型标题
+    private int total_count;//该类型下课程总数
 
     public String getId() {
         return id;
@@ -29,11 +29,11 @@ public class TitleItemInfo {
         this.title = title;
     }
 
-    public String getTotal_count() {
+    public int getTotal_count() {
         return total_count;
     }
 
-    public void setTotal_count(String total_count) {
+    public void setTotal_count(int total_count) {
         this.total_count = total_count;
     }
 }

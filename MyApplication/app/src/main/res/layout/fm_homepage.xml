@@ -11,32 +11,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/bg_main">
+            android:background="@color/bg_main"
+            android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_news"
-                android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_required_courses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp" />
+                android:background="@color/white" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_recommand_courses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp" />
+                android:background="@color/white" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
