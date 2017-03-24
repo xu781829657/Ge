@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.android.base.frame.AppManager;
+import com.android.base.util.SystemBarTintManager;
 
 import butterknife.ButterKnife;
 
@@ -19,15 +21,29 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public ProgressDialog waitdialog;
     public Context mContext;
+    private SystemBarTintManager mSystemBarTintManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mSystemBarTintManager = new SystemBarTintManager(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //if (isUserDefinedColorForStatusBar) {//自定义状态栏的颜色
+                mSystemBarTintManager.setStatusBarTintEnabled(true);
+                mSystemBarTintManager.setTintColor(getResources().getColor(android.R.color.transparent));
+//            } else {
+//                mSystemBarTintManager.setStatusBarTintEnabled(false);
+//            }
+        } else {
+            mSystemBarTintManager.setStatusBarTintEnabled(false);
+        }
         mContext = this;
         AppManager.create().addActivity(this);
         setContentView(getContentViewId());
         ButterKnife.bind(this);
         initData();
+
+
     }
 
     @Override
