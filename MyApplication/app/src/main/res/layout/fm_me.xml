@@ -4,10 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="我的" />
+        android:layout_height="244dp">
+        <ImageView
+            android:id="@+id/iv_me_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <include
+            layout="@layout/fm_me_header_title"/>
+    </RelativeLayout>
 
 </LinearLayout>

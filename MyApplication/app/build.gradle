@@ -32,6 +32,8 @@ dependencies {
 
     compile 'com.zhy:base-rvadapter:3.0.3'
     compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
+
+    compile 'cn.carbs.android:AvatarImageView:1.0.2'
     testCompile 'junit:junit:4.12'
     compile project(':AndroidBase')
 }
