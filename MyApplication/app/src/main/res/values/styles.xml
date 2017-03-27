@@ -27,4 +27,13 @@
         <item name="android:textColor">@color/bg_tab_txt</item>
     </style>
 
+
+    <style name="singleLine">
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="text_13_33" parent="@style/singleLine">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
 </resources>

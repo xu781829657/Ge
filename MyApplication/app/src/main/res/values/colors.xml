@@ -15,4 +15,7 @@
     <color name="text_black">#333333</color>
     <color name="bg_line">#e4e4e4</color>
     <color name="progress_tv_color">#45C88A</color>
+    <color name="bg_press">#e1e1e1</color>
+
+    <color name="ripple">#1f000000</color>
 </resources>

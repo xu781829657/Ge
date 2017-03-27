@@ -11,4 +11,16 @@
 
     <string name="title_news">最新资讯</string>
 
+    <!-- 我的-->
+    <string name="learn_summary">学习小结</string>
+    <string name="my_list">我的榜单</string>
+    <string name="my_honor">我的荣誉</string>
+    <string name="my_questionnaire">调研问卷</string>
+    <string name="my_learning_path">学习路径</string>
+    <string name="my_degree">微学位</string>
+    <string name="my_certificate_centre">证书中心</string>
+    <string name="my_message_centre">消息中心</string>
+    <string name="my_help_centre">帮助中心</string>
+    
+
 </resources>
