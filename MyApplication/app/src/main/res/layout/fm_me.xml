@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -14,6 +15,57 @@
             android:layout_height="match_parent" />
 
         <include layout="@layout/fm_me_header_title" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:gravity="center">
+
+            <com.android.ge.widgets.view.HalfRoundProgressBar
+                android:id="@+id/roundProgressBar1"
+                android:layout_width="150dip"
+                android:layout_height="150dip"
+                android:layout_centerInParent="true"
+                app:roundColor="#dddddd"
+                app:roundProgressColor="#FAF100"
+                app:roundWidth="10dip" />
+
+            <LinearLayout
+                android:id="@+id/lin_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/tv_integral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_integral"
+                    android:text="@string/learning_points"
+                    android:textColor="#5C6C81"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lin_rank"
+                android:layout_centerHorizontal="true"
+                android:textColor="#c1d4eb"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
     <ScrollView

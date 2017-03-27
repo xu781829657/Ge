@@ -21,6 +21,7 @@
     <string name="my_certificate_centre">证书中心</string>
     <string name="my_message_centre">消息中心</string>
     <string name="my_help_centre">帮助中心</string>
+    <string name="learning_points">获得总积分</string>
     
 
 </resources>
