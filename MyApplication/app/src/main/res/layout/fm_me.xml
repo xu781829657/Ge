@@ -1,72 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_main"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="244dp">
-
-        <ImageView
-            android:id="@+id/iv_me_bg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <include layout="@layout/fm_me_header_title" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:gravity="center">
-
-            <com.android.ge.widgets.view.HalfRoundProgressBar
-                android:id="@+id/roundProgressBar1"
-                android:layout_width="150dip"
-                android:layout_height="150dip"
-                android:layout_centerInParent="true"
-                app:roundColor="#dddddd"
-                app:roundProgressColor="#FAF100"
-                app:roundWidth="10dip" />
-
-            <LinearLayout
-                android:id="@+id/lin_rank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingBottom="10dp">
-
-                <TextView
-                    android:id="@+id/tv_integral"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="@color/white"
-                    android:textSize="36sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_integral"
-                    android:text="@string/learning_points"
-                    android:textColor="#5C6C81"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_rank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/lin_rank"
-                android:layout_centerHorizontal="true"
-                android:textColor="#c1d4eb"
-                android:textSize="18sp" />
-
-        </RelativeLayout>
-    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -77,16 +16,81 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp">
+
+                <ImageView
+                    android:id="@+id/iv_me_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/default_load_img" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_centerInParent="true">
+
+                    <com.android.ge.widgets.view.HalfRoundProgressBar
+                        android:id="@+id/roundProgressBar1"
+                        android:layout_width="150dip"
+                        android:layout_height="150dip"
+                        android:layout_centerInParent="true"
+                        app:roundColor="#dddddd"
+                        app:roundProgressColor="#FAF100"
+                        app:roundWidth="10dip" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_rank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:id="@+id/tv_integral"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="36sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_integral"
+                            android:text="@string/learning_points"
+                            android:textColor="#5C6C81"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_rank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lin_rank"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="#c1d4eb"
+                        android:textSize="18sp" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="111dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/lin_learn_summary"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
+                    android:background="@drawable/bg_common_press"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -101,11 +105,13 @@
                         android:layout_height="wrap_content"
                         android:text="@string/learn_summary" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/lin_my_list"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/bg_common_press"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -120,11 +126,13 @@
                         android:layout_height="wrap_content"
                         android:text="@string/my_list" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/lin_my_honor"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/bg_common_press"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -140,7 +148,10 @@
                         android:text="@string/my_honor" />
                 </LinearLayout>
             </LinearLayout>
+
+            <include layout="@layout/fm_me_footer_list" />
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+    <include layout="@layout/fm_me_header_title" />
+</RelativeLayout>
