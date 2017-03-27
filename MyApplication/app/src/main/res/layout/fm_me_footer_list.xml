@@ -22,6 +22,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/text_14_33"
             android:layout_marginLeft="21dp"
             android:layout_weight="1"
             android:text="@string/my_questionnaire" />
@@ -52,6 +53,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/text_14_33"
             android:layout_marginLeft="21dp"
             android:layout_weight="1"
             android:text="@string/my_learning_path" />
@@ -82,6 +84,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/text_14_33"
             android:layout_marginLeft="21dp"
             android:layout_weight="1"
             android:text="@string/my_degree" />
@@ -112,6 +115,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/text_14_33"
             android:layout_marginLeft="21dp"
             android:layout_weight="1"
             android:text="@string/my_certificate_centre" />
@@ -141,6 +145,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/text_14_33"
             android:layout_marginLeft="21dp"
             android:layout_weight="1"
             android:text="@string/my_message_centre" />
@@ -171,6 +176,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/text_14_33"
             android:layout_marginLeft="21dp"
             android:layout_weight="1"
             android:text="@string/my_help_centre" />

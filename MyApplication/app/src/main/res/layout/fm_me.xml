@@ -100,7 +100,8 @@
                         android:src="@drawable/my_overview_icon" />
 
                     <TextView
-                        style="@style/text_13_33"
+                        style="@style/text_14_33"
+                        android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/learn_summary" />
@@ -121,7 +122,8 @@
                         android:src="@drawable/my_crunchies_icon" />
 
                     <TextView
-                        style="@style/text_13_33"
+                        style="@style/text_14_33"
+                        android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/my_list" />
@@ -142,7 +144,8 @@
                         android:src="@drawable/my_honor_icon" />
 
                     <TextView
-                        style="@style/text_13_33"
+                        style="@style/text_14_33"
+                        android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/my_honor" />
