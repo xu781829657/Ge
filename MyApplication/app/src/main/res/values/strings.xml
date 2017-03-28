@@ -22,6 +22,16 @@
     <string name="my_message_centre">消息中心</string>
     <string name="my_help_centre">帮助中心</string>
     <string name="learning_points">获得总积分</string>
+
+    <!-- -->
+    <string name="input_hint_old_password">请输入旧密码</string>
+    <string name="input_hint_new_password">请输入新密码</string>
+    <string name="input_hint_new_password_again">请再次输入新密码</string>
+    <string name="tips_change_password">密码字符6-20个字母或数字</string>
+    <string name="input_hint_username">请输入用户名</string>
+    <string name="input_hint_password">请输入密码</string>
+    <string name="login">登录</string>
+    <string name="forget_passwords">忘记密码?</string>
     
 
 </resources>
