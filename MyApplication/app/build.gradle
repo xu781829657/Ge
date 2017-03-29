@@ -34,6 +34,7 @@ dependencies {
     compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
 
     compile 'cn.carbs.android:AvatarImageView:1.0.2'
+    compile 'me.zhanghai.android.materialprogressbar:library:1.1.6'
     testCompile 'junit:junit:4.12'
     compile project(':AndroidBase')
 }

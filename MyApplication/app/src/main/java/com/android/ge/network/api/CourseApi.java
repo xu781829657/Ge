@@ -3,6 +3,8 @@
 package com.android.ge.network.api;
 
 
+import com.android.ge.model.login.LoginResultInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +29,9 @@ import rx.Observable;
  * retrofit api的方式进行网络请求
  */
 public interface CourseApi {
-//    @FormUrlEncoded
-//    @POST("/oauth/token")
-//    Observable<TokenBean> postLoginData(@FieldMap Map<String, String> map);
+    @FormUrlEncoded
+    @POST("/api/login")
+    Observable<LoginResultInfo> postLoginData(@FieldMap Map<String, String> map);
 //
 //    //修改个人资料
 //    @FormUrlEncoded

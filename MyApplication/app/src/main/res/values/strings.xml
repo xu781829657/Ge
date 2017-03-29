@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">GeApp</string>
+    <string name="app_version">2.1.0</string>
+
+    <!-- 常用错误提示-->
+    <string name="errmsg_network_unavailable">网络不可用</string>
+    <string name="errmsg_data_error">数据出错</string>
+
+    <string name="alt_cancel">取消</string>
+    <string name="alt_ensure">确定</string>
+    <string name="alt_continue">继续</string>
 
     <string name="tab_homepage">首页</string>
     <string name="tab_learning">学习</string>
@@ -32,6 +41,9 @@
     <string name="input_hint_password">请输入密码</string>
     <string name="login">登录</string>
     <string name="forget_passwords">忘记密码?</string>
+    <string name="login_name_null">账号为空</string>
+    <string name="login_password_null">密码为空</string>
+    <string name="login_name_err">用户名不能大于30位或少于6位</string>
     
 
 </resources>

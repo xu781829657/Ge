@@ -7,7 +7,7 @@ package com.android.ge.network;
 
 public class NetWorkConstant {
     //online
-    public static String BASE_URL = "https://api.iwexun.com/";
+    public static String BASE_URL = "http://106.14.62.138/";
     //test
     //public static String BASE_URL = "http://api-staging.iwexun.com";
 

@@ -6,7 +6,12 @@ import android.text.TextUtils;
 import com.android.base.frame.Base;
 import com.android.base.util.LogUtils;
 import com.android.base.util.NetworkUtil;
+import com.android.ge.constant.CommonConstant;
 import com.android.ge.network.api.CourseApi;
+import com.android.ge.network.error.ErrorCode;
+import com.android.ge.network.error.ErrorException;
+import com.android.ge.utils.JsonParseUtil;
+import com.android.ge.utils.PreferencesUtils;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -90,7 +95,7 @@ public class Network {
                     .readTimeout(30000, TimeUnit.MILLISECONDS)
                     .connectTimeout(30000, TimeUnit.MILLISECONDS)
                     .addInterceptor(logging)
- //                   .addNetworkInterceptor(new LoggingInterceptor())
+                    .addNetworkInterceptor(new LoggingInterceptor())
                     .build();
         }
         return okHttpClient;
@@ -114,71 +119,66 @@ public class Network {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-//            long t1 = System.nanoTime();
+  //          long t1 = System.nanoTime();
             logger.info(String.format("Sending request %s on %s%n%s",
                     request.url(), chain.connection(), request.headers()));
-//            Response response = null;
-//            String token = SharePrefUtils.getToken(MyApplication.context());
-//            LogUtils.d(getClass(), "token:" + token);
-//            Request authorised = request.newBuilder()
-//                    .addHeader("Authorization", "Bearer " +  SharePrefUtils.getToken(MyApplication.context()))
-//                    .addHeader("I18N_LOCALE", DeviceUtil.localLanguageIsZh()? "zh-CN ":"en")
-//                    .addHeader("Platform","android")
-//                    .addHeader("PlatformVersion",DeviceUtil.getSDKVersionInt()+"")
-//                    .addHeader("Net", NetworkUtil.getConnectedStatus())
-//                    .addHeader("MID",PreferencesUtils.getUserData(Base.getContext(),PreferencesUtils.KEY_ORGAN_ID))
-//                    .addHeader("ClientVersion",DeviceUtil.getAppVersionName()).build();
-//            int source1 = 0;
-//            Headers headers = authorised.headers();
-//            for(int buffer1 = headers.size(); source1 < buffer1; ++source1) {
-//                LogUtils.d("header:"+headers.name(source1) + ": " + headers.value(source1));
-//            }
-//            response = chain.proceed(authorised);
-//            if (response != null) {
-//                LogUtils.d(getClass(), "response.code()" + response.code());
-//                //
-//                if (!response.isSuccessful()) {
-//                    ResponseBody responseBody = response.body();
-//                    long contentLength = responseBody.contentLength();
-//                    BufferedSource source = responseBody.source();
-//                    source.request(Long.MAX_VALUE); // Buffer the entire body.
-//                    Buffer buffer = source.buffer();
-//                    Charset charset = Charset.forName("UTF-8");
-//                    MediaType contentType = responseBody.contentType();
-//                    if (contentType != null) {
-//                        try {
-//                            charset = contentType.charset(Charset.forName("UTF-8"));
-//                        } catch (UnsupportedCharsetException e) {
-//
-//                            return response;
-//                        }
-//                    }
-//
-//                    if (contentLength != 0) {
-//                        String responseBobyStr = buffer.clone().readString(charset);
-//                        LogUtils.d("LoggingInterceptor:" + responseBobyStr);
-//                        String error = "";
-//                        try {
-//                            error = JsonParseUtil.jsonToString(responseBobyStr, CommonConstant.TAG_ERROR);
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        //主动抛出错误
-//                        if (!TextUtils.isEmpty(error)) {
-//                            throw new ErrorException(new Throwable(error),error);
-//                        }
-//                    }
-//                }
-//            }
+            Response response = null;
+            String token = PreferencesUtils.getUserData(Base.getContext(),PreferencesUtils.KEY_TOKEN);
+            LogUtils.d(getClass(), "token:" + token);
+            Request authorised = request.newBuilder()
+                    .addHeader("Authorization", "Bearer " + token).build();
+            int source1 = 0;
+            Headers headers = authorised.headers();
+            for(int buffer1 = headers.size(); source1 < buffer1; ++source1) {
+                LogUtils.d("header:"+headers.name(source1) + ": " + headers.value(source1));
+            }
+            response = chain.proceed(authorised);
+            if (response != null) {
+                LogUtils.d(getClass(), "response.code()" + response.code());
+                //
+                if (!response.isSuccessful()) {
+                    ResponseBody responseBody = response.body();
+                    long contentLength = responseBody.contentLength();
+                    BufferedSource source = responseBody.source();
+                    source.request(Long.MAX_VALUE); // Buffer the entire body.
+                    Buffer buffer = source.buffer();
+                    Charset charset = Charset.forName("UTF-8");
+                    MediaType contentType = responseBody.contentType();
+                    if (contentType != null) {
+                        try {
+                            charset = contentType.charset(Charset.forName("UTF-8"));
+                        } catch (UnsupportedCharsetException e) {
+
+                            return response;
+                        }
+                    }
+
+                    if (contentLength != 0) {
+                        String responseBobyStr = buffer.clone().readString(charset);
+                        LogUtils.d("LoggingInterceptor:" + responseBobyStr);
+                        String code = "";
+                        try {
+                            code = JsonParseUtil.jsonToString(responseBobyStr, CommonConstant.TAG_CODE);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if(!"0".equalsIgnoreCase(code)) {
+                            String error = ErrorCode.getErrorMessage(code);
+                            //主动抛出错误
+                            if (!TextUtils.isEmpty(error)) {
+                                throw new ErrorException(new Throwable(error),error);
+                            }
+                        }
+                    }
+                }
+            }
 
 
 //            long t2 = System.nanoTime();
 //            logger.info(String.format("Received response for %s in %.1fms%n%s",
 //                    response.request().url(), (t2 - t1) / 1e6d, response.headers()));
 //            logger.info(String.format("Received response result: %s",response.body().string()+""));
- //           return response;
-            return null;
+            return response;
         }
     }
 

@@ -7,7 +7,7 @@ import android.util.Log;
  */
 public class LogUtils {
 
-    public static boolean print = false;
+    public static boolean print = true;
     private static final String LOG_FILTER = "123";
 
     private static final String TAG = "GE";

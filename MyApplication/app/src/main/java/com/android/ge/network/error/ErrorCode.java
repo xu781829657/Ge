@@ -21,4 +21,24 @@ public class ErrorCode {
      * 协议出错
      */
     public static final int HTTP_ERROR = 1003;
+
+
+    public static String getErrorMessage(String codestr) {
+        Integer code = Integer.valueOf(codestr);
+
+        switch (code){
+            case 1:
+                return "服务不可用";
+            case 12:
+                return "提供的凭证无效";
+            case 43:
+                return "系统处理出错";
+            case 60:
+                return "参数不合法";
+
+            default:
+                return "未知错误";
+        }
+
+    }
 }
