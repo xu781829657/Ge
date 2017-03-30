@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rel_item_organ"
+    android:layout_width="271dp"
+    android:layout_height="51dp"
+    android:background="@drawable/shape_roud_rectangel_bg_item_organ">
+   <TextView
+       android:id="@+id/tv_organ_name"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_centerInParent="true"
+       android:text="匡威俱乐部"
+       android:textSize="15sp"
+       android:textColor="@color/selector_color_organ"/>
+
+   <ImageView
+       android:id="@+id/iv_select"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentRight="true"
+       android:layout_centerVertical="true"
+       android:layout_marginRight="13dp"
+       android:src="@drawable/questionnairetest_sel_icon"/>
+
+
+
+</RelativeLayout>

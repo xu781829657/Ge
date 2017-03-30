@@ -32,7 +32,7 @@
     <string name="my_help_centre">帮助中心</string>
     <string name="learning_points">获得总积分</string>
 
-    <!-- -->
+    <!-- 登录-->
     <string name="input_hint_old_password">请输入旧密码</string>
     <string name="input_hint_new_password">请输入新密码</string>
     <string name="input_hint_new_password_again">请再次输入新密码</string>
@@ -44,6 +44,11 @@
     <string name="login_name_null">账号为空</string>
     <string name="login_password_null">密码为空</string>
     <string name="login_name_err">用户名不能大于30位或少于6位</string>
+
+    <!-- 组织机构选择-->
+    <string name="tips_organ_select_1">您的账户属于多个机构</string>
+    <string name="tips_organ_select_2">请选择要进入的机构</string>
+
     
 
 </resources>

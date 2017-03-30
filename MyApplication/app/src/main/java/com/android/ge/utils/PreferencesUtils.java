@@ -31,6 +31,8 @@ public class PreferencesUtils {
     public static final String KEY_AVATAR_URL = "key_avatar_url";
     public static final String KEY_ORGAN_ID = "key_organization_id";
     public static final String KEY_ORGAN_NAME = "key_organization_name";
+    public static final String KEY_ORGAN_FULL_NAME = "key_organization_full_name";
+    public static final String KEY_ORGAN_LOGO = "key_organization_logo";
     public static final String KEY_USER_ID = "key_user_id";
     public static final String KEY_SPLASH_IMAGE_URL ="key_splash_url";
     public static final String KEY_BANNER_IMAGE_URL ="key_banner_url";

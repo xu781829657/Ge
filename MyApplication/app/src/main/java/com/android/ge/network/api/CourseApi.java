@@ -4,6 +4,7 @@ package com.android.ge.network.api;
 
 
 import com.android.ge.model.login.LoginResultInfo;
+import com.android.ge.model.login.OrganResultInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,11 @@ public interface CourseApi {
     @FormUrlEncoded
     @POST("/api/login")
     Observable<LoginResultInfo> postLoginData(@FieldMap Map<String, String> map);
+
+    //个人资料
+    @GET("/api/organization/self")
+    Observable<OrganResultInfo> getOrgans();
+
 //
 //    //修改个人资料
 //    @FormUrlEncoded

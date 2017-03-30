@@ -15,10 +15,14 @@ import com.android.base.frame.Base;
 import com.android.base.util.LogUtils;
 import com.android.base.util.NetworkUtil;
 import com.android.ge.R;
+import com.android.ge.constant.CommonConstant;
+import com.android.ge.controller.Store;
 import com.android.ge.model.login.LoginResultInfo;
+import com.android.ge.model.login.OrganResultInfo;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.ui.base.CommonBaseActivity;
+import com.android.ge.ui.tabmain.MaintabActivity;
 import com.android.ge.utils.PreferencesUtils;
 
 import java.util.ArrayList;
@@ -148,7 +152,6 @@ public class LoginActivity extends CommonBaseActivity {
             e.printStackTrace();
             dismissLoadingDialog();
             Base.showToast(ExceptionEngine.handleException(e).message);
-            //httpcode 密码错误
         }
 
         @Override
@@ -156,15 +159,13 @@ public class LoginActivity extends CommonBaseActivity {
             if (resultInfo != null) {
                 //保存token
                 PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getData().getToken());
+                getNetDataOrgans();
             }
-
-
-            //getNetDataMemberships();
 
         }
     };
 
-    //获取课程数
+    //登录
     private void postNetDataLogin() {
         if (!NetworkUtil.isAvailable(mContext)) {
             Base.showToast(R.string.errmsg_network_unavailable);
@@ -180,6 +181,52 @@ public class LoginActivity extends CommonBaseActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mTokenObserver);
+    }
+
+
+    //用户机构列表
+    Observer<OrganResultInfo> mOrganObserver = new Observer<OrganResultInfo>() {
+        @Override
+        public void onCompleted() {
+            dismissLoadingDialog();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            LogUtils.d(getClass(), "observer member e.message:" + e.getMessage());
+            e.printStackTrace();
+            dismissLoadingDialog();
+            Base.showToast(ExceptionEngine.handleException(e).message);
+        }
+
+        @Override
+        public void onNext(OrganResultInfo resultInfo) {
+            if (resultInfo.data == null || resultInfo.data.size() == 0) {
+                Base.showToast(R.string.errmsg_data_error);
+                return;
+            }
+            if (resultInfo.data.size() == 1) {
+                Store.storeOrgan(mContext, resultInfo.data.get(0));
+                gotoActivity(MaintabActivity.class, true);
+            } else {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(CommonConstant.KEY_ORGAN_LIST, resultInfo.data);
+                gotoActivity(OrganSelectActivity.class, bundle, false);
+            }
+        }
+    };
+
+    //获取个人资料
+    private void getNetDataOrgans() {
+        if (!NetworkUtil.isAvailable(mContext)) {
+            Base.showToast(R.string.errmsg_network_unavailable);
+            return;
+        }
+        showLoadingDialog("获取组织信息");
+        Network.getCourseApi("登录-我的机构列表").getOrgans()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(mOrganObserver);
     }
 
 
