@@ -30,12 +30,10 @@ public class Store {
     }
 
     //组织id
-    public static int getOrganId() {
+    public static String getOrganId() {
         String organ_id = PreferencesUtils.getUserData(Base.getContext(), PreferencesUtils.KEY_ORGAN_ID);
-        if (!TextUtils.isEmpty(organ_id)) {
-            return Integer.valueOf(organ_id);
-        }
-        return 0;
+
+        return organ_id;
     }
 
     //组织名字

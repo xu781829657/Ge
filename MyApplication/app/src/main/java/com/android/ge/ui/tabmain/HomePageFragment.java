@@ -6,22 +6,36 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.android.base.frame.Base;
+import com.android.base.util.LogUtils;
+import com.android.base.util.NetworkUtil;
 import com.android.base.util.ScreenUtils;
 import com.android.ge.R;
+import com.android.ge.constant.CommonConstant;
+import com.android.ge.controller.Store;
 import com.android.ge.controller.adapter.NewsAdapter;
 import com.android.ge.controller.adapter.RecommandAdapter;
 import com.android.ge.controller.adapter.RequiredAdapter;
 import com.android.ge.controller.diliver.RecycleViewDivider;
 import com.android.ge.model.CourseBean;
+import com.android.ge.model.HomePageResultInfo;
 import com.android.ge.model.NewsBean;
 import com.android.ge.model.RecommandInfo;
 import com.android.ge.model.RequiredInfo;
+import com.android.ge.model.login.LoginResultInfo;
+import com.android.ge.network.Network;
+import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.ui.base.CommonBaseFragment;
+import com.android.ge.utils.PreferencesUtils;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by xudengwang on 17/3/18.
@@ -56,6 +70,11 @@ public class HomePageFragment extends CommonBaseFragment {
         refreshRequiredAdapter(null);
         refreshRecommandAdapter(null);
         super.onResume();
+    }
+
+    private void refreshMainData(HomePageResultInfo info){
+        
+
     }
 
     //刷新最新资讯
@@ -149,5 +168,48 @@ public class HomePageFragment extends CommonBaseFragment {
             mRecommandAdapter.notifyDataSetChanged();
         }
 
+    }
+
+
+
+
+    //课程数观察器
+    Observer<HomePageResultInfo> mTokenObserver = new Observer<HomePageResultInfo>() {
+        @Override
+        public void onCompleted() {
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
+            e.printStackTrace();
+            Base.showToast(ExceptionEngine.handleException(e).message);
+        }
+
+        @Override
+        public void onNext(HomePageResultInfo resultInfo) {
+            if (resultInfo != null) {
+                //保存token
+                PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getData().getToken());
+                getNetDataOrgans();
+            }
+
+        }
+    };
+
+    //登录
+    private void getNetDataHomePageConfig() {
+        if (!NetworkUtil.isAvailable(getMContext())) {
+            Base.showToast(R.string.errmsg_network_unavailable);
+            return;
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
+
+        Network.getCourseApi("tab_首页").getHomePageConfig(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(mTokenObserver);
     }
 }

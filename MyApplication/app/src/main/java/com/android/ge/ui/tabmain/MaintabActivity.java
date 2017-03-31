@@ -64,11 +64,6 @@ public class MaintabActivity extends CommonBaseActivity {
         mFragments.add(new LearningFragment());
         mFragments.add(new TaskFragment());
         mFragments.add(new MeFragment());
- //       TabAdapter adapter = new TabAdapter(getSupportFragmentManager());
-//        adapter.addFragment(new HomePageFragment());
-//        adapter.addFragment(new LearningFragment());
-//        adapter.addFragment(new TaskFragment());
-//        adapter.addFragment(new MeFragment());
 
         PageFragmentAdapter adapter = new PageFragmentAdapter(getSupportFragmentManager(), mFragments);
         mVpTab.setOffscreenPageLimit(mFragments.size());
@@ -76,33 +71,6 @@ public class MaintabActivity extends CommonBaseActivity {
         mVpTab.setCurrentItem(0);
 
     }
-
-
-//    static class TabAdapter extends FragmentPagerAdapter {
-//        private List<Fragment> mFragments = new ArrayList<>();
-//
-//        public TabAdapter(FragmentManager fm,L) {
-//            super(fm);
-//        }
-//
-//        public void addFragment(Fragment fragment) {
-//            mFragments.add(fragment);
-//        }
-//
-//        @Override
-//        public Fragment getItem(int position) {
-//            return mFragments.get(position);
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return mFragments.size();
-//        }
-//
-//        public List<Fragment> getmFragments() {
-//            return mFragments;
-//        }
-//    }
 
     public class PageFragmentAdapter extends FragmentPagerAdapter {
 

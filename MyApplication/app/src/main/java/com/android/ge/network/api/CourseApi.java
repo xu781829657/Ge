@@ -3,6 +3,7 @@
 package com.android.ge.network.api;
 
 
+import com.android.ge.model.HomePageResultInfo;
 import com.android.ge.model.login.LoginResultInfo;
 import com.android.ge.model.login.OrganResultInfo;
 
@@ -34,9 +35,14 @@ public interface CourseApi {
     @POST("/api/login")
     Observable<LoginResultInfo> postLoginData(@FieldMap Map<String, String> map);
 
-    //个人资料
+    //组织机构列表
     @GET("/api/organization/self")
     Observable<OrganResultInfo> getOrgans();
+
+    @FormUrlEncoded
+    @GET("/api/home/config")
+    Observable<HomePageResultInfo> getHomePageConfig(@FieldMap Map<String, String> map);
+
 
 //
 //    //修改个人资料
