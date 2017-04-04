@@ -7,12 +7,13 @@ import java.util.List;
  */
 
 public class HomePageResultInfo extends BaseResultInfo {
-    private HomePageInfo data;
+    public HomePageInfo data;
 
     public static class HomePageInfo {
-        private List<GalleryBean> gallery;//banner
-        private List<NewsBean> messages;//最新资讯
-        private RequiredInfo required;//必修课
-        private RecommandInfo recommand;//推荐课
+        public List<GalleryBean> gallery;//banner
+        public List<NewsBean> news;//最新资讯
+        public RequiredInfo required;//必修课
+        public RecommandInfo recommand;//推荐课
     }
+
 }

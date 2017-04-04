@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <shape android:color="#7DA8DA47" android:shape="rectangle">
+            <corners android:radius="5dp"></corners>
+            <solid android:color="@color/btn_login_press" />
+        </shape>
+    </item>
+    <item>
+        <shape android:color="#A8DA47" android:shape="rectangle">
+            <corners android:radius="5dp"></corners>
+            <!-- 显示一条虚线，破折线的宽度为 dashWith，破折线之间的空隙的宽度为 dashGap，当 dashGap=0dp 时，为实线 -->
+            <solid android:color="@color/btn_login_normal" />
+        </shape>
+    </item>
+
+</selector>

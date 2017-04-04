@@ -8,4 +8,20 @@ package com.android.ge.model;
 public class GalleryBean {
     private String index;
     private String image_url;
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
 }

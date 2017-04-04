@@ -23,4 +23,9 @@
     <color name="btn_login_bg">#2BC17A</color>
     <color name="btn_login_bg_press">#CC2BC17A</color>
     <color name="txt_login_un_enable">#82D5A9</color>
+
+    <color name="btn_login_normal">#A8DA47</color>
+    <color name="btn_login_press">#7DA8DA47</color>
+
+    <color name="common_blue">#2196f3</color>
 </resources>

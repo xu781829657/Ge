@@ -39,9 +39,8 @@ public interface CourseApi {
     @GET("/api/organization/self")
     Observable<OrganResultInfo> getOrgans();
 
-    @FormUrlEncoded
     @GET("/api/home/config")
-    Observable<HomePageResultInfo> getHomePageConfig(@FieldMap Map<String, String> map);
+    Observable<HomePageResultInfo> getHomePageConfig(@QueryMap Map<String, String> map);
 
 
 //

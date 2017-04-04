@@ -29,12 +29,15 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
+    //事件传递
+    compile 'org.greenrobot:eventbus:3.0.0'
 
     compile 'com.zhy:base-rvadapter:3.0.3'
     compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
 
     compile 'cn.carbs.android:AvatarImageView:1.0.2'
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.6'
+    compile 'com.youth.banner:banner:1.4.9'
     testCompile 'junit:junit:4.12'
     compile project(':AndroidBase')
 }

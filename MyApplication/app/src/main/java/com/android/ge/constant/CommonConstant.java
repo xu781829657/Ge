@@ -1,5 +1,7 @@
 package com.android.ge.constant;
 
+import android.os.Environment;
+
 /**
  * Created by xudengwang on 17/3/29.
  */
@@ -13,4 +15,6 @@ public class CommonConstant {
 
     //参数
     public static final String PARAM_ORG_ID="org_id";
+
+    public static final String ROOT_CACHE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + "com.android.ge";
 }

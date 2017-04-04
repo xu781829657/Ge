@@ -3,6 +3,7 @@ package com.android.ge.ui.tabmain;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.base.frame.Base;
@@ -17,6 +18,7 @@ import com.android.ge.controller.adapter.RecommandAdapter;
 import com.android.ge.controller.adapter.RequiredAdapter;
 import com.android.ge.controller.diliver.RecycleViewDivider;
 import com.android.ge.model.CourseBean;
+import com.android.ge.model.GalleryBean;
 import com.android.ge.model.HomePageResultInfo;
 import com.android.ge.model.NewsBean;
 import com.android.ge.model.RecommandInfo;
@@ -26,10 +28,15 @@ import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.ui.base.CommonBaseFragment;
 import com.android.ge.utils.PreferencesUtils;
+import com.android.ge.utils.image.GlideImageLoader;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -42,8 +49,12 @@ import rx.schedulers.Schedulers;
  */
 
 public class HomePageFragment extends CommonBaseFragment {
+    @Bind(R.id.banner)
+    Banner mBanner;
+
     @Bind(R.id.rv_news)
     RecyclerView mRvNews;
+
     @Bind(R.id.rv_required_courses)
     RecyclerView mRvRequires;
     @Bind(R.id.rv_recommand_courses)
@@ -53,6 +64,7 @@ public class HomePageFragment extends CommonBaseFragment {
     private RequiredAdapter mRequiredAdapter;
     private RecommandAdapter mRecommandAdapter;
     private ArrayList<NewsBean> mNews = new ArrayList<>();
+    private List<String> mBannerImageUrls = new ArrayList<>();
 
     @Override
     public int getContentViewId() {
@@ -62,27 +74,74 @@ public class HomePageFragment extends CommonBaseFragment {
     @Override
     protected void initData() {
 
+        getNetDataHomePageConfig();
+
+    }
+
+    //轮播图更新及初始化
+    private void refreshBanner(List<GalleryBean> galleryBeanList) {
+        if (galleryBeanList == null || galleryBeanList.size() == 0) {
+            mBanner.setVisibility(View.GONE);
+            return;
+        } else {
+            mBannerImageUrls.clear();
+            for (int i = 0; i < galleryBeanList.size(); i++) {
+                mBannerImageUrls.add(galleryBeanList.get(i).getImage_url());
+            }
+        }
+        //设置图片加载器
+        mBanner.setImageLoader(new GlideImageLoader());
+        //设置图片集合
+        mBanner.setImages(mBannerImageUrls);
+        mBanner.setDelayTime(5000);
+        //banner设置方法全部调用完毕时最后调用
+        mBanner.start();
+//        //设置banner样式
+//        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
+//        //设置图片加载器
+//        mBanner.setImageLoader(new GlideImageLoader());
+//        //设置图片集合
+//        mBanner.setImages(mBannerImageUrls);
+//        //设置banner动画效果
+//        mBanner.setBannerAnimation(Transformer.DepthPage);
+//        //设置标题集合（当banner样式有显示title时）
+//        //mBanner.setBannerTitles(titles);
+//        //设置自动轮播，默认为true
+//        mBanner.isAutoPlay(true);
+//        //设置轮播时间
+//        mBanner.setDelayTime(1500);
+//        //设置指示器位置（当banner模式中有指示器时）
+//        mBanner.setIndicatorGravity(BannerConfig.CENTER);
+//        //banner设置方法全部调用完毕时最后调用
+//        mBanner.start();
+
+
     }
 
     @Override
     public void onResume() {
-        refreshNewsAdapter();
-        refreshRequiredAdapter(null);
-        refreshRecommandAdapter(null);
         super.onResume();
     }
 
-    private void refreshMainData(HomePageResultInfo info){
-        
+    private void refreshMainData(HomePageResultInfo info) {
+        HomePageResultInfo.HomePageInfo homePageInfo = info.data;
+        refreshBanner(homePageInfo.gallery);
+        refreshNewsAdapter(homePageInfo.news);
+        refreshRecommandAdapter(homePageInfo.recommand);
+        refreshRequiredAdapter(homePageInfo.required);
 
     }
 
+
     //刷新最新资讯
-    private void refreshNewsAdapter() {
-        if(mNews.size() == 0) {
-            for (int i= 0;i<3;i++){
+    private void refreshNewsAdapter(List<NewsBean> news) {
+        if (news != null && news.size() > 0) {
+            mNews.addAll(news);
+        }
+        if (mNews.size() == 0) {
+            for (int i = 0; i < 3; i++) {
                 NewsBean bean = new NewsBean();
-                bean.setTitle("测试资讯"+i);
+                bean.setTitle("测试资讯" + i);
                 mNews.add(bean);
             }
         }
@@ -171,8 +230,6 @@ public class HomePageFragment extends CommonBaseFragment {
     }
 
 
-
-
     //课程数观察器
     Observer<HomePageResultInfo> mTokenObserver = new Observer<HomePageResultInfo>() {
         @Override
@@ -189,9 +246,7 @@ public class HomePageFragment extends CommonBaseFragment {
         @Override
         public void onNext(HomePageResultInfo resultInfo) {
             if (resultInfo != null) {
-                //保存token
-                PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getData().getToken());
-                getNetDataOrgans();
+                refreshMainData(resultInfo);
             }
 
         }

@@ -13,12 +13,13 @@
             android:id="@+id/iv_course_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/bg_line"/>
+            android:background="@drawable/demo_course_loading_icon"/>
 
         <View
             android:id="@+id/view_bg_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:background="@color/bg_transparent_50"/>
 
         <TextView
@@ -27,6 +28,7 @@
             android:layout_height="23dp"
             android:layout_centerInParent="true"
             android:textSize="11sp"
+            android:visibility="gone"
             android:gravity="center"
             android:textColor="@color/white"
             android:background="@drawable/shape_course_item_start_bg"
@@ -53,6 +55,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="来自新东方"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:textColor="#999999"
         android:textSize="11sp" />
 
