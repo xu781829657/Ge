@@ -4,6 +4,7 @@ package com.android.ge.network.api;
 
 
 import com.android.ge.model.HomePageResultInfo;
+import com.android.ge.model.LearningResultInfo;
 import com.android.ge.model.login.LoginResultInfo;
 import com.android.ge.model.login.OrganResultInfo;
 
@@ -39,9 +40,13 @@ public interface CourseApi {
     @GET("/api/organization/self")
     Observable<OrganResultInfo> getOrgans();
 
+    //获取首页配置
     @GET("/api/home/config")
     Observable<HomePageResultInfo> getHomePageConfig(@QueryMap Map<String, String> map);
 
+    //获取课程分类接口
+    @GET("/api/course_type/list")
+    Observable<LearningResultInfo> getCourseTypeList(@QueryMap Map<String, String> map);
 
 //
 //    //修改个人资料

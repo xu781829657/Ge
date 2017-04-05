@@ -230,8 +230,8 @@ public class HomePageFragment extends CommonBaseFragment {
     }
 
 
-    //课程数观察器
-    Observer<HomePageResultInfo> mTokenObserver = new Observer<HomePageResultInfo>() {
+    //主页配置
+    Observer<HomePageResultInfo> mHomePageObserver = new Observer<HomePageResultInfo>() {
         @Override
         public void onCompleted() {
         }
@@ -265,6 +265,6 @@ public class HomePageFragment extends CommonBaseFragment {
         Network.getCourseApi("tab_首页").getHomePageConfig(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(mTokenObserver);
+                .subscribe(mHomePageObserver);
     }
 }

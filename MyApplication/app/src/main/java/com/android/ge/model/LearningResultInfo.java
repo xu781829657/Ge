@@ -8,5 +8,5 @@ import java.util.List;
  */
 
 public class LearningResultInfo extends BaseResultInfo{
-    private List<BaseCourseTypeInfo> data;
+    public List<BaseCourseTypeInfo> data;
 }

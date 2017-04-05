@@ -45,4 +45,5 @@ public class BaseCourseTypeInfo {
     public void setId(String id) {
         this.id = id;
     }
+
 }
