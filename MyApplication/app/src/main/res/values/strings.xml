@@ -62,6 +62,14 @@
     <string name="prompt_is_new_version">当前已是最新版本!</string>
     <string name="update_exception">检测版本更新失败,请重新检测!</string>
 
+    <!-- 个人中心-->
+    <string name="title_personal_center">个人中心</string>
+    <string name="personal_info">个人资料</string>
+    <string name="change_pass">修改密码</string>
+    <string name="version_update">版本更新</string>
+    <string name="logout">退出登录</string>
+    <string name="login_out">退出登录</string>
+    <string name="commit">提交</string>
     
 
 </resources>

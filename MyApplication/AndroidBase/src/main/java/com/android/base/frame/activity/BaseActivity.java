@@ -59,6 +59,11 @@ public abstract class BaseActivity extends AppCompatActivity {
             finish();
         }
     }
+    public void gotoActivity(Class<? extends Activity> clazz, int flag) {
+        Intent intent = new Intent(this, clazz);
+        intent.setFlags(flag);
+        startActivity(intent);
+    }
 
     public void gotoActivity(Class<? extends Activity> clazz, Bundle bundle, boolean finish) {
         Intent intent = new Intent(this, clazz);

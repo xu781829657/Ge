@@ -9,9 +9,17 @@ import com.android.base.frame.Base;
  */
 
 public class AppApplication extends Application{
+    public int ENVIRONMENT;
+
+    private static AppApplication singleton;
     @Override
     public void onCreate() {
         super.onCreate();
+        singleton = this;
         Base.initialize(this);
+    }
+
+    public static AppApplication getInstance(){
+        return singleton;
     }
 }

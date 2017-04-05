@@ -38,6 +38,8 @@ dependencies {
     compile 'cn.carbs.android:AvatarImageView:1.0.2'
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.6'
     compile 'com.youth.banner:banner:1.4.9'
+    //开关按钮
+    compile 'com.kyleduo.switchbutton:library:1.4.4'
     testCompile 'junit:junit:4.12'
     compile project(':AndroidBase')
 }
