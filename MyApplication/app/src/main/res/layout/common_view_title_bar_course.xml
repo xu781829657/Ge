@@ -19,13 +19,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textColor="@color/title_color_personal"
+        android:textColor="@color/white"
         android:textSize="@dimen/title_size" />
 
     <ImageView
+        android:id="@+id/iv_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_marginRight="17dp"
         android:src="@drawable/bar_search_icon"/>
 

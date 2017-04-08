@@ -1,4 +1,4 @@
-package com.android.ge.model.start;
+package com.android.ge.ui.start;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -40,7 +40,7 @@ public class CustomSplashActivity extends CommonBaseActivity {
         mContext = this;
         String splash_url = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_SPLASH_IMAGE_URL);
         LogUtils.d(getClass(), "splash_url:" + splash_url);
-        int defaultDrawableResId = R.drawable.default_load_img;
+        int defaultDrawableResId = R.drawable.splash_screen_page;
 //        if (mContext.getResources().getConfiguration().locale.getCountry().equals("CN")) {
 //            defaultDrawableResId = R.drawable.start_china_bj;
 //        }
@@ -77,7 +77,6 @@ public class CustomSplashActivity extends CommonBaseActivity {
         if (TextUtils.isEmpty(token)) {
             gotoActivity(LoginActivity.class, true);
         } else {
-
             gotoActivity(MaintabActivity.class, true);
         }
     }

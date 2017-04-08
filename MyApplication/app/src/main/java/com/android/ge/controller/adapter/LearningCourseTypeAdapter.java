@@ -3,12 +3,15 @@ package com.android.ge.controller.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.android.ge.controller.adapter.Itemviewdelegate.CourseItemViewDelegate;
 import com.android.ge.controller.adapter.Itemviewdelegate.CourseTypeItemViewDelegate;
 import com.android.ge.model.BaseCourseTypeInfo;
 import com.android.ge.model.learning.BaseLearningItem;
 import com.android.ge.model.learning.TitleItemInfo;
+import com.android.ge.utils.image.ImageLoader;
+import com.android.ge.utils.image.ImageRequest;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -46,5 +49,21 @@ public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearning
     public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
         return false;
 
+    }
+
+    /**
+     * 加载网络上的图片
+     *
+     * @param viewId
+     * @param url
+     */
+    public void setImageFromInternet(ImageView iv, String url) {
+        ImageRequest imageRequest = new ImageRequest.Builder().imgView(iv).url(url).create();
+        ImageLoader.getProvider().loadImage(imageRequest);
+    }
+
+    public void setImageFromInternet(ImageView iv, String url, int defaultDrawableId) {
+        ImageRequest imageRequest = new ImageRequest.Builder().imgView(iv).placeHolder(defaultDrawableId).url(url).create();
+        ImageLoader.getProvider().loadImage(imageRequest);
     }
 }

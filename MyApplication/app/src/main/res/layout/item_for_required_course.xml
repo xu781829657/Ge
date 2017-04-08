@@ -13,13 +13,13 @@
             android:id="@+id/iv_course_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/bg_line"/>
+            android:background="@drawable/demo_course_loading_icon"/>
 
         <View
             android:id="@+id/view_bg_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/bg_transparent_50"/>
+            android:background="@color/transparent_75"/>
         
         <TextView
             android:id="@+id/tv_begin"

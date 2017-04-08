@@ -1,11 +1,12 @@
-package com.android.ge.widgets.view;
 
+package com.android.ge.widgets.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -18,71 +19,69 @@ import com.android.ge.R;
  * @author xiaanming
  *
  */
-public class HalfRoundProgressBar extends View {
+public class RoundProgressBar extends View {
 	/**
 	 * 画笔对象的引用
 	 */
 	private Paint paint;
-
+	
 	/**
 	 * 圆环的颜色
 	 */
 	private int roundColor;
-
+	
 	/**
 	 * 圆环进度的颜色
 	 */
 	private int roundProgressColor;
-
+	
 	/**
 	 * 中间进度百分比的字符串的颜色
 	 */
 	private int textColor;
-
+	
 	/**
 	 * 中间进度百分比的字符串的字体
 	 */
 	private float textSize;
-
+	
 	/**
 	 * 圆环的宽度
 	 */
 	private float roundWidth;
-
+	
 	/**
 	 * 最大进度
 	 */
 	private int max;
-
+	
 	/**
 	 * 当前进度
 	 */
-	private int progress = 86;
+	private int progress;
 	/**
 	 * 是否显示中间的进度
 	 */
 	private boolean textIsDisplayable;
-
+	
 	/**
 	 * 进度的风格，实心或者空心
 	 */
 	private int style;
-
-	//渐变颜色
-	int[] colors =new int[]{ 0xffc42c1b, 0xfffeea08, 0xff04aafc, 0xff15e078};
-
+	
 	public static final int STROKE = 0;
 	public static final int FILL = 1;
 
-	public HalfRoundProgressBar(Context context) {
+	
+	public RoundProgressBar(Context context) {
 		this(context, null);
 	}
 
-	public HalfRoundProgressBar(Context context, AttributeSet attrs) {
+	public RoundProgressBar(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
-
-	public HalfRoundProgressBar(Context context, AttributeSet attrs, int defStyle) {
+	
+	public RoundProgressBar(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		
 		paint = new Paint();
@@ -117,29 +116,30 @@ public class HalfRoundProgressBar extends View {
 		int radius = (int) (centre - roundWidth/2); //圆环的半径
 		paint.setColor(roundColor); //设置圆环的颜色
 		paint.setStyle(Paint.Style.STROKE); //设置空心
-		paint.setStrokeWidth(roundWidth); //设置圆环的宽度
+		paint.setStrokeWidth(roundWidth/3); //设置圆环的宽度
 		paint.setAntiAlias(true);  //消除锯齿 
-		//canvas.drawCircle(centre, centre, radius, paint); //画出圆环
-		RectF outoval = new RectF(centre - radius, centre - radius, centre
-				+ radius, centre + radius);  //用于定义的圆弧的形状和大小的界限
-		canvas.drawArc(outoval, 140, 260, false, paint);  //根据进度画圆弧
+		canvas.drawCircle(centre, centre, radius, paint); //画出圆环
 		
 		Log.e("log", centre + "");
 		
 		/**
 		 * 画进度百分比
 		 */
-//		paint.setStrokeWidth(0);
-//		paint.setColor(textColor);
-//		paint.setTextSize(textSize);
-//		paint.setTypeface(Typeface.DEFAULT_BOLD); //设置字体
-//		int percent = (int)(((float)80 / (float)max) * 100);  //中间的进度百分比，先转换成float在进行除法运算，不然都为0
-//		float textWidth = paint.measureText(percent + "%");   //测量字体宽度，我们需要根据字体的宽度设置在圆环中间
-//
+		paint.setStrokeWidth(0); 
+		paint.setColor(textColor);
+		paint.setTextSize(textSize);
+		paint.setTypeface(Typeface.DEFAULT_BOLD); //设置字体
+		int percent = (int)(((float)progress / (float)max) * 100);  //中间的进度百分比，先转换成float在进行除法运算，不然都为0
+		float textWidth = paint.measureText(percent + "%");   //测量字体宽度，我们需要根据字体的宽度设置在圆环中间
+		
 //		if(textIsDisplayable && percent != 0 && style == STROKE){
 //			canvas.drawText(percent + "%", centre - textWidth / 2, centre + textSize/2, paint); //画出进度百分比
 //		}
-//
+
+		if(textIsDisplayable && style == STROKE){
+			canvas.drawText(percent + "%", centre - textWidth / 2, centre + textSize/2, paint); //画出进度百分比
+		}
+		
 		
 		/**
 		 * 画圆弧 ，画圆环的进度
@@ -155,11 +155,7 @@ public class HalfRoundProgressBar extends View {
 		case STROKE:{
 			paint.setStyle(Paint.Style.STROKE);
 			paint.setStrokeCap(Paint.Cap.ROUND);
-//			LinearGradient shader = new LinearGradient(3, 3, getMeasuredWidth() - 3 , getMeasuredHeight() - 3, colors, null,
-//					Shader.TileMode.CLAMP);
-//			paint.setShader(shader);
-			//canvas.drawArc(oval, -40, 360 * progress / max, false, paint);  //根据进度画圆弧
-			canvas.drawArc(oval, 140,  260 * progress / max, false, paint);  //根据进度画圆弧
+			canvas.drawArc(oval, -90, 360 * progress / max, false, paint);  //根据进度画圆弧
 			break;
 		}
 		case FILL:{

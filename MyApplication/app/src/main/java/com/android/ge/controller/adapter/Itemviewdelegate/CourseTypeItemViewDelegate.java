@@ -3,6 +3,7 @@ package com.android.ge.controller.adapter.Itemviewdelegate;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.base.frame.Base;
@@ -11,6 +12,8 @@ import com.android.ge.R;
 import com.android.ge.model.CourseBean;
 import com.android.ge.model.learning.BaseLearningItem;
 import com.android.ge.model.learning.TitleItemInfo;
+import com.android.ge.utils.image.ImageLoader;
+import com.android.ge.utils.image.ImageRequest;
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -47,7 +50,22 @@ public class CourseTypeItemViewDelegate implements ItemViewDelegate<BaseLearning
             holder.getView(R.id.tv_more).setVisibility(View.GONE);
         }
 
+    }
 
 
+    /**
+     * 加载网络上的图片
+     *
+     * @param viewId
+     * @param url
+     */
+    public void setImageFromInternet(ImageView iv, String url) {
+        ImageRequest imageRequest = new ImageRequest.Builder().imgView(iv).url(url).create();
+        ImageLoader.getProvider().loadImage(imageRequest);
+    }
+
+    public void setImageFromInternet(ImageView iv, String url, int defaultDrawableId) {
+        ImageRequest imageRequest = new ImageRequest.Builder().imgView(iv).placeHolder(defaultDrawableId).url(url).create();
+        ImageLoader.getProvider().loadImage(imageRequest);
     }
 }

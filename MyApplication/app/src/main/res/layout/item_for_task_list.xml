@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="125dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lin_progress"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.android.ge.widgets.view.RoundProgressBar
+            android:id="@+id/rd_progressbar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:roundColor="@color/round_color"
+            app:roundProgressColor="@color/round_progress_color"
+            app:roundWidth="4dp"
+            app:textColor="#666666"
+            app:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/task_finished"
+            android:textColor="#2BC17A"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/lin_progress"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_task_name"
+            style="@style/text_16_33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:text="任务1：如何提高口语方式" />
+
+        <com.android.ge.ui.customview.ContentInfoView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="16dp"></com.android.ge.ui.customview.ContentInfoView>
+
+        <TextView
+            style="@style/text_10_99"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="13dp"
+            android:drawableLeft="@drawable/deadline_icon"
+            android:drawablePadding="12dp"
+            android:text="2017.03.28" />
+
+    </LinearLayout>
+    
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:background="#e3e3e3"
+        android:layout_alignParentBottom="true"
+        android:layout_height="0.5dp"/>
+
+
+</RelativeLayout>

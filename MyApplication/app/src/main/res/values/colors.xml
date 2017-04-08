@@ -14,6 +14,7 @@
     <color name="bg_transparent_50">#4d000000</color>
     <color name="transparent_50">#7D000000</color>
     <color name="transparent_90">#1a000000</color>
+    <color name="transparent_75">#3f000000</color>
     <color name="white">#ffffffff</color>
     <color name="white_50">#7fffffff</color>
     <color name="text_black">#333333</color>
@@ -37,7 +38,12 @@
     <color name="title_color_personal_press">#7D333333</color>
 
     <color name="title_bar_bg_course">#2cc07a</color>
+    <color name="inditor_color">#2BC17A</color>
+    <color name="tab_indicator_color">#bae860</color>
+    <color name="tab_select_color">#9dcf3a</color>
 
+    <color name="round_color">#E0E0E0</color>
+    <color name="round_progress_color">#2BC17A</color>
 
 
 

@@ -14,7 +14,7 @@ import java.util.List;
  * Created by xudengwang on 17/3/19.
  */
 
-public class NewsAdapter extends CommonAdapter<NewsBean> {
+public class NewsAdapter extends BaseCommonAdapter<NewsBean> {
     public NewsAdapter(Context context, List<NewsBean> datas) {
         super(context, R.layout.item_for_news, datas);
     }

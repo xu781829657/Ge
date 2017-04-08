@@ -71,5 +71,10 @@
     <string name="login_out">退出登录</string>
     <string name="commit">提交</string>
     
+    <!-- 任务-->
+    <string name="title_task">我的任务</string>
+    <string name="task_unstart">待参加的</string>
+    <string name="task_ongoing">进行中的</string>
+    <string name="task_finished">已完成</string>
 
 </resources>

@@ -12,6 +12,7 @@
         android:layout_height="31dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="17dp"
+        android:src="@drawable/icon_head"
         app:aiv_BoarderWidth="0dp"
         app:aiv_ShowBoarder="false" />
 

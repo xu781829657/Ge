@@ -11,6 +11,7 @@ public class CommonConstant {
 
     //数据传递
     public static final String KEY_ORGAN_LIST = "key_organ_list";
+    public static final String KEY_TAB_FALG = "key_tab_flag";
 
 
     //参数

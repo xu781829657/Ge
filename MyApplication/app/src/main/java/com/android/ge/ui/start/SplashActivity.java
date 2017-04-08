@@ -1,28 +1,20 @@
-package com.android.ge.model.start;
+package com.android.ge.ui.start;
 
 import android.os.Handler;
 import android.text.TextUtils;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.android.base.frame.Base;
 import com.android.base.util.LogUtils;
-import com.android.base.util.NetworkUtil;
 import com.android.ge.R;
-import com.android.ge.network.Network;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.android.ge.utils.PreferencesUtils;
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
-
 
 import butterknife.Bind;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class SplashActivity extends CommonBaseActivity {
-    private final int SPLASH_DISPLAY_LENGHT = 4000;
+    private final int SPLASH_DISPLAY_LENGHT = 2000;
     @Bind(R.id.iv_splash)
     ImageView mIvSplash;
 
