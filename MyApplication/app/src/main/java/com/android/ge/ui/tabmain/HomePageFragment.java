@@ -1,9 +1,11 @@
 package com.android.ge.ui.tabmain;
 
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.base.frame.Base;
@@ -17,6 +19,7 @@ import com.android.ge.controller.adapter.NewsAdapter;
 import com.android.ge.controller.adapter.RecommandAdapter;
 import com.android.ge.controller.adapter.RequiredAdapter;
 import com.android.ge.controller.diliver.RecycleViewDivider;
+import com.android.ge.controller.entry.BannerEntry;
 import com.android.ge.model.CourseBean;
 import com.android.ge.model.GalleryBean;
 import com.android.ge.model.HomePageResultInfo;
@@ -27,12 +30,15 @@ import com.android.ge.model.login.LoginResultInfo;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.ui.base.CommonBaseFragment;
+import com.android.ge.ui.course.ClassifyCourseListActivity;
 import com.android.ge.utils.PreferencesUtils;
 import com.android.ge.utils.image.GlideImageLoader;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,6 +95,7 @@ public class HomePageFragment extends CommonBaseFragment {
                 mBannerImageUrls.add(galleryBeanList.get(i).getImage_url());
             }
         }
+        EventBus.getDefault().post(new BannerEntry(mBannerImageUrls));
         //设置图片加载器
         mBanner.setImageLoader(new GlideImageLoader());
         //设置图片集合
@@ -149,9 +156,11 @@ public class HomePageFragment extends CommonBaseFragment {
             LinearLayoutManager manager = new LinearLayoutManager(getMContext());
             mRvNews.setLayoutManager(manager);
             mRvNews.setHasFixedSize(true);
+            mRvNews.setNestedScrollingEnabled(false);
             RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.view_rv_header);
             TextView tv_title = (TextView) header.findViewById(R.id.tv_type_title);
             tv_title.setText(Base.string(R.string.title_news));
+
             header.attachTo(mRvNews);
             mNewsAdapter = new NewsAdapter(getMContext(), mNews);
             mRvNews.setAdapter(mNewsAdapter);
@@ -162,30 +171,41 @@ public class HomePageFragment extends CommonBaseFragment {
     }
 
     //刷新必读课
-    private void refreshRequiredAdapter(RequiredInfo info) {
-        if (info == null) {
-            info = new RequiredInfo();
-            info.setTitle("光华学校必读课");
-            info.setTotal_count(4);
-            ArrayList<CourseBean> beans = new ArrayList<>();
-            for (int i = 0; i < 4; i++) {
-                CourseBean bean = new CourseBean();
-                bean.setTitle("必读课" + i);
-                bean.setDesc("课程描述" + i);
-                beans.add(bean);
-            }
-            info.setCourses(beans);
-        }
+    private void refreshRequiredAdapter(final RequiredInfo info) {
+//        if (info == null) {
+//            info = new RequiredInfo();
+//            info.setTitle("光华学校必读课");
+//            info.setTotal_count(4);
+//            ArrayList<CourseBean> beans = new ArrayList<>();
+//            for (int i = 0; i < 4; i++) {
+//                CourseBean bean = new CourseBean();
+//                bean.setTitle("必读课" + i);
+//                bean.setDesc("课程描述" + i);
+//                beans.add(bean);
+//            }
+//            info.setCourses(beans);
+//        }
         if (mRequiredAdapter == null) {
             GridLayoutManager manager = new GridLayoutManager(getMContext(), 2);
             manager.setOrientation(GridLayoutManager.VERTICAL);
             mRvRequires.setLayoutManager(manager);
             mRvRequires.setHasFixedSize(true);
+            mRvRequires.setNestedScrollingEnabled(false);
 //            mRvRequires.addItemDecoration(new RecycleViewDivider(
 //                    getMContext(), GridLayoutManager.HORIZONTAL, (int) (ScreenUtils.getScreenDensity(getMContext()) * 10), getResources().getColor(R.color.white)));
             RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.view_rv_header);
             TextView tv_title = (TextView) header.findViewById(R.id.tv_type_title);
             tv_title.setText(info.getTitle());
+            RelativeLayout relClassify = (RelativeLayout) header.findViewById(R.id.rel_classify);
+            relClassify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, info.getId());
+                    bundle.putString(CommonConstant.KEY_TITLE, info.getTitle());
+                    gotoActivity(ClassifyCourseListActivity.class, bundle, false);
+                }
+            });
             header.attachTo(mRvRequires);
             mRequiredAdapter = new RequiredAdapter(getMContext(), info.getCourses());
             mRvRequires.setAdapter(mRequiredAdapter);
@@ -196,30 +216,41 @@ public class HomePageFragment extends CommonBaseFragment {
     }
 
     //刷新精品推荐
-    private void refreshRecommandAdapter(RecommandInfo info) {
-        if (info == null) {
-            info = new RecommandInfo();
-            info.setTitle("精品推荐");
-            info.setTotal_count(4);
-            ArrayList<CourseBean> beans = new ArrayList<>();
-            for (int i = 0; i < 4; i++) {
-                CourseBean bean = new CourseBean();
-                bean.setTitle("必读课" + i);
-                bean.setDesc("课程描述" + i);
-                beans.add(bean);
-            }
-            info.setCourses(beans);
-        }
+    private void refreshRecommandAdapter(final RecommandInfo info) {
+//        if (info == null) {
+//            info = new RecommandInfo();
+//            info.setTitle("精品推荐");
+//            info.setTotal_count(4);
+//            ArrayList<CourseBean> beans = new ArrayList<>();
+//            for (int i = 0; i < 4; i++) {
+//                CourseBean bean = new CourseBean();
+//                bean.setTitle("必读课" + i);
+//                bean.setDesc("课程描述" + i);
+//                beans.add(bean);
+//            }
+//            info.setCourses(beans);
+//        }
         if (mRecommandAdapter == null) {
             GridLayoutManager manager = new GridLayoutManager(getMContext(), 2);
             manager.setOrientation(GridLayoutManager.VERTICAL);
             mRvRecommand.setLayoutManager(manager);
             mRvRecommand.setHasFixedSize(true);
+            mRvRecommand.setNestedScrollingEnabled(false);
 //            mRvRecommand.addItemDecoration(new RecycleViewDivider(
 //                    getMContext(), GridLayoutManager.HORIZONTAL, (int) (ScreenUtils.getScreenDensity(getMContext()) * 10), getResources().getColor(R.color.white)));
             RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.view_rv_header);
             TextView tv_title = (TextView) header.findViewById(R.id.tv_type_title);
             tv_title.setText(info.getTitle());
+            RelativeLayout relClassify = (RelativeLayout) header.findViewById(R.id.rel_classify);
+            relClassify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, info.getId());
+                    bundle.putString(CommonConstant.KEY_TITLE, info.getTitle());
+                    gotoActivity(ClassifyCourseListActivity.class, bundle, false);
+                }
+            });
             header.attachTo(mRvRecommand);
             mRecommandAdapter = new RecommandAdapter(getMContext(), info.getCourses());
             mRvRecommand.setAdapter(mRecommandAdapter);
@@ -252,7 +283,7 @@ public class HomePageFragment extends CommonBaseFragment {
         }
     };
 
-    //登录
+    //获取主页配置
     private void getNetDataHomePageConfig() {
         if (!NetworkUtil.isAvailable(getMContext())) {
             Base.showToast(R.string.errmsg_network_unavailable);

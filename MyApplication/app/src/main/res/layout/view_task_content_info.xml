@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical">
+    <TextView
+        android:id="@+id/tv_course_count"
+        style="@style/text_12_66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:text="课件2"
+        android:drawableLeft="@drawable/task_courseware_icon"/>
+    <TextView
+        android:id="@+id/tv_test_count"
+        style="@style/text_12_66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:text="考试2"
+        android:drawableLeft="@drawable/task_test_icon"/>
+
+    <TextView
+        android:id="@+id/tv_survey_count"
+        style="@style/text_12_66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:text="问卷2"
+        android:drawableLeft="@drawable/task_questionnaire_icon"/>
+
+</LinearLayout>

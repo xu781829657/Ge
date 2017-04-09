@@ -29,7 +29,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="17dp"
-        android:src="@drawable/bar_search_icon"/>
+        android:visibility="gone"
+        android:src="@drawable/search01_icon" />
 
 
 </RelativeLayout>

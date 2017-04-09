@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GeApp</string>
-    <string name="app_version">2.1.0</string>
+    <string name="app_version">1.0.0</string>
 
     <!-- 常用错误提示-->
     <string name="errmsg_network_unavailable">网络不可用</string>
@@ -76,5 +76,20 @@
     <string name="task_unstart">待参加的</string>
     <string name="task_ongoing">进行中的</string>
     <string name="task_finished">已完成</string>
+
+    <!-- 课程-->
+    <string name="title_course_classify">课程分类</string>
+    <string name="format_course_course_count">课件:%d</string>
+    <string name="format_course_quiz_count">考试:%d</string>
+    <string name="format_course_survey_count">问卷:%d</string>
+
+    <!-- 学习-->
+    <string name="entry_leaning_path">学习路径</string>
+    <string name="entry_live">直播追踪</string>
+    <string name="entry_micro_degree">微学位</string>
+    <string name="entry_course_classify">课程分类</string>
+
+    <!-- 学习路径-->
+    <string name="title_learning_path">学习路径</string>
 
 </resources>

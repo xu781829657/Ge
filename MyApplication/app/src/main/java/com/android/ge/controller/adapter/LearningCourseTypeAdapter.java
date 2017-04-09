@@ -1,15 +1,21 @@
 package com.android.ge.controller.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.adapter.Itemviewdelegate.CourseItemViewDelegate;
 import com.android.ge.controller.adapter.Itemviewdelegate.CourseTypeItemViewDelegate;
 import com.android.ge.model.BaseCourseTypeInfo;
 import com.android.ge.model.learning.BaseLearningItem;
 import com.android.ge.model.learning.TitleItemInfo;
+import com.android.ge.ui.base.CommonBaseActivity;
+import com.android.ge.ui.course.ClassifyCourseListActivity;
 import com.android.ge.utils.image.ImageLoader;
 import com.android.ge.utils.image.ImageRequest;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
@@ -22,9 +28,9 @@ import java.util.List;
  * Created by xudengwang on 17/3/21.
  */
 
-public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearningItem> implements MultiItemTypeAdapter.OnItemClickListener{
+public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearningItem> implements MultiItemTypeAdapter.OnItemClickListener {
 
-    private List<BaseLearningItem> mDatas = new ArrayList<>();
+    //private List<BaseLearningItem> mDatas = new ArrayList<>();
 
     public LearningCourseTypeAdapter(Context context, List<BaseLearningItem> datas) {
         super(context, datas);
@@ -36,12 +42,21 @@ public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearning
     @Override
     public void convert(ViewHolder holder, BaseLearningItem item) {
 
-
         super.convert(holder, item);
     }
 
     @Override
     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+        BaseLearningItem item = mDatas.get(position);
+        if (item.isTitle()) {
+            TitleItemInfo titleItemInfo = item.getTitleItemInfo();
+            Bundle bundle = new Bundle();
+            bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, titleItemInfo.getId());
+            bundle.putString(CommonConstant.KEY_TITLE, titleItemInfo.getTitle());
+            gotoActivity(ClassifyCourseListActivity.class, bundle);
+        } else if (item.isCourse()) {
+
+        }
 
     }
 
@@ -66,4 +81,14 @@ public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearning
         ImageRequest imageRequest = new ImageRequest.Builder().imgView(iv).placeHolder(defaultDrawableId).url(url).create();
         ImageLoader.getProvider().loadImage(imageRequest);
     }
+
+
+    public void gotoActivity(Class<? extends Activity> clazz, Bundle bundle) {
+        Intent intent = new Intent(mContext, clazz);
+        if (bundle != null) intent.putExtras(bundle);
+        mContext.startActivity(intent);
+
+    }
+
+
 }

@@ -3,10 +3,13 @@
 package com.android.ge.network.api;
 
 
+import com.android.ge.model.CourseClassifyResultInfo;
 import com.android.ge.model.HomePageResultInfo;
 import com.android.ge.model.LearningResultInfo;
 import com.android.ge.model.login.LoginResultInfo;
 import com.android.ge.model.login.OrganResultInfo;
+import com.android.ge.model.path.PathResultInfo;
+import com.android.ge.model.task.TaskListResultInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +50,19 @@ public interface CourseApi {
     //获取课程分类接口
     @GET("/api/course_type/list")
     Observable<LearningResultInfo> getCourseTypeList(@QueryMap Map<String, String> map);
+
+    //获取单个课程分类
+    @GET("/api/course_type/get")
+    Observable<CourseClassifyResultInfo> getCourseClassify(@QueryMap Map<String, String> map);
+
+    //获取任务列表
+    @GET("/api/task/self")
+    Observable<TaskListResultInfo> getTaskList(@QueryMap Map<String, String> map);
+
+    //获取学习路径
+    @GET("/api/path/self")
+    Observable<PathResultInfo> getLearningPath(@QueryMap Map<String, String> map);
+
 
 //
 //    //修改个人资料

@@ -7,11 +7,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 
+import com.android.base.frame.Base;
 import com.android.base.util.ArraysUtils;
 import com.android.ge.R;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.android.ge.ui.base.CommonBaseFragment;
 import com.android.ge.widgets.view.NoScrollViewPager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +110,22 @@ public class MaintabActivity extends CommonBaseActivity {
         public int getItemPosition(Object object) {
 
             return super.getItemPosition(object);
+        }
+    }
+
+
+    private long lastBackKeyDownTick = 0;
+    public static final long MAX_DOUBLE_BACK_DURATION = 1500;
+
+    @Override
+    public void onBackPressed() {
+        long currentTick = System.currentTimeMillis();
+        if (currentTick - lastBackKeyDownTick > MAX_DOUBLE_BACK_DURATION) {
+            Base.showToast("再按一次退出");
+            lastBackKeyDownTick = currentTick;
+        } else {
+            finish();
+            System.exit(0);
         }
     }
 }

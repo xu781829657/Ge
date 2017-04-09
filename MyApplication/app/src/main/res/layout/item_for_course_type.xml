@@ -11,9 +11,10 @@
         android:background="@color/bg_main" />
 
     <RelativeLayout
+        android:id="@+id/rel_classify"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/white">
+        android:background="@drawable/bg_common_press">
 
         <TextView
             android:id="@+id/tv_type_title"

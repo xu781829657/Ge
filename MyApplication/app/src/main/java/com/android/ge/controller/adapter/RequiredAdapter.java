@@ -3,6 +3,7 @@ package com.android.ge.controller.adapter;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by xudengwang on 17/3/20.
  */
 
-public class RequiredAdapter extends CommonAdapter<CourseBean> {
+public class RequiredAdapter extends BaseCommonAdapter<CourseBean> {
 
     public RequiredAdapter(Context context, List<CourseBean> datas) {
         super(context, R.layout.item_for_required_course, datas);
@@ -44,6 +45,8 @@ public class RequiredAdapter extends CommonAdapter<CourseBean> {
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
         holder.setText(R.id.tv_course_title, courseBean.getTitle());
+
+        setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover),courseBean.getCover(),R.drawable.demo_course_loading_icon);
 
     }
 }

@@ -8,30 +8,30 @@
         style="@style/text_12_66"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="8dp"
+        android:drawablePadding="5dp"
         android:gravity="center"
-        android:text="课件2"
-        android:drawableLeft="@drawable/task_courseware_icon"/>
+        android:text="课件:2"
+        android:drawableLeft="@drawable/task_courseware_small_icon"/>
     <TextView
         android:id="@+id/tv_test_count"
         style="@style/text_12_66"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:drawablePadding="8dp"
+        android:drawablePadding="5dp"
         android:gravity="center"
-        android:text="考试2"
-        android:drawableLeft="@drawable/task_test_icon"/>
+        android:text="考试:2"
+        android:drawableLeft="@drawable/task_test_small_icon"/>
 
     <TextView
-        android:id="@+id/tv_ques_count"
+        android:id="@+id/tv_survey_count"
         style="@style/text_12_66"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:drawablePadding="8dp"
+        android:drawablePadding="5dp"
         android:gravity="center"
-        android:text="问卷2"
-        android:drawableLeft="@drawable/task_questionnaire_icon"/>
+        android:text="问卷:2"
+        android:drawableLeft="@drawable/task_questionnaire_small_icon"/>
 
 </LinearLayout>

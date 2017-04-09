@@ -1,8 +1,12 @@
 package com.android.ge.ui.tabmain;
 
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.android.base.frame.Base;
 import com.android.base.util.ArraysUtils;
@@ -14,6 +18,7 @@ import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.adapter.LearningCourseTypeAdapter;
 import com.android.ge.controller.diliver.RecycleViewDivider;
+import com.android.ge.controller.entry.BannerEntry;
 import com.android.ge.model.BaseCourseTypeInfo;
 import com.android.ge.model.CourseBean;
 import com.android.ge.model.HomePageResultInfo;
@@ -23,6 +28,14 @@ import com.android.ge.model.learning.TitleItemInfo;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.ui.base.CommonBaseFragment;
+import com.android.ge.ui.course.ClassifyCourseListActivity;
+import com.android.ge.utils.image.GlideImageLoader;
+import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
+import com.youth.banner.Banner;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,11 +52,14 @@ import rx.schedulers.Schedulers;
  */
 
 public class LearningFragment extends CommonBaseFragment {
+    @Bind(R.id.banner)
+    Banner mBanner;
     @Bind(R.id.rv_learning)
     RecyclerView mRvLearning;
     private List<BaseCourseTypeInfo> mCourseTypes = new ArrayList<>();
     private LearningCourseTypeAdapter mAdapter;
     private ArrayList<BaseLearningItem> mLearningItemList = new ArrayList<>();
+    private List<String> mBannerImageUrls = new ArrayList<>();
 
     @Override
     public int getContentViewId() {
@@ -52,6 +68,11 @@ public class LearningFragment extends CommonBaseFragment {
 
     @Override
     protected void initData() {
+        EventBus.getDefault().register(this);
+        for (int i = 0; i < 3; i++) {
+            mBannerImageUrls.add("");
+        }
+        refreshBanner();
         getNetDataCourseTypeList();
     }
 
@@ -61,6 +82,36 @@ public class LearningFragment extends CommonBaseFragment {
 //        refreshAdapter();
 
         super.onResume();
+    }
+
+    // 展示app更新
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void refreshBannerData(BannerEntry eventEntry) {
+        LogUtils.d("refreshBannerData!!!!");
+        mBannerImageUrls.clear();
+        mBannerImageUrls.addAll(eventEntry.bannerUrls);
+        refreshBanner();
+    }
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+    private void refreshBanner() {
+        if (mBanner == null) {
+            return;
+        }
+        //设置图片加载器
+        mBanner.setImageLoader(new GlideImageLoader());
+        //设置图片集合
+        mBanner.setImages(mBannerImageUrls);
+
+        mBanner.setDelayTime(5000);
+        //banner设置方法全部调用完毕时最后调用
+        mBanner.start();
+
     }
 
     private void refreshMainData(LearningResultInfo resultInfo) {
@@ -101,11 +152,18 @@ public class LearningFragment extends CommonBaseFragment {
     private void refreshAdapter() {
         if (mAdapter == null) {
             //采用recycleview 瀑布流形式实现
+
+
             StaggeredGridLayoutManager treasureLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
             mRvLearning.setLayoutManager(treasureLayoutManager);
             mRvLearning.setHasFixedSize(true);
-            mRvLearning.addItemDecoration(new RecycleViewDivider(
-                    getMContext(), GridLayoutManager.HORIZONTAL, (int) (ScreenUtils.getScreenDensity(getMContext()) * 10), getResources().getColor(R.color.white)));
+            mRvLearning.setNestedScrollingEnabled(false);
+//            mRvLearning.addItemDecoration(new RecycleViewDivider(
+//                    getMContext(), GridLayoutManager.HORIZONTAL, (int) (ScreenUtils.getScreenDensity(getMContext()) * 10), getResources().getColor(R.color.white)));
+//            RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.header_for_learning_rv);
+//            mBanner = (Banner) header.findViewById(R.id.banner);
+//            header.attachTo(mRvLearning);
+
             mAdapter = new LearningCourseTypeAdapter(getContext(), mLearningItemList);
             mRvLearning.setAdapter(mAdapter);
         } else {

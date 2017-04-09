@@ -1,6 +1,7 @@
 package com.android.ge.model.task;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by xudengwang on 17/4/8.
@@ -24,6 +25,69 @@ public class TaskBean implements Serializable{
     private int part_count;
     private int quiz_count;
     private int survey_count;
+    public List<TaskCourseBean> courses;
 
+    public String getTask_id() {
+        return task_id;
+    }
 
+    public void setTask_id(String task_id) {
+        this.task_id = task_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public long getDeadline_timestamp() {
+        return deadline_timestamp;
+    }
+
+    public void setDeadline_timestamp(long deadline_timestamp) {
+        this.deadline_timestamp = deadline_timestamp;
+    }
+
+    public String getProgress_current() {
+        return progress_current;
+    }
+
+    public void setProgress_current(String progress_current) {
+        this.progress_current = progress_current;
+    }
+
+    public String getProgress_total() {
+        return progress_total;
+    }
+
+    public void setProgress_total(String progress_total) {
+        this.progress_total = progress_total;
+    }
+
+    public int getPart_count() {
+        return part_count;
+    }
+
+    public void setPart_count(int part_count) {
+        this.part_count = part_count;
+    }
+
+    public int getQuiz_count() {
+        return quiz_count;
+    }
+
+    public void setQuiz_count(int quiz_count) {
+        this.quiz_count = quiz_count;
+    }
+
+    public int getSurvey_count() {
+        return survey_count;
+    }
+
+    public void setSurvey_count(int survey_count) {
+        this.survey_count = survey_count;
+    }
 }

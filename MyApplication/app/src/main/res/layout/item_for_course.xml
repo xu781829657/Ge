@@ -3,19 +3,20 @@
     android:id="@+id/lin_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@drawable/bg_common_press"
     android:orientation="vertical">
-
 
     <RelativeLayout
         android:id="@+id/rel_cover"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
 
         <ImageView
             android:id="@+id/iv_course_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="fitXY"
             android:background="@drawable/demo_course_loading_icon" />
 
         <View
