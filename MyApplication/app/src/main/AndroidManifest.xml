@@ -79,6 +79,21 @@
         <activity
             android:name=".ui.task.PathListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.setting.RankActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.setting.LearningSummaryActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.webview.CommonWebActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.webview.CourseWebActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.webview.PathWebActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

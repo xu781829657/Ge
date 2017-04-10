@@ -11,21 +11,33 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.base.frame.Base;
+import com.android.base.util.LogUtils;
+import com.android.base.util.NetworkUtil;
 import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
+import com.android.ge.controller.Store;
 import com.android.ge.controller.adapter.LearningPathAdapter;
 import com.android.ge.controller.adapter.TaskDetailAdapter;
+import com.android.ge.controller.entry.PathEntry;
 import com.android.ge.model.path.PathBean;
+import com.android.ge.model.path.PathResultInfo;
 import com.android.ge.model.task.TaskBean;
 import com.android.ge.model.task.TaskCourseBean;
+import com.android.ge.network.Network;
+import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by xudengwang on 17/4/9.
@@ -62,6 +74,8 @@ public class PathListActivity extends CommonBaseActivity {
         if (paths != null && paths.size() > 0) {
             mPaths.addAll(paths);
             refreshPathAdapter();
+        } else {
+            getNetDataLearningPath();
         }
     }
 
@@ -83,5 +97,51 @@ public class PathListActivity extends CommonBaseActivity {
         }
 
 
+    }
+
+
+    //学习路径结果
+    Observer<PathResultInfo> mPathObserver = new Observer<PathResultInfo>() {
+        @Override
+        public void onCompleted() {
+            dismissLoadingDialog();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
+            e.printStackTrace();
+            Base.showToast(ExceptionEngine.handleException(e).message);
+            dismissLoadingDialog();
+        }
+
+        @Override
+        public void onNext(PathResultInfo resultInfo) {
+            if (resultInfo == null || resultInfo.data == null) {
+                Base.showToast(R.string.errmsg_data_error);
+            }
+            //EventBus.getDefault().post(new PathEntry(resultInfo));
+
+            mPaths.addAll(resultInfo.data);
+            refreshPathAdapter();
+
+        }
+    };
+
+    //获取学习路径
+    private void getNetDataLearningPath() {
+        if (!NetworkUtil.isAvailable(mContext)) {
+            Base.showToast(R.string.errmsg_network_unavailable);
+            return;
+        }
+        showLoadingDialog(null);
+
+        Map<String, String> map = new HashMap<>();
+        map.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
+
+        Network.getCourseApi("学习路径").getLearningPath(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(mPathObserver);
     }
 }

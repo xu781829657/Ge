@@ -2,10 +2,13 @@ package com.android.ge.ui.tabmain;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.android.ge.R;
 import com.android.ge.ui.base.CommonBaseFragment;
+import com.android.ge.ui.setting.LearningSummaryActivity;
 import com.android.ge.ui.setting.PersonalCenterActivity;
+import com.android.ge.ui.setting.RankActivity;
 
 import butterknife.Bind;
 
@@ -16,6 +19,12 @@ import butterknife.Bind;
 public class MeFragment extends CommonBaseFragment {
     @Bind(R.id.iv_setting)
     ImageView mIvSetting;
+
+    @Bind(R.id.lin_my_list)
+    LinearLayout mLinMyList;
+
+    @Bind(R.id.lin_learn_summary)
+    LinearLayout mLinlearnSummary;
 
     @Override
     public int getContentViewId() {
@@ -28,6 +37,18 @@ public class MeFragment extends CommonBaseFragment {
             @Override
             public void onClick(View view) {
                 gotoActivity(PersonalCenterActivity.class, false);
+            }
+        });
+        mLinMyList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(RankActivity.class, false);
+            }
+        });
+        mLinlearnSummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(LearningSummaryActivity.class, false);
             }
         });
     }

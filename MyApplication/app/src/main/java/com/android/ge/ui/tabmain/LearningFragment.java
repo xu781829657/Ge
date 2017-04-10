@@ -5,6 +5,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.ui.base.CommonBaseFragment;
 import com.android.ge.ui.course.ClassifyCourseListActivity;
+import com.android.ge.ui.task.PathListActivity;
 import com.android.ge.utils.image.GlideImageLoader;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.youth.banner.Banner;
@@ -56,6 +58,8 @@ public class LearningFragment extends CommonBaseFragment {
     Banner mBanner;
     @Bind(R.id.rv_learning)
     RecyclerView mRvLearning;
+    @Bind(R.id.lin_lerning_path)
+    LinearLayout mLinLearningPath;
     private List<BaseCourseTypeInfo> mCourseTypes = new ArrayList<>();
     private LearningCourseTypeAdapter mAdapter;
     private ArrayList<BaseLearningItem> mLearningItemList = new ArrayList<>();
@@ -69,6 +73,12 @@ public class LearningFragment extends CommonBaseFragment {
     @Override
     protected void initData() {
         EventBus.getDefault().register(this);
+        mLinLearningPath.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(PathListActivity.class, false);
+            }
+        });
         for (int i = 0; i < 3; i++) {
             mBannerImageUrls.add("");
         }

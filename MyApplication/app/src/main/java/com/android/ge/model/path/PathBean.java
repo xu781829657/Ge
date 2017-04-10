@@ -2,6 +2,8 @@ package com.android.ge.model.path;
 
 import android.text.TextUtils;
 
+import com.android.ge.utils.NumberUtil;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class PathBean implements Serializable {
     private String progress_current;
     private String progress_total;
     public List<SectionBean> sections;
+    private int progress;
 
     public String getPath_id() {
         return path_id;
@@ -86,5 +89,13 @@ public class PathBean implements Serializable {
 
     public void setPath_name(String path_name) {
         this.path_name = path_name;
+    }
+
+    public int getProgress() {
+        return NumberUtil.getProgress(getProgress_current(),getProgress_total());
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rel_company_rank"
+    android:layout_width="match_parent"
+    android:layout_height="81dp"
+    android:orientation="vertical">
+
+    <cn.carbs.android.avatarimageview.library.AvatarImageView
+        android:id="@+id/aiv_avatar"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="23dp"
+        android:src="@drawable/icon_head"
+        app:aiv_BoarderColor="#A9D84C"
+        app:aiv_BoarderWidth="2dp"
+        app:aiv_ShowBoarder="true"
+        app:aiv_TextSizeRatio="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/aiv_avatar"
+        android:orientation="vertical"
+        android:paddingLeft="18dp">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="许登旺"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="9999"
+            android:textColor="#333333"
+            android:textSize="21sp" />
+    </LinearLayout>
+
+ <View
+     android:id="@+id/view_line"
+     android:layout_width="match_parent"
+     android:layout_height="1px"
+     android:layout_toRightOf="@id/aiv_avatar"
+     android:layout_marginLeft="18dp"
+     android:layout_alignParentBottom="true"
+     android:background="#e7e7e7"/>
+
+
+    <TextView
+        android:id="@+id/tv_rank"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="26dp"
+        android:gravity="center"
+        android:text="100"
+        android:textColor="#333333"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/iv_rank"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="26dp"
+        android:gravity="center"
+        />
+</RelativeLayout>

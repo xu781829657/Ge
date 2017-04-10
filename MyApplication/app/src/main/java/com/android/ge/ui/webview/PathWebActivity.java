@@ -1,7 +1,6 @@
 package com.android.ge.ui.webview;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -10,46 +9,54 @@ import android.webkit.WebViewClient;
 
 import com.android.base.util.LogUtils;
 import com.android.ge.R;
+import com.android.ge.constant.CommonConstant;
+import com.android.ge.controller.Store;
 import com.android.ge.ui.base.CommonBaseActivity;
+import com.loopj.android.http.RequestParams;
 
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 
 /**
  * Created by xudengwang on 2016/6/24.
- *
+ * <p>
  * http://static.31academy.cn/module/history.html?path_id={path_id}&token={token}#/Learn
- 路径id:path_id
- token:token
-
-
- http://static.31academy.cn/module/index.html#/Detail
- 机构id:org_id
- 课程id:course_id
- token:token
+ * 路径id:path_id
+ * token:token
+ * <p>
+ * <p>
+ * <p>
+ * 机构id:org_id
+ * 课程id:course_id
+ * token:token
  */
-public class CommonWebActivity extends CommonBaseActivity {
-
+public class PathWebActivity extends CommonBaseActivity {
 
     @Bind(R.id.webview)
     WebView mWebView;
 
-    //url?organization_id=20&id=18&access_token=Bearer%207d6095b557c65a969af3d821fc7954c3d3ab2bb2f634f0780476c6b738a9fd5f
     private String LOAD_URL;
-    private String mUrl;
-    private String mId;
-    private static final String URL_PRE = "http://static.31academy.cn/module/index.html#/Detail";
+
+    private static final String URL_PRE = "http://static.31academy.cn/module/history.html?";
+    private String mParamPathId;
 
     @Override
     protected void initData() {
         if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
-            mUrl = bundle.getString("url");
-            mId = bundle.getString("id");
-            LogUtils.d(getClass(), "mUrl:" + mUrl + ",mid:" + mId);
-            if (TextUtils.isEmpty(mUrl)) {
-                mUrl = URL_PRE;
-            }
+            mParamPathId = bundle.getString(CommonConstant.PARAM_PATH_ID);
+            LogUtils.d(getClass(), "mParamPathId:" + mParamPathId);
+            RequestParams params = new RequestParams();
+            params.put(CommonConstant.PARAM_PATH_ID, mParamPathId);
+            params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
+            LogUtils.d(getClass(), "111map.string:" + params.toString());
+            StringBuilder builder = new StringBuilder();
+            builder.append(URL_PRE);
+            builder.append(params.toString());
+            builder.append("#/Learn");
+            LOAD_URL = builder.toString();
 
         } else {
             LOAD_URL = URL_PRE;
@@ -103,6 +110,4 @@ public class CommonWebActivity extends CommonBaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
-
 }

@@ -92,4 +92,28 @@
     <!-- 学习路径-->
     <string name="title_learning_path">学习路径</string>
 
+    <!--榜单 -->
+    <string name="title_rank">榜单</string>
+    <string name="rank_tab_total">总排名</string>
+    <string name="rank_tab_group">组内排名</string>
+    <string name="rank_tab_groups">分组排名</string>
+
+    <string name="me">我</string>
+
+    <!-- 学习小结-->
+    <string name="title_learning_summary">学习小结</string>
+    <string name="finish_course">完成课程</string>
+    <string name="finish_quiz">完成考试</string>
+    <string name="finish_survey">完成问卷</string>
+    <string name="finish_micro_degree">完成微学位</string>
+    <string name="finish_path">完成学习路径</string>
+    <string name="finish_task">完成任务</string>
+
+    <string name="quiz_average">考试平均分</string>
+    <string name="points">获得学分</string>
+    <string name="leraning_total_time">累计学习时间</string>
+    <string name="like_count">点赞课程次数</string>
+    <string name="comment_count">评论数</string>
+    <string name="share">分享</string>
+
 </resources>

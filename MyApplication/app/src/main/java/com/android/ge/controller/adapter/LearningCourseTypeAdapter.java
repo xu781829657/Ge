@@ -12,10 +12,13 @@ import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.adapter.Itemviewdelegate.CourseItemViewDelegate;
 import com.android.ge.controller.adapter.Itemviewdelegate.CourseTypeItemViewDelegate;
 import com.android.ge.model.BaseCourseTypeInfo;
+import com.android.ge.model.CourseBean;
 import com.android.ge.model.learning.BaseLearningItem;
 import com.android.ge.model.learning.TitleItemInfo;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.android.ge.ui.course.ClassifyCourseListActivity;
+import com.android.ge.ui.webview.CommonWebActivity;
+import com.android.ge.ui.webview.CourseWebActivity;
 import com.android.ge.utils.image.ImageLoader;
 import com.android.ge.utils.image.ImageRequest;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
@@ -55,7 +58,10 @@ public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearning
             bundle.putString(CommonConstant.KEY_TITLE, titleItemInfo.getTitle());
             gotoActivity(ClassifyCourseListActivity.class, bundle);
         } else if (item.isCourse()) {
-
+            CourseBean courseBean = item.getCourseBean();
+            Bundle bundle = new Bundle();
+            bundle.putString(CommonConstant.PARAM_COURSE_ID,courseBean.getCourse_id());
+            gotoActivity(CourseWebActivity.class, bundle);
         }
 
     }
