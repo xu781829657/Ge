@@ -134,7 +134,7 @@ public class Network {
             }
             response = chain.proceed(authorised);
             if (response != null) {
-                LogUtils.d(getClass(), "response.code()" + response.code());
+                LogUtils.d(getClass(), "response.code()" + response.code()+",response.isSuccessful():"+response.isSuccessful());
                 //
                 if (!response.isSuccessful()) {
                     ResponseBody responseBody = response.body();
@@ -153,23 +153,24 @@ public class Network {
                         }
                     }
 
-                    if (contentLength != 0) {
-                        String responseBobyStr = buffer.clone().readString(charset);
-                        LogUtils.d("LoggingInterceptor:" + responseBobyStr);
-                        String code = "";
-                        try {
-                            code = JsonParseUtil.jsonToString(responseBobyStr, CommonConstant.TAG_CODE);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        if(!"0".equalsIgnoreCase(code)) {
-                            String error = ErrorCode.getErrorMessage(code);
-                            //主动抛出错误
-                            if (!TextUtils.isEmpty(error)) {
-                                throw new ErrorException(new Throwable(error),error);
-                            }
-                        }
-                    }
+//                    if (contentLength != 0) {
+//                        String responseBobyStr = buffer.clone().readString(charset);
+//                        LogUtils.d("LoggingInterceptor:" + responseBobyStr);
+//                        String code = "";
+//                        try {
+//                            code = JsonParseUtil.jsonToString(responseBobyStr, CommonConstant.TAG_CODE);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                        LogUtils.d(getClass(),"code:"+code);
+//                        if(!"0".equalsIgnoreCase(code)) {
+//                            String error = ErrorCode.getErrorMessage(code);
+//                            //主动抛出错误
+//                            if (!TextUtils.isEmpty(error)) {
+//                                throw new ErrorException(new Throwable(error),error);
+//                            }
+//                        }
+//                    }
                 }
             }
 

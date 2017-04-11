@@ -21,6 +21,8 @@ import com.android.ge.model.login.LoginResultInfo;
 import com.android.ge.model.login.OrganResultInfo;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
+import com.android.ge.network.response.HttpResponseFunc;
+import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.android.ge.ui.tabmain.MaintabActivity;
 import com.android.ge.utils.PreferencesUtils;
@@ -140,7 +142,31 @@ public class LoginActivity extends CommonBaseActivity {
     }
 
     //课程数观察器
-    Observer<LoginResultInfo> mTokenObserver = new Observer<LoginResultInfo>() {
+//    Observer<LoginResultInfo> mTokenObserver = new Observer<LoginResultInfo>() {
+//        @Override
+//        public void onCompleted() {
+//            dismissLoadingDialog();
+//        }
+//
+//        @Override
+//        public void onError(Throwable e) {
+//            LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
+//            e.printStackTrace();
+//            dismissLoadingDialog();
+//            Base.showToast(ExceptionEngine.handleException(e).message);
+//        }
+//
+//        @Override
+//        public void onNext(LoginResultInfo resultInfo) {
+//            if (resultInfo != null) {
+//                //保存token
+//                PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getData().getToken());
+//                getNetDataOrgans();
+//            }
+//
+//        }
+//    };
+    Observer<LoginResultInfo.TokenBean> mTokenObserver = new Observer<LoginResultInfo.TokenBean>() {
         @Override
         public void onCompleted() {
             dismissLoadingDialog();
@@ -155,15 +181,16 @@ public class LoginActivity extends CommonBaseActivity {
         }
 
         @Override
-        public void onNext(LoginResultInfo resultInfo) {
+        public void onNext(LoginResultInfo.TokenBean resultInfo) {
             if (resultInfo != null) {
                 //保存token
-                PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getData().getToken());
+                PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getToken());
                 getNetDataOrgans();
             }
 
         }
     };
+
 
     //登录
     private void postNetDataLogin() {
@@ -179,13 +206,20 @@ public class LoginActivity extends CommonBaseActivity {
 
         Network.getCourseApi("登录").postLoginData(map)
                 .subscribeOn(Schedulers.io())
+                //拦截服务器返回的错误
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<LoginResultInfo.TokenBean>())
+                //HttpResultFunc（）为拦截onError事件的拦截器，后面会讲到，这里先忽略
+                //.onErrorResumeNext(new HttpResponseFunc<LoginResultInfo.TokenBean>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mTokenObserver);
     }
 
 
     //用户机构列表
-    Observer<OrganResultInfo> mOrganObserver = new Observer<OrganResultInfo>() {
+//
+
+    Observer<ArrayList<OrganResultInfo.OrganBean>> mOrganObserver = new Observer<ArrayList<OrganResultInfo.OrganBean>>() {
         @Override
         public void onCompleted() {
             dismissLoadingDialog();
@@ -200,17 +234,17 @@ public class LoginActivity extends CommonBaseActivity {
         }
 
         @Override
-        public void onNext(OrganResultInfo resultInfo) {
-            if (resultInfo.data == null || resultInfo.data.size() == 0) {
+        public void onNext(ArrayList<OrganResultInfo.OrganBean> resultInfo) {
+            if (resultInfo == null || resultInfo.size() == 0) {
                 Base.showToast(R.string.errmsg_data_error);
                 return;
             }
-            if (resultInfo.data.size() == 1) {
-                Store.storeOrgan(mContext, resultInfo.data.get(0));
+            if (resultInfo.size() == 1) {
+                Store.storeOrgan(mContext, resultInfo.get(0));
                 gotoActivity(MaintabActivity.class, true);
             } else {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(CommonConstant.KEY_ORGAN_LIST, resultInfo.data);
+                bundle.putSerializable(CommonConstant.KEY_ORGAN_LIST, resultInfo);
                 gotoActivity(OrganSelectActivity.class, bundle, false);
             }
         }
@@ -225,6 +259,10 @@ public class LoginActivity extends CommonBaseActivity {
         showLoadingDialog("获取组织信息");
         Network.getCourseApi("登录-我的机构列表").getOrgans()
                 .subscribeOn(Schedulers.io())
+                //拦截服务器返回的错误
+                .map(new ServerResponseFunc<ArrayList<OrganResultInfo.OrganBean>>())
+                //HttpResultFunc（）为拦截onError事件的拦截器，后面会讲到，这里先忽略
+                .onErrorResumeNext(new HttpResponseFunc<ArrayList<OrganResultInfo.OrganBean>>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mOrganObserver);
     }

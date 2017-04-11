@@ -6,6 +6,7 @@ package com.android.ge.network.api;
 import com.android.ge.model.CourseClassifyResultInfo;
 import com.android.ge.model.HomePageResultInfo;
 import com.android.ge.model.LearningResultInfo;
+import com.android.ge.model.base.BaseResponse;
 import com.android.ge.model.login.LoginResultInfo;
 import com.android.ge.model.login.OrganResultInfo;
 import com.android.ge.model.path.PathResultInfo;
@@ -37,11 +38,14 @@ import rx.Observable;
 public interface CourseApi {
     @FormUrlEncoded
     @POST("/api/login")
-    Observable<LoginResultInfo> postLoginData(@FieldMap Map<String, String> map);
+//    Observable<LoginResultInfo> postLoginData(@FieldMap Map<String, String> map);
+    Observable<BaseResponse<LoginResultInfo.TokenBean>> postLoginData(@FieldMap Map<String, String> map);
 
     //组织机构列表
+//    @GET("/api/organization/self")
+//    Observable<OrganResultInfo> getOrgans();
     @GET("/api/organization/self")
-    Observable<OrganResultInfo> getOrgans();
+    Observable<BaseResponse<ArrayList<OrganResultInfo.OrganBean>>> getOrgans();
 
     //获取首页配置
     @GET("/api/home/config")
