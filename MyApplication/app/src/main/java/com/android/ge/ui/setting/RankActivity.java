@@ -55,6 +55,12 @@ public class RankActivity extends CommonBaseActivity {
     protected void initData() {
         mTvTitle.setText(Base.string(R.string.title_rank));
         mIvBack.setVisibility(View.VISIBLE);
+        mIvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         if (mRankListFms == null) {
             mRankListFms = new ArrayList<>();
             Bundle bundle1 = new Bundle();
