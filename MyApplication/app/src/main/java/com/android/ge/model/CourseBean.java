@@ -1,21 +1,23 @@
 package com.android.ge.model;
 
+import com.android.ge.utils.NumberUtil;
+
 /**
  * Created by xudengwang on 17/3/20.
- *  "course_id" : "cid-123456",
- "title" : "课程名称",
- "cover" : "简介图url",
- "desc" : "课程简介",
- "tags" : [{"tag_id" : "1", "name" : "心理"},{"tag_id" : "2", "name" : "物理"}],  -- 课程标签
- "parts" : [{coursePart}, {coursePart}], -- 可选部分，参看具体CoursePart结构体
- "teacher_id" : 12,  -- 关联教师,
- "is_finish" : false,  --  可选部分，是否已经完成
- "is_lock" : false,  -- 可选部分，是否锁定
- "part_count" : 3, -- 可选部分，课件数量
- "quiz_count" : 2,  -- 可选部分，考试数量
- "survey_count" : 0,  -- 可选部分，问卷数量
- "progress_current" : "1", --可选部分，课程进度.
- "progress_total" : "10", --可选部分，课程进度.
+ * "course_id" : "cid-123456",
+ * "title" : "课程名称",
+ * "cover" : "简介图url",
+ * "desc" : "课程简介",
+ * "tags" : [{"tag_id" : "1", "name" : "心理"},{"tag_id" : "2", "name" : "物理"}],  -- 课程标签
+ * "parts" : [{coursePart}, {coursePart}], -- 可选部分，参看具体CoursePart结构体
+ * "teacher_id" : 12,  -- 关联教师,
+ * "is_finish" : false,  --  可选部分，是否已经完成
+ * "is_lock" : false,  -- 可选部分，是否锁定
+ * "part_count" : 3, -- 可选部分，课件数量
+ * "quiz_count" : 2,  -- 可选部分，考试数量
+ * "survey_count" : 0,  -- 可选部分，问卷数量
+ * "progress_current" : "1", --可选部分，课程进度.
+ * "progress_total" : "10", --可选部分，课程进度.
  */
 
 public class CourseBean {
@@ -33,6 +35,11 @@ public class CourseBean {
     private int survey_count;
     private String progress_current;
     private String progress_total;
+    private int progress;
+
+    public int getProgress() {
+        return NumberUtil.getProgress(getProgress_current(), getProgress_total());
+    }
 
     public String getTitle() {
         return title;

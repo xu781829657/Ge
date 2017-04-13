@@ -28,7 +28,12 @@ public class CommonConstant {
     public static final String PARAM_PATH_ID = "path_id";
     public static final String PARAM_TOKEN = "token";
     public static final String PARAM_COURSE_ID = "course_id";
+    public static final String PARAM_TIME = "time";
 
+
+    public static final String TASK_COURSE_TYPE_COURSE = "Course";
+    public static final String TASK_COURSE_TYPE_QUIZ = "Quiz";
+    public static final String TASK_COURSE_TYPE_SURVEY = "Survey";
 
     public static final String ROOT_CACHE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + "com.android.ge";
 }

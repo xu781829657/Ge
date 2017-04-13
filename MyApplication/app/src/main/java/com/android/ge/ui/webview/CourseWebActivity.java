@@ -59,6 +59,7 @@ public class CourseWebActivity extends CommonBaseActivity {
             params.put(CommonConstant.PARAM_COURSE_ID, mParamCourseId);
             params.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
+            params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
             LogUtils.d(getClass(), "111map.string:" + params.toString());
             StringBuilder builder = new StringBuilder();
             builder.append(URL_PRE);

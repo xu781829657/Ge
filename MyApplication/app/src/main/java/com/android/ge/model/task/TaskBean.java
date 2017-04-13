@@ -1,5 +1,7 @@
 package com.android.ge.model.task;
 
+import com.android.ge.utils.NumberUtil;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,6 +28,10 @@ public class TaskBean implements Serializable{
     private int quiz_count;
     private int survey_count;
     public List<TaskCourseBean> courses;
+    private int progress;
+    public int getProgress() {
+        return NumberUtil.getProgress(getProgress_current(),getProgress_total());
+    }
 
     public String getTask_id() {
         return task_id;

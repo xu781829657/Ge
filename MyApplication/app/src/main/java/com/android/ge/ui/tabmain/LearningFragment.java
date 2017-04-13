@@ -83,14 +83,14 @@ public class LearningFragment extends CommonBaseFragment {
             mBannerImageUrls.add("");
         }
         refreshBanner();
-        getNetDataCourseTypeList();
+
     }
 
     @Override
     public void onResume() {
 //        initFalseData();
 //        refreshAdapter();
-
+        getNetDataCourseTypeList();
         super.onResume();
     }
 

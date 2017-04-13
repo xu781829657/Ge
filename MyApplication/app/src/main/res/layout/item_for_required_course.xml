@@ -55,7 +55,8 @@
         android:id="@+id/tv_course_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="总进度:60%"
+        android:visibility="visible"
+        android:text="总进度:0%"
         android:textColor="#45C88A"
         android:textSize="11sp" />
 

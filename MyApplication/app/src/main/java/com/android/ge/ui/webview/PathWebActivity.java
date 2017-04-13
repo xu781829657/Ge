@@ -51,6 +51,7 @@ public class PathWebActivity extends CommonBaseActivity {
             RequestParams params = new RequestParams();
             params.put(CommonConstant.PARAM_PATH_ID, mParamPathId);
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
+            params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
             LogUtils.d(getClass(), "111map.string:" + params.toString());
             StringBuilder builder = new StringBuilder();
             builder.append(URL_PRE);

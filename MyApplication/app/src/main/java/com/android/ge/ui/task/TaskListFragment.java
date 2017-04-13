@@ -91,8 +91,12 @@ public class TaskListFragment extends CommonBaseFragment {
         mTvContent.setText(TAB_FLAG + "");
         //initFalseData();
 
-        getNetDataTaskList();
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getNetDataTaskList();
     }
 
     @Override
@@ -101,16 +105,16 @@ public class TaskListFragment extends CommonBaseFragment {
         EventBus.getDefault().unregister(this);
     }
 
-    private void initFalseData() {
-        for (int i = 0; i < 5; i++) {
-            TaskBean bean = new TaskBean();
-            mTasks.add(bean);
-        }
-        refreshTaskAdapter();
-    }
+//    private void initFalseData() {
+//        for (int i = 0; i < 5; i++) {
+//            TaskBean bean = new TaskBean();
+//            mTasks.add(bean);
+//        }
+//        refreshTaskAdapter();
+//    }
 
     private void refreshTaskData(TaskListResultInfo info) {
-
+        mTasks.clear();
         if (info.data.size() > 0) {
             mTasks.addAll(info.data);
         }
@@ -136,6 +140,7 @@ public class TaskListFragment extends CommonBaseFragment {
     private void refreshPathData(PathResultInfo info) {
         LogUtils.d(getClass(), "refreshPathData info.data.size():" + info.data.size());
         if (info.data.size() > 0) {
+            mPaths.clear();
             mPaths.addAll(info.data);
         }
         refreshPathAdapter();
@@ -157,9 +162,9 @@ public class TaskListFragment extends CommonBaseFragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent();
-                    intent.setClass(getMContext(),PathListActivity.class);
+                    intent.setClass(getMContext(), PathListActivity.class);
 
-                    intent.putExtra(CommonConstant.KEY_PATH_BEAN_LIST,(Serializable) mPaths);
+                    intent.putExtra(CommonConstant.KEY_PATH_BEAN_LIST, (Serializable) mPaths);
 
                     startActivity(intent);
 

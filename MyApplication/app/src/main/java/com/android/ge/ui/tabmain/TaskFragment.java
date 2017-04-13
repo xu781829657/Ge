@@ -98,8 +98,13 @@ public class TaskFragment extends CommonBaseFragment {
         }
 
         setupViewPager();
-        getNetDataLearningPath();
 
+    }
+
+    @Override
+    public void onResume() {
+        getNetDataLearningPath();
+        super.onResume();
     }
 
     private void setupViewPager() {

@@ -62,6 +62,7 @@
             android:layout_marginTop="16dp"></com.android.ge.ui.customview.TaskContentInfoView>
 
         <TextView
+            android:id="@+id/tv_task_deadline_time"
             style="@style/text_10_99"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

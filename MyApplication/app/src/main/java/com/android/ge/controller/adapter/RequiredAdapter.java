@@ -52,6 +52,15 @@ public class RequiredAdapter extends BaseCommonAdapter<CourseBean> implements Mu
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
         holder.setText(R.id.tv_course_title, courseBean.getTitle());
+//        holder.setText(R.id.tv_course_progress, String.format(Base.string(R.string.format_total_progress), courseBean.getProgress()));
+//        int progress = courseBean.getProgress();
+//        if(progress == 0){
+//            holder.getView(R.id.view_bg_cover).setVisibility(View.VISIBLE);
+//            holder.getView(R.id.tv_begin).setVisibility(View.VISIBLE);
+//        } else {
+//            holder.getView(R.id.view_bg_cover).setVisibility(View.GONE);
+//            holder.getView(R.id.tv_begin).setVisibility(View.GONE);
+//        }
 
         setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover), courseBean.getCover(), R.drawable.demo_course_loading_icon);
 

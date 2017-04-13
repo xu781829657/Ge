@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
 
-            android:text="金山区中小学语文教师考试命题与分析" />
+            android:text="金山区中小学语文" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="已完成20%"
+                android:visibility="gone"
                 android:textColor="#2BC17A"
                 android:textSize="12sp" />
         </LinearLayout>

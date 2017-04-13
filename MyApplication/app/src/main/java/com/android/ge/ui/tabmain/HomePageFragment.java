@@ -80,7 +80,7 @@ public class HomePageFragment extends CommonBaseFragment {
     @Override
     protected void initData() {
 
-        getNetDataHomePageConfig();
+
 
     }
 
@@ -128,6 +128,7 @@ public class HomePageFragment extends CommonBaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        getNetDataHomePageConfig();
     }
 
     private void refreshMainData(HomePageResultInfo info) {
@@ -143,14 +144,8 @@ public class HomePageFragment extends CommonBaseFragment {
     //刷新最新资讯
     private void refreshNewsAdapter(List<NewsBean> news) {
         if (news != null && news.size() > 0) {
+            mNews.clear();
             mNews.addAll(news);
-        }
-        if (mNews.size() == 0) {
-            for (int i = 0; i < 3; i++) {
-                NewsBean bean = new NewsBean();
-                bean.setTitle("测试资讯" + i);
-                mNews.add(bean);
-            }
         }
         if (mNewsAdapter == null) {
             LinearLayoutManager manager = new LinearLayoutManager(getMContext());

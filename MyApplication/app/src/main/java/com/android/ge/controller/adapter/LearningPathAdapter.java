@@ -45,6 +45,7 @@ public class LearningPathAdapter extends BaseCommonAdapter<PathBean> implements 
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
         holder.setText(R.id.tv_path_title, pathBean.getTitle());
+        holder.setText(R.id.tv_path_progress,String.format(Base.string(R.string.format_progress),pathBean.getProgress())+"%");
         setImageFromInternet((ImageView) holder.getView(R.id.iv_path_cover), pathBean.getCover(), R.drawable.demo_course_loading_icon);
     }
 
