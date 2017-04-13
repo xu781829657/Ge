@@ -144,6 +144,7 @@ public class LearningFragment extends CommonBaseFragment {
                     CourseBean courseBean = typeInfo.getCourses().get(0);
                     BaseLearningItem courseLearningItem = new BaseLearningItem();
                     courseLearningItem.setCourseBean(courseBean);
+                    courseLearningItem.setOriginalPosition(j);
                     mLearningItemList.add(courseLearningItem);
                 }
 
