@@ -25,7 +25,8 @@ public class RankAdapter extends BaseCommonAdapter<RankUserBean> {
 
         holder.setText(R.id.tv_rank, bean.getRank() + "");
         holder.setText(R.id.tv_name, bean.getName());
-        //holder.setText(R.id.tv_score, bean.getMembership().getSum_points() + "");
+
+        holder.setText(R.id.tv_score, bean.getScore()+ "");
 
         //holder.setImageFromInternet(R.id.aiv_avatar, bean.getMembership().getAvatar_url(), R.drawable.icon_head);
 

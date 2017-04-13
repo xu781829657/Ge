@@ -8,6 +8,7 @@ public class RankUserBean {
 
     private int rank;
     private String name;
+    private int score;
 
     public int getRank() {
         return rank;
@@ -23,5 +24,13 @@ public class RankUserBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

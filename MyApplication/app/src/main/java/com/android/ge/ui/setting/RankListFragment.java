@@ -42,6 +42,21 @@ public class RankListFragment extends CommonBaseFragment {
             RankUserBean bean = new RankUserBean();
             bean.setRank(i + 1);
             bean.setName("人物" + i);
+            bean.setScore(999);
+            if (i == 1) {
+                bean.setName("Yang Cao");
+                bean.setScore(888);
+            } else if (i == 2) {
+                bean.setName("Bernie");
+                bean.setScore(666);
+            } else if (i == 3) {
+                bean.setName("Rose");
+                bean.setScore(333);
+            } else if (i == 4) {
+                bean.setName("Jingjing");
+                bean.setScore(111);
+            }
+
             mRankMenbers.add(bean);
         }
         refreshAdapter();
