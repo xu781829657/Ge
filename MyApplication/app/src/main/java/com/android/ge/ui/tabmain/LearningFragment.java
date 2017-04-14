@@ -118,7 +118,7 @@ public class LearningFragment extends CommonBaseFragment {
         //设置图片集合
         mBanner.setImages(mBannerImageUrls);
 
-        mBanner.setDelayTime(5000);
+        mBanner.setDelayTime(3000);
         //banner设置方法全部调用完毕时最后调用
         mBanner.start();
 
@@ -165,13 +165,16 @@ public class LearningFragment extends CommonBaseFragment {
             //采用recycleview 瀑布流形式实现
 
 
-            StaggeredGridLayoutManager treasureLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+            StaggeredGridLayoutManager treasureLayoutManager = new StaggeredGridLayoutManager(2,
+                    StaggeredGridLayoutManager.VERTICAL);
             mRvLearning.setLayoutManager(treasureLayoutManager);
             mRvLearning.setHasFixedSize(true);
             mRvLearning.setNestedScrollingEnabled(false);
 //            mRvLearning.addItemDecoration(new RecycleViewDivider(
-//                    getMContext(), GridLayoutManager.HORIZONTAL, (int) (ScreenUtils.getScreenDensity(getMContext()) * 10), getResources().getColor(R.color.white)));
-//            RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.header_for_learning_rv);
+//                    getMContext(), GridLayoutManager.HORIZONTAL, (int) (ScreenUtils
+// .getScreenDensity(getMContext()) * 10), getResources().getColor(R.color.white)));
+//            RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout
+// .header_for_learning_rv);
 //            mBanner = (Banner) header.findViewById(R.id.banner);
 //            header.attachTo(mRvLearning);
 

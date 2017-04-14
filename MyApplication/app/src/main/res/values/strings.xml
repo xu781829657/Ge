@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">GeApp</string>
-    <string name="app_version">1.0.1</string>
+    <string name="app_name">GE</string>
+    <string name="app_version">1.0.4</string>
 
     <!-- 常用错误提示-->
     <string name="errmsg_network_unavailable">网络不可用</string>
@@ -118,6 +118,9 @@
     <string name="like_count">点赞课程次数</string>
     <string name="comment_count">评论数</string>
     <string name="share">分享</string>
+
+    <!-- 任务-->
+    <string name="format_progress_complete">已完成%d</string>
 
 
 
