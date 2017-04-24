@@ -13,6 +13,7 @@ import com.android.ge.R;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.android.ge.ui.base.CommonBaseFragment;
 import com.android.ge.widgets.view.NoScrollViewPager;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import org.greenrobot.eventbus.EventBus;
 
