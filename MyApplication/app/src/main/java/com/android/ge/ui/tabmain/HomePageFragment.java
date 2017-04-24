@@ -100,7 +100,7 @@ public class HomePageFragment extends CommonBaseFragment {
         mBanner.setImageLoader(new GlideImageLoader());
         //设置图片集合
         mBanner.setImages(mBannerImageUrls);
-        mBanner.setDelayTime(5000);
+        mBanner.setDelayTime(3000);
         //banner设置方法全部调用完毕时最后调用
         mBanner.start();
 //        //设置banner样式

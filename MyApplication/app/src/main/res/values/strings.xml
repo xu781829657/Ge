@@ -119,6 +119,9 @@
     <string name="comment_count">评论数</string>
     <string name="share">分享</string>
 
+    <!-- 任务-->
+    <string name="format_progress_complete">已完成%d</string>
+
 
 
 </resources>

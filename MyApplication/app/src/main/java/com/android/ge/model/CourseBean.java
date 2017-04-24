@@ -2,6 +2,8 @@ package com.android.ge.model;
 
 import com.android.ge.utils.NumberUtil;
 
+import java.io.Serializable;
+
 /**
  * Created by xudengwang on 17/3/20.
  * "course_id" : "cid-123456",
@@ -20,16 +22,14 @@ import com.android.ge.utils.NumberUtil;
  * "progress_total" : "10", --可选部分，课程进度.
  */
 
-public class CourseBean {
+public class CourseBean implements Serializable{
     private String title;
     private String course_id;
     private String cover;
     private String desc;
-
-
     private String teacher_id;
-    private boolean is_finish;
-    private boolean is_lock;
+    private int is_finish;
+    private int is_lock;
     private int part_count;
     private int quiz_count;
     private int survey_count;
@@ -79,22 +79,6 @@ public class CourseBean {
 
     public void setTeacher_id(String teacher_id) {
         this.teacher_id = teacher_id;
-    }
-
-    public boolean is_finish() {
-        return is_finish;
-    }
-
-    public void setIs_finish(boolean is_finish) {
-        this.is_finish = is_finish;
-    }
-
-    public boolean is_lock() {
-        return is_lock;
-    }
-
-    public void setIs_lock(boolean is_lock) {
-        this.is_lock = is_lock;
     }
 
     public int getPart_count() {

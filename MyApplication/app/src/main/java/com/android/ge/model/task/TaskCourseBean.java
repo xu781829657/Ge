@@ -1,5 +1,7 @@
 package com.android.ge.model.task;
 
+import com.android.ge.model.CourseBean;
+
 import java.io.Serializable;
 
 /**
@@ -22,6 +24,7 @@ public class TaskCourseBean implements Serializable{
     private String type;
     private long created_at;
     private String updated_at;
+    public CourseBean course;
 
     public int getId() {
         return id;
@@ -54,4 +57,5 @@ public class TaskCourseBean implements Serializable{
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
 }
