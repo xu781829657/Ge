@@ -63,7 +63,6 @@
                 android:layout_marginLeft="37dp"
                 android:layout_marginRight="33dp"
                 android:layout_marginTop="20dp"
-                android:text="123456"
                 android:background="@color/transparent"
                 android:drawableLeft="@drawable/login_password_icon"
                 android:drawablePadding="15dp"

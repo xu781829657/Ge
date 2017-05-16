@@ -4,32 +4,21 @@ package com.android.ge.network.api;
 
 
 import com.android.ge.model.CourseClassifyResultInfo;
-import com.android.ge.model.HomePageResultInfo;
-import com.android.ge.model.LearningResultInfo;
+import com.android.ge.model.HomePageInfo;
+import com.android.ge.model.LearningInfo;
 import com.android.ge.model.base.BaseResponse;
-import com.android.ge.model.login.LoginResultInfo;
-import com.android.ge.model.login.OrganResultInfo;
 import com.android.ge.model.login.TokenBean;
 import com.android.ge.model.organ.OrganBean;
 import com.android.ge.model.path.PathResultInfo;
 import com.android.ge.model.task.TaskListResultInfo;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Part;
-import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 import rx.Observable;
 
@@ -53,12 +42,16 @@ public interface CourseApi {
     Observable<BaseResponse<ArrayList<OrganBean>>> getOrgans();
 
     //获取首页配置
-    @GET("/api/home/config")
-    Observable<HomePageResultInfo> getHomePageConfig(@QueryMap Map<String, String> map);
+//    @GET("/api/home/config")
+//    Observable<HomePageResultInfo> getHomePageConfig(@QueryMap Map<String, String> map);
+    @GET("/api/home/index")
+    Observable<BaseResponse<HomePageInfo>> getHomePageConfig(@QueryMap Map<String, String> map);
 
     //获取课程分类接口
-    @GET("/api/course_type/list")
-    Observable<LearningResultInfo> getCourseTypeList(@QueryMap Map<String, String> map);
+//    @GET("/api/course_type/list")
+//    Observable<LearningResultInfo> getCourseTypeList(@QueryMap Map<String, String> map);
+    @GET("/api/courses/list")
+    Observable<BaseResponse<LearningInfo>> getCourseTypeList(@QueryMap Map<String, String> map);
 
     //获取单个课程分类
     @GET("/api/course_type/get")

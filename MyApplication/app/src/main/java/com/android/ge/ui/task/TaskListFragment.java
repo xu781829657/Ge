@@ -18,9 +18,7 @@ import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.adapter.LearningPathAdapter;
 import com.android.ge.controller.adapter.TaskListAdapter;
-import com.android.ge.controller.entry.BannerEntry;
 import com.android.ge.controller.entry.PathEntry;
-import com.android.ge.model.LearningResultInfo;
 import com.android.ge.model.path.PathBean;
 import com.android.ge.model.path.PathResultInfo;
 import com.android.ge.model.task.TaskBean;
@@ -28,7 +26,6 @@ import com.android.ge.model.task.TaskListResultInfo;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.ui.base.CommonBaseFragment;
-import com.android.ge.ui.course.ClassifyCourseListActivity;
 import com.android.ge.ui.tabmain.TaskFragment;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 

@@ -13,26 +13,22 @@ import com.android.base.frame.Base;
 import com.android.base.util.ArraysUtils;
 import com.android.base.util.LogUtils;
 import com.android.base.util.NetworkUtil;
-import com.android.base.util.ScreenUtils;
 import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.adapter.LearningCourseTypeAdapter;
-import com.android.ge.controller.diliver.RecycleViewDivider;
 import com.android.ge.controller.entry.BannerEntry;
 import com.android.ge.model.BaseCourseTypeInfo;
 import com.android.ge.model.CourseBean;
-import com.android.ge.model.HomePageResultInfo;
-import com.android.ge.model.LearningResultInfo;
+import com.android.ge.model.LearningInfo;
 import com.android.ge.model.learning.BaseLearningItem;
 import com.android.ge.model.learning.TitleItemInfo;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
+import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseFragment;
-import com.android.ge.ui.course.ClassifyCourseListActivity;
 import com.android.ge.ui.task.PathListActivity;
 import com.android.ge.utils.image.GlideImageLoader;
-import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.youth.banner.Banner;
 
 import org.greenrobot.eventbus.EventBus;
@@ -124,20 +120,20 @@ public class LearningFragment extends CommonBaseFragment {
 
     }
 
-    private void refreshMainData(LearningResultInfo resultInfo) {
+    private void refreshMainData(LearningInfo resultInfo) {
 
-        if (resultInfo.data == null || resultInfo.data.size() == 0) {
+        if (resultInfo.courses == null || resultInfo.courses.size() == 0) {
             return;
         }
         mLearningItemList.clear();
-        for (int i = 0; i < resultInfo.data.size(); i++) {
-            BaseCourseTypeInfo typeInfo = resultInfo.data.get(i);
+        for (int i = 0; i < resultInfo.courses.size(); i++) {
+            BaseCourseTypeInfo typeInfo = resultInfo.courses.get(i);
             if (typeInfo.getCourses() != null && typeInfo.getCourses().size() > 0) {
                 BaseLearningItem titleLearningItem = new BaseLearningItem();
                 TitleItemInfo titleItemInfo = new TitleItemInfo();
                 titleItemInfo.setId(typeInfo.getId());
                 titleItemInfo.setTitle(typeInfo.getTitle());
-                titleItemInfo.setTotal_count(typeInfo.getTotal_count());
+                titleItemInfo.setTotal_count(typeInfo.getTotal());
                 titleLearningItem.setTitleItemInfo(titleItemInfo);
                 mLearningItemList.add(titleLearningItem);
                 for (int j = 0; j < typeInfo.getCourses().size(); j++) {
@@ -196,7 +192,7 @@ public class LearningFragment extends CommonBaseFragment {
             TitleItemInfo titleItemInfo = new TitleItemInfo();
             titleItemInfo.setId(courseTypeInfo.getId());
             titleItemInfo.setTitle(courseTypeInfo.getTitle());
-            titleItemInfo.setTotal_count(courseTypeInfo.getTotal_count());
+            titleItemInfo.setTotal_count(courseTypeInfo.getTotal());
             BaseLearningItem learningItem = new BaseLearningItem();
             learningItem.setTitleItemInfo(titleItemInfo);
             mLearningItemList.add(learningItem);
@@ -224,7 +220,7 @@ public class LearningFragment extends CommonBaseFragment {
         for (int j = 0; j < 3; j++) {
             BaseCourseTypeInfo info = new BaseCourseTypeInfo();
             info.setTitle("光华学校必读课");
-            info.setTotal_count(5);
+            info.setTotal(5);
             ArrayList<CourseBean> beans = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
                 CourseBean bean = new CourseBean();
@@ -240,7 +236,7 @@ public class LearningFragment extends CommonBaseFragment {
 
 
     //课程分类
-    Observer<LearningResultInfo> mLearningResultObserver = new Observer<LearningResultInfo>() {
+    Observer<LearningInfo> mLearningResultObserver = new Observer<LearningInfo>() {
         @Override
         public void onCompleted() {
         }
@@ -253,13 +249,11 @@ public class LearningFragment extends CommonBaseFragment {
         }
 
         @Override
-        public void onNext(LearningResultInfo resultInfo) {
-            if (resultInfo == null || resultInfo.data == null) {
+        public void onNext(LearningInfo resultInfo) {
+            if (resultInfo == null || resultInfo.courses == null) {
                 Base.showToast(R.string.errmsg_data_error);
             }
             refreshMainData(resultInfo);
-
-
         }
     };
 
@@ -275,6 +269,9 @@ public class LearningFragment extends CommonBaseFragment {
 
         Network.getCourseApi("tab_首页").getCourseTypeList(map)
                 .subscribeOn(Schedulers.io())
+                //拦截服务器返回的错误
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<LearningInfo>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mLearningResultObserver);
     }

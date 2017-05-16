@@ -7,15 +7,15 @@ package com.android.ge.model;
  */
 
 public class NewsBean {
-    private String sysno;
+    private String id;
     private String title;
 
-    public String getSysno() {
-        return sysno;
+    public String getId() {
+        return id;
     }
 
-    public void setSysno(String sysno) {
-        this.sysno = sysno;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {

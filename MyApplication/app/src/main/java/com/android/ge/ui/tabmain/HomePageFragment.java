@@ -11,32 +11,26 @@ import android.widget.TextView;
 import com.android.base.frame.Base;
 import com.android.base.util.LogUtils;
 import com.android.base.util.NetworkUtil;
-import com.android.base.util.ScreenUtils;
 import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.adapter.NewsAdapter;
 import com.android.ge.controller.adapter.RecommandAdapter;
 import com.android.ge.controller.adapter.RequiredAdapter;
-import com.android.ge.controller.diliver.RecycleViewDivider;
 import com.android.ge.controller.entry.BannerEntry;
-import com.android.ge.model.CourseBean;
 import com.android.ge.model.GalleryBean;
-import com.android.ge.model.HomePageResultInfo;
+import com.android.ge.model.HomePageInfo;
 import com.android.ge.model.NewsBean;
 import com.android.ge.model.RecommandInfo;
 import com.android.ge.model.RequiredInfo;
-import com.android.ge.model.login.LoginResultInfo;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
+import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseFragment;
 import com.android.ge.ui.course.ClassifyCourseListActivity;
-import com.android.ge.utils.PreferencesUtils;
 import com.android.ge.utils.image.GlideImageLoader;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -131,13 +125,11 @@ public class HomePageFragment extends CommonBaseFragment {
         getNetDataHomePageConfig();
     }
 
-    private void refreshMainData(HomePageResultInfo info) {
-        HomePageResultInfo.HomePageInfo homePageInfo = info.data;
-        refreshBanner(homePageInfo.gallery);
+    private void refreshMainData(HomePageInfo homePageInfo) {
+        refreshBanner(homePageInfo.advertises);
         refreshNewsAdapter(homePageInfo.news);
         refreshRecommandAdapter(homePageInfo.recommand);
         refreshRequiredAdapter(homePageInfo.required);
-
     }
 
 
@@ -257,7 +249,7 @@ public class HomePageFragment extends CommonBaseFragment {
 
 
     //主页配置
-    Observer<HomePageResultInfo> mHomePageObserver = new Observer<HomePageResultInfo>() {
+    Observer<HomePageInfo> mHomePageObserver = new Observer<HomePageInfo>() {
         @Override
         public void onCompleted() {
         }
@@ -270,7 +262,7 @@ public class HomePageFragment extends CommonBaseFragment {
         }
 
         @Override
-        public void onNext(HomePageResultInfo resultInfo) {
+        public void onNext(HomePageInfo resultInfo) {
             if (resultInfo != null) {
                 refreshMainData(resultInfo);
             }
@@ -290,6 +282,9 @@ public class HomePageFragment extends CommonBaseFragment {
 
         Network.getCourseApi("tab_首页").getHomePageConfig(map)
                 .subscribeOn(Schedulers.io())
+                //拦截服务器返回的错误
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<HomePageInfo>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mHomePageObserver);
     }

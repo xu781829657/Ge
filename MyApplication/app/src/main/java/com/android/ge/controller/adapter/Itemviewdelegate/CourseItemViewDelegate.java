@@ -1,6 +1,7 @@
 package com.android.ge.controller.adapter.Itemviewdelegate;
 
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -36,20 +37,24 @@ public class CourseItemViewDelegate implements ItemViewDelegate<BaseLearningItem
     public void convert(ViewHolder holder, BaseLearningItem baseItemInfo, int position) {
         CourseBean courseBean = baseItemInfo.getCourseBean();
 
-        StaggeredGridLayoutManager.LayoutParams itemParams = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
+        StaggeredGridLayoutManager.LayoutParams itemParams = (StaggeredGridLayoutManager.LayoutParams) holder
+                .itemView.getLayoutParams();
         itemParams.width = StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT;
         itemParams.height = StaggeredGridLayoutManager.LayoutParams.WRAP_CONTENT;
         if (baseItemInfo.getOriginalPosition() % 2 == 0) {
-            itemParams.setMargins((int) (ScreenUtils.getScreenDensity(Base.getContext()) * 12), 0, (int) (ScreenUtils.getScreenDensity(Base.getContext()) * 5),
+            itemParams.setMargins((int) (ScreenUtils.getScreenDensity(Base.getContext()) * 12), 0, (int) (ScreenUtils
+                            .getScreenDensity(Base.getContext()) * 5),
                     (int) (ScreenUtils.getScreenDensity(Base.getContext()) * 10));
         } else {
-            itemParams.setMargins((int) (ScreenUtils.getScreenDensity(Base.getContext()) * 5), 0, (int) (ScreenUtils.getScreenDensity(Base.getContext()) * 12),
+            itemParams.setMargins((int) (ScreenUtils.getScreenDensity(Base.getContext()) * 5), 0, (int) (ScreenUtils
+                            .getScreenDensity(Base.getContext()) * 12),
                     (int) (ScreenUtils.getScreenDensity(Base.getContext()) * 10));
         }
         holder.itemView.setLayoutParams(itemParams);
 
 
-//        LinearLayout.LayoutParams itemParams = (LinearLayout.LayoutParams) holder.getView(R.id.lin_item).getLayoutParams();
+//        LinearLayout.LayoutParams itemParams = (LinearLayout.LayoutParams) holder.getView(R.id.lin_item)
+// .getLayoutParams();
 //        itemParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
 //        itemParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
@@ -57,16 +62,20 @@ public class CourseItemViewDelegate implements ItemViewDelegate<BaseLearningItem
 
 
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.getView(R.id.rel_cover).getLayoutParams();
-        params.width = (int) (ScreenUtils.getScreenWidth(Base.getContext()) - 34 * ScreenUtils.getScreenDensity(Base.getContext())) / 2;
+        params.width = (int) (ScreenUtils.getScreenWidth(Base.getContext()) - 34 * ScreenUtils.getScreenDensity(Base
+                .getContext())) / 2;
         params.height = (int) params.width * 86 / 171;
 
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
         holder.setText(R.id.tv_course_title, courseBean.getTitle());
         holder.setText(R.id.tv_course_descrip, courseBean.getDesc());
-        setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover),courseBean.getCover(),R.drawable.demo_course_loading_icon);
-
-
+        if (!TextUtils.isEmpty(courseBean.getCover())) {
+            setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover), courseBean.getCover(), R.drawable
+                    .demo_course_loading_icon);
+        } else {
+            holder.setImageResource(R.id.iv_course_cover, R.drawable.demo_banner_loading_icon);
+        }
     }
 
     /**
@@ -81,7 +90,8 @@ public class CourseItemViewDelegate implements ItemViewDelegate<BaseLearningItem
     }
 
     public void setImageFromInternet(ImageView iv, String url, int defaultDrawableId) {
-        ImageRequest imageRequest = new ImageRequest.Builder().imgView(iv).placeHolder(defaultDrawableId).url(url).create();
+        ImageRequest imageRequest = new ImageRequest.Builder().imgView(iv).placeHolder(defaultDrawableId).url(url)
+                .create();
         ImageLoader.getProvider().loadImage(imageRequest);
     }
 }

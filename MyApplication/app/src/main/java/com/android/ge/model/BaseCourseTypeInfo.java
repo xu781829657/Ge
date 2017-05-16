@@ -11,7 +11,7 @@ import java.util.List;
 public class BaseCourseTypeInfo {
     protected String id;
     protected String title;//标题
-    protected int total_count;//课程总数
+    protected int total;//课程总数
     protected List<CourseBean> courses;//课程列表,可能是前几个
 
     public String getTitle() {
@@ -22,12 +22,12 @@ public class BaseCourseTypeInfo {
         this.title = title;
     }
 
-    public int getTotal_count() {
-        return total_count;
+    public int getTotal() {
+        return total;
     }
 
-    public void setTotal_count(int total_count) {
-        this.total_count = total_count;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public List<CourseBean> getCourses() {

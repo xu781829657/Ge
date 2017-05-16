@@ -20,6 +20,21 @@ import java.io.Serializable;
  * "survey_count" : 0,  -- 可选部分，问卷数量
  * "progress_current" : "1", --可选部分，课程进度.
  * "progress_total" : "10", --可选部分，课程进度.
+ *
+ *
+ *   "id": 1,
+ "org_id": 1,
+ "title": "测试课程",
+ "cover": "",
+ "content": "测试课程001",
+ "cat_id": 1,
+ "tag_id": 0,
+ "type": "",
+ "teacher_id": 0,
+ "shareable": 1,
+ "marketable": 1,
+ "created_at": "2017-05-12 02:29:07",
+ "updated_at": "2017-05-12 02:29:07"
  */
 
 public class CourseBean implements Serializable{
