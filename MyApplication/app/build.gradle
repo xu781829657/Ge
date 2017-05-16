@@ -7,6 +7,7 @@ android {
         applicationId "com.android.ge"
         minSdkVersion 15
         targetSdkVersion 25
+
         versionCode 5
         versionName "1.1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -65,6 +66,9 @@ dependencies {
     compile 'com.kyleduo.switchbutton:library:1.4.4'
 
     compile 'com.loopj.android:android-async-http:1.4.9'
+
+    //腾讯bugly
+    compile 'com.tencent.bugly:crashreport:latest.release'
     testCompile 'junit:junit:4.12'
     compile project(':AndroidBase')
 }

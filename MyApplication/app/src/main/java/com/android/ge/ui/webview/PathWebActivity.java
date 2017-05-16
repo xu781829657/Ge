@@ -11,6 +11,7 @@ import com.android.base.util.LogUtils;
 import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
+import com.android.ge.controller.web.AndroidBridge;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.loopj.android.http.RequestParams;
 
@@ -73,7 +74,7 @@ public class PathWebActivity extends CommonBaseActivity {
         webSettings.setSupportMultipleWindows(true);
         // 页面是否可以进行缩放
         webSettings.setSupportZoom(false);
-
+        mWebView.addJavascriptInterface(new AndroidBridge(), "android");
         mWebView.setWebChromeClient(new WebChromeClient());
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
