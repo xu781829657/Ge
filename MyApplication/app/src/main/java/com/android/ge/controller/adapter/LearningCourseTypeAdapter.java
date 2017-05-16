@@ -75,7 +75,6 @@ public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearning
     /**
      * 加载网络上的图片
      *
-     * @param viewId
      * @param url
      */
     public void setImageFromInternet(ImageView iv, String url) {

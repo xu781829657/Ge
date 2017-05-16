@@ -19,6 +19,8 @@ import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
 import com.android.ge.model.login.LoginResultInfo;
 import com.android.ge.model.login.OrganResultInfo;
+import com.android.ge.model.login.TokenBean;
+import com.android.ge.model.organ.OrganBean;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.network.response.HttpResponseFunc;
@@ -166,7 +168,7 @@ public class LoginActivity extends CommonBaseActivity {
 //
 //        }
 //    };
-    Observer<LoginResultInfo.TokenBean> mTokenObserver = new Observer<LoginResultInfo.TokenBean>() {
+    Observer<TokenBean> mTokenObserver = new Observer<TokenBean>() {
         @Override
         public void onCompleted() {
             dismissLoadingDialog();
@@ -181,10 +183,10 @@ public class LoginActivity extends CommonBaseActivity {
         }
 
         @Override
-        public void onNext(LoginResultInfo.TokenBean resultInfo) {
+        public void onNext(TokenBean resultInfo) {
             if (resultInfo != null) {
                 //保存token
-                PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getToken());
+                PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getAccess_token());
                 getNetDataOrgans();
             }
 
@@ -208,7 +210,7 @@ public class LoginActivity extends CommonBaseActivity {
                 .subscribeOn(Schedulers.io())
                 //拦截服务器返回的错误
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new ServerResponseFunc<LoginResultInfo.TokenBean>())
+                .map(new ServerResponseFunc<TokenBean>())
                 //HttpResultFunc（）为拦截onError事件的拦截器，后面会讲到，这里先忽略
                 //.onErrorResumeNext(new HttpResponseFunc<LoginResultInfo.TokenBean>())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -219,7 +221,7 @@ public class LoginActivity extends CommonBaseActivity {
     //用户机构列表
 //
 
-    Observer<ArrayList<OrganResultInfo.OrganBean>> mOrganObserver = new Observer<ArrayList<OrganResultInfo.OrganBean>>() {
+    Observer<ArrayList<OrganBean>> mOrganObserver = new Observer<ArrayList<OrganBean>>() {
         @Override
         public void onCompleted() {
             dismissLoadingDialog();
@@ -234,7 +236,7 @@ public class LoginActivity extends CommonBaseActivity {
         }
 
         @Override
-        public void onNext(ArrayList<OrganResultInfo.OrganBean> resultInfo) {
+        public void onNext(ArrayList<OrganBean> resultInfo) {
             if (resultInfo == null || resultInfo.size() == 0) {
                 Base.showToast(R.string.errmsg_data_error);
                 return;
@@ -260,9 +262,9 @@ public class LoginActivity extends CommonBaseActivity {
         Network.getCourseApi("登录-我的机构列表").getOrgans()
                 .subscribeOn(Schedulers.io())
                 //拦截服务器返回的错误
-                .map(new ServerResponseFunc<ArrayList<OrganResultInfo.OrganBean>>())
+                .map(new ServerResponseFunc<ArrayList<OrganBean>>())
                 //HttpResultFunc（）为拦截onError事件的拦截器，后面会讲到，这里先忽略
-                .onErrorResumeNext(new HttpResponseFunc<ArrayList<OrganResultInfo.OrganBean>>())
+               // .onErrorResumeNext(new HttpResponseFunc<ArrayList<OrganBean>>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mOrganObserver);
     }

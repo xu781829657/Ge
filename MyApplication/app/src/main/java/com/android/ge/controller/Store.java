@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.android.base.frame.Base;
 import com.android.ge.model.login.OrganResultInfo;
+import com.android.ge.model.organ.OrganBean;
 import com.android.ge.utils.PreferencesUtils;
 
 /**
@@ -17,6 +18,22 @@ public class Store {
             PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_ORGAN_ID, organBean.getOrg_id() + "");
             PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_ORGAN_NAME, organBean.getName());
             PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_ORGAN_FULL_NAME, organBean.getFullname());
+            PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_ORGAN_LOGO, organBean.getLogo());
+//            //保存客户定制的splash图片
+//            if (!TextUtils.isEmpty(organBean.getOrganization().getSplash_image_url())) {
+//                PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_SPLASH_IMAGE_URL, organBean.getOrganization().getSplash_image_url());
+//            }
+//            //保存客户定制的banner图片
+//            if (!TextUtils.isEmpty(organBean.getOrganization().getBanner_url())) {
+//                PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_BANNER_IMAGE_URL, organBean.getOrganization().getBanner_url());
+//            }
+        }
+    }
+
+    public static void storeOrgan(Context context, OrganBean organBean) {
+        if (organBean != null) {
+            PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_ORGAN_ID, organBean.getOrg_id() + "");
+            PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_ORGAN_NAME, organBean.getName());
             PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_ORGAN_LOGO, organBean.getLogo());
 //            //保存客户定制的splash图片
 //            if (!TextUtils.isEmpty(organBean.getOrganization().getSplash_image_url())) {

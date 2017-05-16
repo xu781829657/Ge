@@ -6,5 +6,7 @@ package com.android.ge.model.base;
 
 public class BaseResponse<T> {
     public String code;
+    public String result;
+    public String message;
     public T data;
 }

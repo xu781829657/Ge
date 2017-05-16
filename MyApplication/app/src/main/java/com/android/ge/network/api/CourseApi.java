@@ -9,6 +9,8 @@ import com.android.ge.model.LearningResultInfo;
 import com.android.ge.model.base.BaseResponse;
 import com.android.ge.model.login.LoginResultInfo;
 import com.android.ge.model.login.OrganResultInfo;
+import com.android.ge.model.login.TokenBean;
+import com.android.ge.model.organ.OrganBean;
 import com.android.ge.model.path.PathResultInfo;
 import com.android.ge.model.task.TaskListResultInfo;
 
@@ -36,16 +38,19 @@ import rx.Observable;
  * retrofit api的方式进行网络请求
  */
 public interface CourseApi {
+    //登录
+//    @FormUrlEncoded
+//    @POST("/api/login")
+//    Observable<BaseResponse<LoginResultInfo.TokenBean>> postLoginData(@FieldMap Map<String, String> map);
     @FormUrlEncoded
-    @POST("/api/login")
-//    Observable<LoginResultInfo> postLoginData(@FieldMap Map<String, String> map);
-    Observable<BaseResponse<LoginResultInfo.TokenBean>> postLoginData(@FieldMap Map<String, String> map);
+    @POST("/api/account/login")
+    Observable<BaseResponse<TokenBean>> postLoginData(@FieldMap Map<String, String> map);
 
     //组织机构列表
 //    @GET("/api/organization/self")
-//    Observable<OrganResultInfo> getOrgans();
-    @GET("/api/organization/self")
-    Observable<BaseResponse<ArrayList<OrganResultInfo.OrganBean>>> getOrgans();
+//    Observable<BaseResponse<ArrayList<OrganResultInfo.OrganBean>>> getOrgans();
+    @GET("/api/organization/list")
+    Observable<BaseResponse<ArrayList<OrganBean>>> getOrgans();
 
     //获取首页配置
     @GET("/api/home/config")
