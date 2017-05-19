@@ -20,11 +20,13 @@ import com.android.ge.controller.adapter.LearningPathAdapter;
 import com.android.ge.controller.adapter.TaskDetailAdapter;
 import com.android.ge.controller.entry.PathEntry;
 import com.android.ge.model.path.PathBean;
+import com.android.ge.model.path.PathListInfo;
 import com.android.ge.model.path.PathResultInfo;
 import com.android.ge.model.task.TaskBean;
 import com.android.ge.model.task.TaskCourseBean;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
+import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 
@@ -101,7 +103,7 @@ public class PathListActivity extends CommonBaseActivity {
 
 
     //学习路径结果
-    Observer<PathResultInfo> mPathObserver = new Observer<PathResultInfo>() {
+    Observer<PathListInfo> mPathObserver = new Observer<PathListInfo>() {
         @Override
         public void onCompleted() {
             dismissLoadingDialog();
@@ -116,13 +118,13 @@ public class PathListActivity extends CommonBaseActivity {
         }
 
         @Override
-        public void onNext(PathResultInfo resultInfo) {
-            if (resultInfo == null || resultInfo.data == null) {
+        public void onNext(PathListInfo resultInfo) {
+            if (resultInfo == null || resultInfo.learningpath == null) {
                 Base.showToast(R.string.errmsg_data_error);
             }
             //EventBus.getDefault().post(new PathEntry(resultInfo));
 
-            mPaths.addAll(resultInfo.data);
+            mPaths.addAll(resultInfo.learningpath);
             refreshPathAdapter();
 
         }
@@ -141,6 +143,9 @@ public class PathListActivity extends CommonBaseActivity {
 
         Network.getCourseApi("学习路径").getLearningPath(map)
                 .subscribeOn(Schedulers.io())
+                //拦截服务器返回的错误
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<PathListInfo>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mPathObserver);
     }

@@ -28,37 +28,48 @@ import java.util.List;
  * "courses" : [{课程结构体A},{课程结构体B}, ...]
  * } ...
  * ]
+ * <p>
+ * "id": 1,
+ * "org_id": 1,
+ * "title": "学习路径yi",
+ * "cat_id": 0,
+ * "tag_id": 0,
+ * "cover": "http://ganxike-production-common.ufile.ucloud.com.cn/QQ20170415123034.jpg",
+ * "content": "学习路径内容",
+ * "role_id": 1,
+ * "courses_id": "2,3",
+ * "examination_id": "",
+ * "questionnaire_id": "",
+ * "marketable": 1,
+ * "p_order": 1,
+ * "created_at": null,
+ * "updated_at": null,
+ * "courses_total": 2,
+ * "examination_total": 0,
+ * "questionnaire_total": 0
  */
 
 public class PathBean implements Serializable {
-    private String path_id;
+    private String id;
     private String title;
-    private String path_name;
     private String cover;
-    private String progress_current;
-    private String progress_total;
+    private int courses_total;//课件数量
+    private int examination_total;//测试数量
+    private int questionnaire_total;//问卷数量
     public List<SectionBean> sections;
     private int progress;
+
     public int getProgress() {
-        return NumberUtil.getProgress(getProgress_current(),getProgress_total());
+        return 0;
+        //return NumberUtil.getProgress(getProgress_current(),getProgress_total());
     }
 
     public void setProgress(int progress) {
         this.progress = progress;
     }
 
-    public String getPath_id() {
-        return path_id;
-    }
-
-    public void setPath_id(String path_id) {
-        this.path_id = path_id;
-    }
 
     public String getTitle() {
-        if (TextUtils.isEmpty(title)) {
-            setTitle(path_name);
-        }
         return title;
     }
 
@@ -74,29 +85,11 @@ public class PathBean implements Serializable {
         this.cover = cover;
     }
 
-    public String getProgress_current() {
-        return progress_current;
+    public String getId() {
+        return id;
     }
 
-    public void setProgress_current(String progress_current) {
-        this.progress_current = progress_current;
+    public void setId(String id) {
+        this.id = id;
     }
-
-    public String getProgress_total() {
-        return progress_total;
-    }
-
-    public void setProgress_total(String progress_total) {
-        this.progress_total = progress_total;
-    }
-
-    public String getPath_name() {
-        return path_name;
-    }
-
-    public void setPath_name(String path_name) {
-        this.path_name = path_name;
-    }
-
-
 }

@@ -1,5 +1,7 @@
 package com.android.ge.model;
 
+import android.text.TextUtils;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,8 @@ import java.util.List;
 
 public class BaseCourseTypeInfo {
     protected String id;
+    protected String tag_id;//标签分类
+    protected String cat_id;
     protected String title;//标题
     protected int total;//课程总数
     protected List<CourseBean> courses;//课程列表,可能是前几个
@@ -39,6 +43,13 @@ public class BaseCourseTypeInfo {
     }
 
     public String getId() {
+        if (TextUtils.isEmpty(id)) {
+            if (!TextUtils.isEmpty(tag_id)) {
+                setId(tag_id);
+            } else if (!TextUtils.isEmpty(cat_id)) {
+                setId(cat_id);
+            }
+        }
         return id;
     }
 

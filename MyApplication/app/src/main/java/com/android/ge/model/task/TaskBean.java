@@ -16,30 +16,50 @@ import java.util.List;
  "part_count" : 3, -- 可选部分，课件数量
  "quiz_count" : 2,  -- 可选部分，考试数量
  "survey_count" : 0,  -- 可选部分，问卷数量
+
+ "id": 1,
+ "org_id": 1,
+ "title": "任务一",
+ "cat_id": 0,
+ "cover": "",
+ "content": "任务1：如何提高口语方式",
+ "begin_at": "2017-04-24 21:42:24",
+ "end_at": "2017-08-24 21:42:24",
+ "user_id": "1,2",
+ "courses_id": "1,2,4",
+ "examination_id": "1,2",
+ "questionnaire_id": "",
+ "marketable": 1,
+ "p_order": 1,
+ "created_at": null,
+ "updated_at": null,
+ "courses_total": 3,
+ "examination_total": 2,
+ "questionnaire_total": 0
  */
 
-public class TaskBean implements Serializable{
-    private String task_id;
+public class TaskBean implements Serializable {
+    //private String task_id;
+    private String id;
     private String title;
-    private long deadline_timestamp;
-    private String progress_current;
-    private String progress_total;
-    private int part_count;
-    private int quiz_count;
-    private int survey_count;
+    private String end_at;
+    private int courses_total;//课件数量
+    private int examination_total;//测试数量
+    private int questionnaire_total;//问卷数量
+    //private long deadline_timestamp;
+//    private String progress_current;
+//    private String progress_total;
+//    private int part_count;
+//    private int quiz_count;
+//    private int survey_count;
     public List<TaskCourseBean> courses;
     private int progress;
+
     public int getProgress() {
-        return NumberUtil.getProgress(getProgress_current(),getProgress_total());
+        return 0;
+        //return NumberUtil.getProgress(getProgress_current(),getProgress_total());
     }
 
-    public String getTask_id() {
-        return task_id;
-    }
-
-    public void setTask_id(String task_id) {
-        this.task_id = task_id;
-    }
 
     public String getTitle() {
         return title;
@@ -49,51 +69,56 @@ public class TaskBean implements Serializable{
         this.title = title;
     }
 
-    public long getDeadline_timestamp() {
-        return deadline_timestamp;
+    public String getId() {
+        return id;
     }
 
-    public void setDeadline_timestamp(long deadline_timestamp) {
-        this.deadline_timestamp = deadline_timestamp;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getProgress_current() {
-        return progress_current;
+    public String getEnd_at() {
+        return end_at;
     }
 
-    public void setProgress_current(String progress_current) {
-        this.progress_current = progress_current;
+    public void setEnd_at(String end_at) {
+        this.end_at = end_at;
     }
 
-    public String getProgress_total() {
-        return progress_total;
+    public int getCourses_total() {
+        return courses_total;
     }
 
-    public void setProgress_total(String progress_total) {
-        this.progress_total = progress_total;
+    public void setCourses_total(int courses_total) {
+        this.courses_total = courses_total;
     }
 
-    public int getPart_count() {
-        return part_count;
+    public int getExamination_total() {
+        return examination_total;
     }
 
-    public void setPart_count(int part_count) {
-        this.part_count = part_count;
+    public void setExamination_total(int examination_total) {
+        this.examination_total = examination_total;
     }
 
-    public int getQuiz_count() {
-        return quiz_count;
+    public int getQuestionnaire_total() {
+        return questionnaire_total;
     }
 
-    public void setQuiz_count(int quiz_count) {
-        this.quiz_count = quiz_count;
+    public void setQuestionnaire_total(int questionnaire_total) {
+        this.questionnaire_total = questionnaire_total;
     }
 
-    public int getSurvey_count() {
-        return survey_count;
+    public List<TaskCourseBean> getCourses() {
+        return courses;
     }
 
-    public void setSurvey_count(int survey_count) {
-        this.survey_count = survey_count;
+    public void setCourses(List<TaskCourseBean> courses) {
+        this.courses = courses;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 }
+

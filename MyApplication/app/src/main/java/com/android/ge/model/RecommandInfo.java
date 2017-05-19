@@ -6,5 +6,5 @@ package com.android.ge.model;
 
  */
 
-public class RecommandInfo extends BaseCourseTypeInfo{
+public class RecommandInfo extends LableCourseTypeInfo{
 }

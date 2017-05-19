@@ -19,12 +19,16 @@ import com.android.ge.controller.Store;
 import com.android.ge.controller.adapter.LearningPathAdapter;
 import com.android.ge.controller.adapter.TaskListAdapter;
 import com.android.ge.controller.entry.PathEntry;
+import com.android.ge.model.HomePageInfo;
 import com.android.ge.model.path.PathBean;
+import com.android.ge.model.path.PathListInfo;
 import com.android.ge.model.path.PathResultInfo;
 import com.android.ge.model.task.TaskBean;
+import com.android.ge.model.task.TaskListInfo;
 import com.android.ge.model.task.TaskListResultInfo;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
+import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseFragment;
 import com.android.ge.ui.tabmain.TaskFragment;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
@@ -76,10 +80,10 @@ public class TaskListFragment extends CommonBaseFragment {
         EventBus.getDefault().register(this);
         TAB_FLAG = getArguments().getInt(CommonConstant.KEY_TAB_FALG);
         if (TAB_FLAG == TaskFragment.TAB_UNSTART) {
-            mArgState = "unstart";
+            mArgState = "ready";
 
         } else if (TAB_FLAG == TaskFragment.TAB_ONGOING) {
-            mArgState = "going";
+            mArgState = "progress";
 
         } else if (TAB_FLAG == TaskFragment.TAB_FINISHED) {
             mArgState = "finish";
@@ -110,12 +114,11 @@ public class TaskListFragment extends CommonBaseFragment {
 //        refreshTaskAdapter();
 //    }
 
-    private void refreshTaskData(TaskListResultInfo info) {
+    private void refreshTaskData(TaskListInfo info) {
         mTasks.clear();
-        if (info.data.size() > 0) {
-            mTasks.addAll(info.data);
+        if (info.missions.size() > 0) {
+            mTasks.addAll(info.missions);
         }
-
         refreshTaskAdapter();
     }
 
@@ -130,15 +133,13 @@ public class TaskListFragment extends CommonBaseFragment {
         } else {
             mTaskListAdapter.notifyDataSetChanged();
         }
-
-
     }
 
-    private void refreshPathData(PathResultInfo info) {
-        LogUtils.d(getClass(), "refreshPathData info.data.size():" + info.data.size());
-        if (info.data.size() > 0) {
+    private void refreshPathData(PathListInfo info) {
+        LogUtils.d(getClass(), "refreshPathData info.data.size():" + info.learningpath.size());
+        if (info.learningpath.size() > 0) {
             mPaths.clear();
-            mPaths.addAll(info.data);
+            mPaths.addAll(info.learningpath);
         }
         refreshPathAdapter();
     }
@@ -183,7 +184,7 @@ public class TaskListFragment extends CommonBaseFragment {
     }
 
     //任务列表结果
-    Observer<TaskListResultInfo> mTaskObserver = new Observer<TaskListResultInfo>() {
+    Observer<TaskListInfo> mTaskObserver = new Observer<TaskListInfo>() {
         @Override
         public void onCompleted() {
         }
@@ -196,13 +197,11 @@ public class TaskListFragment extends CommonBaseFragment {
         }
 
         @Override
-        public void onNext(TaskListResultInfo resultInfo) {
-            if (resultInfo == null || resultInfo.data == null) {
+        public void onNext(TaskListInfo resultInfo) {
+            if (resultInfo == null || resultInfo.missions == null) {
                 Base.showToast(R.string.errmsg_data_error);
             }
             refreshTaskData(resultInfo);
-
-
         }
     };
 
@@ -219,20 +218,20 @@ public class TaskListFragment extends CommonBaseFragment {
 
         Network.getCourseApi("任务列表" + mArgState).getTaskList(map)
                 .subscribeOn(Schedulers.io())
+                //拦截服务器返回的错误
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<TaskListInfo>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mTaskObserver);
     }
-
 
     // 展示app更新
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void refreshPathData(PathEntry eventEntry) {
         LogUtils.d(getClass(), "refreshPathData:");
-        if (eventEntry.pathResultInfo != null) {
-            refreshPathData(eventEntry.pathResultInfo);
+        if (eventEntry.pathListInfo != null) {
+            refreshPathData(eventEntry.pathListInfo);
         }
-
     }
-
 
 }

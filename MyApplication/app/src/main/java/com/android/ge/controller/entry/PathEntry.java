@@ -1,15 +1,15 @@
 package com.android.ge.controller.entry;
 
-import com.android.ge.model.path.PathResultInfo;
+import com.android.ge.model.path.PathListInfo;
 
 /**
  * Created by xudengwang on 17/4/8.
  */
 
 public class PathEntry {
-    public PathResultInfo pathResultInfo;
+    public PathListInfo pathListInfo;
 
-    public PathEntry(PathResultInfo info) {
-        this.pathResultInfo = info;
+    public PathEntry(PathListInfo info) {
+        this.pathListInfo = info;
     }
 }

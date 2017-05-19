@@ -53,7 +53,7 @@ public class LearningPathAdapter extends BaseCommonAdapter<PathBean> implements 
     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
         PathBean pathBean = mDatas.get(position);
         Bundle bundle = new Bundle();
-        bundle.putString(CommonConstant.PARAM_PATH_ID,pathBean.getPath_id());
+        bundle.putString(CommonConstant.PARAM_PATH_ID,pathBean.getId());
         gotoActivity(PathWebActivity.class, bundle);
     }
 

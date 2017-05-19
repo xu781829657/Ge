@@ -8,5 +8,5 @@ import java.util.List;
 
  */
 
-public class RequiredInfo extends BaseCourseTypeInfo{
+public class RequiredInfo extends LableCourseTypeInfo{
 }

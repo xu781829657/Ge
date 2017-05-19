@@ -37,7 +37,8 @@ public class TaskListAdapter extends BaseCommonAdapter<TaskBean> implements Mult
             holder.getView(R.id.tv_complete).setVisibility(View.GONE);
         }
         holder.setText(R.id.tv_task_name, taskBean.getTitle());
-        holder.setText(R.id.tv_task_deadline_time, String.format(Base.string(R.string.format_deadline_time), DateUtils.getDateToStringCommon(taskBean.getDeadline_timestamp()*1000)));
+       // holder.setText(R.id.tv_task_deadline_time, String.format(Base.string(R.string.format_deadline_time), DateUtils.getDateToStringCommon(taskBean.getDeadline_timestamp()*1000)));
+        holder.setText(R.id.tv_task_deadline_time, String.format(Base.string(R.string.format_deadline_time), taskBean.getEnd_at()));
         ((TaskContentInfoView) holder.getView(R.id.view_task_content_info)).setTaskBean(taskBean);
     }
 

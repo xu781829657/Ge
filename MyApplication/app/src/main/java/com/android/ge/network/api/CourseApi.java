@@ -9,7 +9,9 @@ import com.android.ge.model.LearningInfo;
 import com.android.ge.model.base.BaseResponse;
 import com.android.ge.model.login.TokenBean;
 import com.android.ge.model.organ.OrganBean;
+import com.android.ge.model.path.PathListInfo;
 import com.android.ge.model.path.PathResultInfo;
+import com.android.ge.model.task.TaskListInfo;
 import com.android.ge.model.task.TaskListResultInfo;
 
 import java.util.ArrayList;
@@ -58,12 +60,16 @@ public interface CourseApi {
     Observable<CourseClassifyResultInfo> getCourseClassify(@QueryMap Map<String, String> map);
 
     //获取任务列表
-    @GET("/api/task/self")
-    Observable<TaskListResultInfo> getTaskList(@QueryMap Map<String, String> map);
+//    @GET("/api/task/self")
+//    Observable<TaskListResultInfo> getTaskList(@QueryMap Map<String, String> map);
+    @GET("/api/missions/list")
+    Observable<BaseResponse<TaskListInfo>> getTaskList(@QueryMap Map<String, String> map);
 
     //获取学习路径
-    @GET("/api/path/self")
-    Observable<PathResultInfo> getLearningPath(@QueryMap Map<String, String> map);
+//    @GET("/api/path/self")
+//    Observable<PathResultInfo> getLearningPath(@QueryMap Map<String, String> map);
+    @GET("/api/learningpath/list")
+    Observable<BaseResponse<PathListInfo>> getLearningPath(@QueryMap Map<String, String> map);
 
 
 //

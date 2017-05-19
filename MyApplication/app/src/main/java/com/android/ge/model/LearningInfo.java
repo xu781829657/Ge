@@ -7,5 +7,5 @@ import java.util.List;
  */
 
 public class LearningInfo {
-    public List<BaseCourseTypeInfo> courses;
+    public List<ClassifyCourseTypeInfo> courses;
 }

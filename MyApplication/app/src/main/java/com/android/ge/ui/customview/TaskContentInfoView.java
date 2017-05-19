@@ -57,9 +57,9 @@ public class TaskContentInfoView extends LinearLayout {
 
     public void setTaskBean(TaskBean bean) {
         if (bean != null) {
-            mTvCourseCount.setText(String.format(Base.string(R.string.format_course_course_count), bean.getPart_count()));
-            mTvTestCount.setText(String.format(Base.string(R.string.format_course_quiz_count), bean.getQuiz_count()));
-            mTvSurveyCount.setText(String.format(Base.string(R.string.format_course_survey_count), bean.getSurvey_count()));
+            mTvCourseCount.setText(String.format(Base.string(R.string.format_course_course_count), bean.getCourses_total()));
+            mTvTestCount.setText(String.format(Base.string(R.string.format_course_quiz_count), bean.getExamination_total()));
+            mTvSurveyCount.setText(String.format(Base.string(R.string.format_course_survey_count), bean.getQuestionnaire_total()));
         }
     }
 }
