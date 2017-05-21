@@ -47,7 +47,7 @@ public class CourseWebActivity extends CommonBaseActivity {
     private static final String URL_PRE = "http://static.31academy.cn/module/index.html?";
 
     //
-    private static final String FORMAT_COURSE_PARAM = "?path_id={%1$s}&token={%1$s}#/Learn";
+    private static final String FORMAT_COURSE_PARAM = "?path_id={%1$s}&token={%1$s}";
 
     private String mParamCourseId;
 

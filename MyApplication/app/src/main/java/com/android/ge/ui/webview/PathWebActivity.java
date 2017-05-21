@@ -57,7 +57,7 @@ public class PathWebActivity extends CommonBaseActivity {
             StringBuilder builder = new StringBuilder();
             builder.append(URL_PRE);
             builder.append(params.toString());
-            builder.append("#/Learn");
+           // builder.append("#/Learn");
             LOAD_URL = builder.toString();
 
         } else {
