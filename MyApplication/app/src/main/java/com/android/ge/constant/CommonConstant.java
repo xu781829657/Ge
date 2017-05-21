@@ -21,6 +21,7 @@ public class CommonConstant {
 
 
     //参数
+    public static final String PARAM_ID = "id";
     public static final String PARAM_ORG_ID = "org_id";
     public static final String PARAM_COURSE_TYPE_ID = "course_type_id";
 
@@ -32,9 +33,12 @@ public class CommonConstant {
     public static final String PARAM_TIME = "time";
 
 
-    public static final String TASK_COURSE_TYPE_COURSE = "Course";
-    public static final String TASK_COURSE_TYPE_QUIZ = "Quiz";
-    public static final String TASK_COURSE_TYPE_SURVEY = "Survey";
+//    public static final String TASK_COURSE_TYPE_COURSE = "Course";
+//    public static final String TASK_COURSE_TYPE_QUIZ = "Quiz";
+//    public static final String TASK_COURSE_TYPE_SURVEY = "Survey";
+public static final String TASK_COURSE_TYPE_COURSE = "courses";
+    public static final String TASK_COURSE_TYPE_QUIZ = "examinations";
+    public static final String TASK_COURSE_TYPE_SURVEY = "questionnaire";
 
     //单个课程分类
     public static final String PARAM_TYPE = "type";

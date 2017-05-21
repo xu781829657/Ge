@@ -12,6 +12,7 @@ import com.android.ge.model.login.TokenBean;
 import com.android.ge.model.organ.OrganBean;
 import com.android.ge.model.path.PathListInfo;
 import com.android.ge.model.path.PathResultInfo;
+import com.android.ge.model.task.TaskDetailInfo;
 import com.android.ge.model.task.TaskListInfo;
 import com.android.ge.model.task.TaskListResultInfo;
 
@@ -73,6 +74,10 @@ public interface CourseApi {
 //    Observable<PathResultInfo> getLearningPath(@QueryMap Map<String, String> map);
     @GET("/api/learningpath/list")
     Observable<BaseResponse<PathListInfo>> getLearningPath(@QueryMap Map<String, String> map);
+
+
+    @GET("/api/missions/index")
+    Observable<BaseResponse<TaskDetailInfo>> getTaskDetailInfo(@QueryMap Map<String, String> map);
 
 
 //

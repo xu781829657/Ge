@@ -14,7 +14,7 @@ package com.android.ge.model.task;
  "updated_at": 1493020982
  */
 
-public class TaskCourseBean {
+public class TaskQuizBean {
     private String id;
     private String title;
     private String cover;
