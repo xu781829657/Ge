@@ -137,7 +137,8 @@ public class LearningFragment extends CommonBaseFragment {
                 titleLearningItem.setTitleItemInfo(titleItemInfo);
                 mLearningItemList.add(titleLearningItem);
                 for (int j = 0; j < typeInfo.getCourses().size(); j++) {
-                    CourseBean courseBean = typeInfo.getCourses().get(0);
+                    CourseBean courseBean = typeInfo.getCourses().get(j);
+                    LogUtils.d(getClass(),"cover:"+courseBean.getCover());
                     BaseLearningItem courseLearningItem = new BaseLearningItem();
                     courseLearningItem.setCourseBean(courseBean);
                     courseLearningItem.setOriginalPosition(j);
@@ -225,7 +226,7 @@ public class LearningFragment extends CommonBaseFragment {
             for (int i = 0; i < 3; i++) {
                 CourseBean bean = new CourseBean();
                 bean.setTitle("必读课" + i);
-                bean.setDesc("课程描述" + i);
+                bean.setContent("课程描述" + i);
                 beans.add(bean);
             }
             info.setCourses(beans);

@@ -15,6 +15,7 @@ public class CommonConstant {
 
     public static final String KEY_TITLE = "key_title";
     public static final String KEY_COURSE_TYPE_ID = "key_course_type_id";
+    public static final String KEY_COURSE_TYPE = "key_course_type";
     public static final String KEY_TASK_BEAN = "key_task_bean";
     public static final String KEY_PATH_BEAN_LIST = "key_path_bean_list";
 
@@ -34,6 +35,12 @@ public class CommonConstant {
     public static final String TASK_COURSE_TYPE_COURSE = "Course";
     public static final String TASK_COURSE_TYPE_QUIZ = "Quiz";
     public static final String TASK_COURSE_TYPE_SURVEY = "Survey";
+
+    //单个课程分类
+    public static final String PARAM_TYPE = "type";
+    public static final String PARAM_CAT_ID = "cat_id";
+    public static final String PARAM_TAG_ID = "tag_id";
+
 
     public static final String ROOT_CACHE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + "com.android.ge";
 }

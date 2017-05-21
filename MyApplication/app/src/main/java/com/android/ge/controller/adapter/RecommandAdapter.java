@@ -50,7 +50,7 @@ public class RecommandAdapter extends BaseCommonAdapter<CourseBean> implements M
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
         holder.setText(R.id.tv_course_title, courseBean.getTitle());
-        holder.setText(R.id.tv_course_descrip, courseBean.getDesc());
+        holder.setText(R.id.tv_course_descrip, courseBean.getContent());
         setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover), courseBean.getCover(), R.drawable.demo_course_loading_icon);
     }
     @Override

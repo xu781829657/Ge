@@ -3,6 +3,7 @@
 package com.android.ge.network.api;
 
 
+import com.android.ge.model.CourseClassifyInfo;
 import com.android.ge.model.CourseClassifyResultInfo;
 import com.android.ge.model.HomePageInfo;
 import com.android.ge.model.LearningInfo;
@@ -56,8 +57,10 @@ public interface CourseApi {
     Observable<BaseResponse<LearningInfo>> getCourseTypeList(@QueryMap Map<String, String> map);
 
     //获取单个课程分类
-    @GET("/api/course_type/get")
-    Observable<CourseClassifyResultInfo> getCourseClassify(@QueryMap Map<String, String> map);
+//    @GET("/api/course_type/get")
+//    Observable<CourseClassifyResultInfo> getCourseClassify(@QueryMap Map<String, String> map);
+    @GET("/api/coursescat/get")
+    Observable<BaseResponse<CourseClassifyInfo>> getCourseClassify(@QueryMap Map<String, String> map);
 
     //获取任务列表
 //    @GET("/api/task/self")

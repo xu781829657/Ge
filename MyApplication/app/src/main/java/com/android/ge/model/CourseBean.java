@@ -41,7 +41,7 @@ public class CourseBean implements Serializable{
     private String title;
     private String course_id;
     private String cover;
-    private String desc;
+    private String content;
     private String teacher_id;
     private int is_finish;
     private int is_lock;
@@ -80,12 +80,13 @@ public class CourseBean implements Serializable{
         this.cover = cover;
     }
 
-    public String getDesc() {
-        return desc;
+
+    public String getContent() {
+        return content;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getTeacher_id() {

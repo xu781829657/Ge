@@ -188,6 +188,7 @@ public class HomePageFragment extends CommonBaseFragment {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
+                    bundle.putInt(CommonConstant.KEY_COURSE_TYPE,ClassifyCourseListActivity.COURSE_TAG);
                     bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, info.getId());
                     bundle.putString(CommonConstant.KEY_TITLE, info.getTitle());
                     gotoActivity(ClassifyCourseListActivity.class, bundle, false);
@@ -234,6 +235,7 @@ public class HomePageFragment extends CommonBaseFragment {
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
                     bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, info.getId());
+                    bundle.putInt(CommonConstant.KEY_COURSE_TYPE,ClassifyCourseListActivity.COURSE_TAG);
                     bundle.putString(CommonConstant.KEY_TITLE, info.getTitle());
                     gotoActivity(ClassifyCourseListActivity.class, bundle, false);
                 }

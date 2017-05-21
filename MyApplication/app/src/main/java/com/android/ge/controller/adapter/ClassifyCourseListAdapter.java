@@ -3,6 +3,7 @@ package com.android.ge.controller.adapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -30,7 +31,12 @@ public class ClassifyCourseListAdapter extends BaseCommonAdapter<CourseBean> imp
     protected void convert(ViewHolder holder, CourseBean courseBean, int position) {
         holder.setText(R.id.tv_course_title, courseBean.getTitle());
         ((CourseContentInfoView) holder.getView(R.id.view_course_content_info)).setCourseBean(courseBean);
-        setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover), courseBean.getCover(), R.drawable.questionnaire_loading_icon);
+        if(!TextUtils.isEmpty(courseBean.getCover())){
+            setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover), courseBean.getCover(), R.drawable.questionnaire_loading_icon);
+        } else {
+            holder.setImageResource(R.id.iv_course_cover,R.drawable.questionnaire_loading_icon);
+        }
+
 
     }
 

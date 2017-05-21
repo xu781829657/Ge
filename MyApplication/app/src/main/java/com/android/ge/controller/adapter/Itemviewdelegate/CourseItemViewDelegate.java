@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.base.frame.Base;
+import com.android.base.util.LogUtils;
 import com.android.base.util.ScreenUtils;
 import com.android.ge.R;
 import com.android.ge.model.CourseBean;
@@ -69,7 +70,8 @@ public class CourseItemViewDelegate implements ItemViewDelegate<BaseLearningItem
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
         holder.setText(R.id.tv_course_title, courseBean.getTitle());
-        holder.setText(R.id.tv_course_descrip, courseBean.getDesc());
+        holder.setText(R.id.tv_course_descrip, courseBean.getContent());
+        LogUtils.d(getClass(),"title:"+courseBean.getTitle()+",---cover:"+courseBean.getCover());
         if (!TextUtils.isEmpty(courseBean.getCover())) {
             setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover), courseBean.getCover(), R.drawable
                     .demo_course_loading_icon);

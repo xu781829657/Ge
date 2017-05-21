@@ -16,9 +16,12 @@ import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.adapter.ClassifyCourseListAdapter;
 import com.android.ge.model.CourseBean;
+import com.android.ge.model.CourseClassifyInfo;
 import com.android.ge.model.CourseClassifyResultInfo;
+import com.android.ge.model.task.TaskListInfo;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
+import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseActivity;
 
 import java.util.ArrayList;
@@ -36,6 +39,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class ClassifyCourseListActivity extends CommonBaseActivity {
+
     @Bind(R.id.iv_back)
     ImageView mIvBack;
     @Bind(R.id.tv_title)
@@ -48,6 +52,10 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
 
     private String mArgCourseTypeId;//课程类型id
     private String mTitle;
+    private int mCourseFlag;
+
+    public static final int COURSE_TAG = 0;
+    public static final int COURSE_CLASSIFY = 1;
 
     @Override
     protected int getContentViewId() {
@@ -75,16 +83,19 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
         if (bundle != null) {
             mArgCourseTypeId = bundle.getString(CommonConstant.KEY_COURSE_TYPE_ID);
             mTitle = bundle.getString(CommonConstant.KEY_TITLE);
+            mCourseFlag = bundle.getInt(CommonConstant.KEY_COURSE_TYPE);
         }
 
         if (!TextUtils.isEmpty(mTitle)) {
             mTvTitle.setText(mTitle);
         }
+
+
     }
 
-    private void refreshData(CourseClassifyResultInfo resultInfo) {
-        if (resultInfo.data.courses != null && resultInfo.data.courses.size() > 0) {
-            mCourses.addAll(resultInfo.data.courses);
+    private void refreshData(CourseClassifyInfo resultInfo) {
+        if (resultInfo.courses != null && resultInfo.courses.size() > 0) {
+            mCourses.addAll(resultInfo.courses);
         }
         refreshAdapter();
 
@@ -114,7 +125,7 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
     }
 
     //主页配置
-    Observer<CourseClassifyResultInfo> mClassifyObserver = new Observer<CourseClassifyResultInfo>() {
+    Observer<CourseClassifyInfo> mClassifyObserver = new Observer<CourseClassifyInfo>() {
         @Override
         public void onCompleted() {
             dismissLoadingDialog();
@@ -129,8 +140,8 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
         }
 
         @Override
-        public void onNext(CourseClassifyResultInfo resultInfo) {
-            if (resultInfo == null || resultInfo.data == null) {
+        public void onNext(CourseClassifyInfo resultInfo) {
+            if (resultInfo == null || resultInfo.courses == null) {
                 Base.showToast(R.string.errmsg_data_error);
                 return;
             }
@@ -149,12 +160,27 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
         showLoadingDialog(null);
         Map<String, String> map = new HashMap<>();
         map.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
-        map.put(CommonConstant.PARAM_COURSE_TYPE_ID, mArgCourseTypeId);
+        if (COURSE_TAG == mCourseFlag) {
+            map.put(CommonConstant.PARAM_TYPE, "tag");
+            map.put(CommonConstant.PARAM_TAG_ID, mArgCourseTypeId);
+        } else if (COURSE_CLASSIFY == mCourseFlag) {
+            map.put(CommonConstant.PARAM_TYPE, "cat");
+            map.put(CommonConstant.PARAM_CAT_ID, mArgCourseTypeId);
+
+        }
+
+
+//        map.put(CommonConstant.PARAM_COURSE_TYPE_ID, mArgCourseTypeId);
 
         Network.getCourseApi("获取单个课程分类").getCourseClassify(map)
                 .subscribeOn(Schedulers.io())
+                //拦截服务器返回的错误
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<CourseClassifyInfo>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mClassifyObserver);
+
     }
+
 
 }
