@@ -54,12 +54,28 @@ public class TaskBean implements Serializable {
 //    private int survey_count;
     public List<TaskCourseBean> courses;
     private int progress;
+    private String progress_current;
+    private String progress_total;
 
     public int getProgress() {
-        return 0;
-        //return NumberUtil.getProgress(getProgress_current(),getProgress_total());
+        return NumberUtil.getProgress(getProgress_current(),getProgress_total());
     }
 
+    public String getProgress_current() {
+        return progress_current;
+    }
+
+    public void setProgress_current(String progress_current) {
+        this.progress_current = progress_current;
+    }
+
+    public String getProgress_total() {
+        return progress_total;
+    }
+
+    public void setProgress_total(String progress_total) {
+        this.progress_total = progress_total;
+    }
 
     public String getTitle() {
         return title;
