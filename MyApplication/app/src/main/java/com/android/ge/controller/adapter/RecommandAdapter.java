@@ -57,7 +57,7 @@ public class RecommandAdapter extends BaseCommonAdapter<CourseBean> implements M
     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
         CourseBean courseBean = mDatas.get(position);
         Bundle bundle = new Bundle();
-        bundle.putString(CommonConstant.PARAM_COURSE_ID,courseBean.getCourse_id());
+        bundle.putString(CommonConstant.PARAM_COURSE_ID,courseBean.getId());
         gotoActivity(CourseWebActivity.class, bundle);
     }
 

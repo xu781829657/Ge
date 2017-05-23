@@ -61,7 +61,7 @@ public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearning
         } else if (item.isCourse()) {
             CourseBean courseBean = item.getCourseBean();
             Bundle bundle = new Bundle();
-            bundle.putString(CommonConstant.PARAM_COURSE_ID,courseBean.getCourse_id());
+            bundle.putString(CommonConstant.PARAM_COURSE_ID,courseBean.getId());
             gotoActivity(CourseWebActivity.class, bundle);
         }
 

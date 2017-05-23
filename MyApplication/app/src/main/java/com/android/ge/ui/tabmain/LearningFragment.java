@@ -268,7 +268,7 @@ public class LearningFragment extends CommonBaseFragment {
         Map<String, String> map = new HashMap<>();
         map.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
 
-        Network.getCourseApi("tab_首页").getCourseTypeList(map)
+        Network.getCourseApi("tab_学习").getCourseTypeList(map)
                 .subscribeOn(Schedulers.io())
                 //拦截服务器返回的错误
                 .observeOn(AndroidSchedulers.mainThread())

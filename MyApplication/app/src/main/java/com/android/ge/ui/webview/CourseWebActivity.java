@@ -57,6 +57,7 @@ public class CourseWebActivity extends CommonBaseActivity {
         if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
             mParamCourseId = bundle.getString(CommonConstant.PARAM_COURSE_ID);
+            LogUtils.d(getClass(),"mParamCourseId:"+mParamCourseId);
             RequestParams params = new RequestParams();
             params.put(CommonConstant.PARAM_COURSE_ID, mParamCourseId);
             params.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());

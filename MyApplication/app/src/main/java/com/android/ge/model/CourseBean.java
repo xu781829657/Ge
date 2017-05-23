@@ -39,7 +39,7 @@ import java.io.Serializable;
 
 public class CourseBean implements Serializable{
     private String title;
-    private String course_id;
+    private String id;
     private String cover;
     private String content;
     private String teacher_id;
@@ -64,12 +64,12 @@ public class CourseBean implements Serializable{
         this.title = title;
     }
 
-    public String getCourse_id() {
-        return course_id;
+    public String getId() {
+        return id;
     }
 
-    public void setCourse_id(String course_id) {
-        this.course_id = course_id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCover() {
