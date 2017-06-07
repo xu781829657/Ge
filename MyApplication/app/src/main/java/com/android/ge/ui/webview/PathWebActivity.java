@@ -42,14 +42,20 @@ public class PathWebActivity extends CommonBaseActivity {
 
     private static final String URL_PRE = "http://static.31academy.cn/module/history.html?";
     private String mParamPathId;
+    private String mParamType;
+    private String mParamTypeId;
 
     @Override
     protected void initData() {
         if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
             mParamPathId = bundle.getString(CommonConstant.PARAM_PATH_ID);
+            mParamType = bundle.getString(CommonConstant.PARAM_TYPE);
+            mParamTypeId = bundle.getString(CommonConstant.PARAM_TYPE_ID);
             LogUtils.d(getClass(), "mParamPathId:" + mParamPathId);
             RequestParams params = new RequestParams();
+            params.put(CommonConstant.PARAM_TYPE, mParamType);
+            params.put(CommonConstant.PARAM_TYPE_ID, mParamTypeId);
             params.put(CommonConstant.PARAM_PATH_ID, mParamPathId);
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
             params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));

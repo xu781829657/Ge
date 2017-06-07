@@ -111,6 +111,8 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
         if (CommonConstant.TASK_COURSE_TYPE_COURSE.equalsIgnoreCase(taskDetailBean.getDetail_type())) {
             Bundle bundle = new Bundle();
             bundle.putString(CommonConstant.PARAM_COURSE_ID, taskDetailBean.courses.getId() + "");
+            bundle.putString(CommonConstant.PARAM_TYPE,CommonConstant.TYPE_MISSIONS);
+            bundle.putString(CommonConstant.PARAM_TYPE_ID,taskDetailBean.courses.getId() + "");
             gotoActivity(CourseWebActivity.class, bundle);
         }
 

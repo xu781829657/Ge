@@ -44,6 +44,11 @@ public static final String TASK_COURSE_TYPE_COURSE = "courses";
     public static final String PARAM_TYPE = "type";
     public static final String PARAM_CAT_ID = "cat_id";
     public static final String PARAM_TAG_ID = "tag_id";
+    public static final String PARAM_TYPE_ID = "type_id";
+
+    public static final String TYPE_COURSES = "courses";
+    public static final String TYPE_MISSIONS = "missions";
+    public static final String TYPE_LEARNINGPATH = "learningpath";
 
 
     public static final String ROOT_CACHE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + "com.android.ge";

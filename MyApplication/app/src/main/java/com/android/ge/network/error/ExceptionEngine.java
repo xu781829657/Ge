@@ -1,8 +1,13 @@
 package com.android.ge.network.error;
 
+import android.content.Intent;
 import android.net.ParseException;
 
 import com.alibaba.fastjson.JSONException;
+import com.android.base.frame.AppManager;
+import com.android.base.frame.Base;
+import com.android.ge.ui.login.LoginActivity;
+import com.android.ge.utils.PreferencesUtils;
 import com.google.gson.JsonParseException;
 
 import java.net.ConnectException;
@@ -45,7 +50,12 @@ public class ExceptionEngine {
                     ex.message = "请求503错误";
                     break;
                 case UNAUTHORIZED:
-                    ex.message = "请求401错误";
+                    ex.message = "用户已失效";
+                    Intent intent = new Intent();
+                    intent.setClass(Base.getContext(), LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Base.getContext().startActivity(intent);
+                    AppManager.create().finishAllActivity();
                     break;
                 case FORBIDDEN:
                     ex.message = "请求403错误";

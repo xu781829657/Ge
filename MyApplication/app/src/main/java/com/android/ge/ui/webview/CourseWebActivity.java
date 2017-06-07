@@ -50,6 +50,8 @@ public class CourseWebActivity extends CommonBaseActivity {
     private static final String FORMAT_COURSE_PARAM = "?path_id={%1$s}&token={%1$s}";
 
     private String mParamCourseId;
+    private String mParamType;
+    private String mParamTypeId;
 
     @Override
     protected void initData() {
@@ -57,8 +59,12 @@ public class CourseWebActivity extends CommonBaseActivity {
         if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
             mParamCourseId = bundle.getString(CommonConstant.PARAM_COURSE_ID);
+            mParamType = bundle.getString(CommonConstant.PARAM_TYPE);
+            mParamTypeId = bundle.getString(CommonConstant.PARAM_TYPE_ID);
             LogUtils.d(getClass(),"mParamCourseId:"+mParamCourseId);
             RequestParams params = new RequestParams();
+            params.put(CommonConstant.PARAM_TYPE, mParamType);
+            params.put(CommonConstant.PARAM_TYPE_ID, mParamTypeId);
             params.put(CommonConstant.PARAM_COURSE_ID, mParamCourseId);
             params.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
