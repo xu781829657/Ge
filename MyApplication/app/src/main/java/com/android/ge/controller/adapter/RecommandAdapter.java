@@ -58,8 +58,8 @@ public class RecommandAdapter extends BaseCommonAdapter<CourseBean> implements M
         CourseBean courseBean = mDatas.get(position);
         Bundle bundle = new Bundle();
         bundle.putString(CommonConstant.PARAM_COURSE_ID,courseBean.getId());
-        bundle.putString(CommonConstant.PARAM_TYPE,CommonConstant.TYPE_COURSES);
-        bundle.putString(CommonConstant.PARAM_TYPE_ID,courseBean.getId());
+        bundle.putString(CommonConstant.PARAM_ENTRY_TYPE,CommonConstant.TYPE_COURSES);
+        bundle.putString(CommonConstant.PARAM_ENTRY_ID,courseBean.getId());
         gotoActivity(CourseWebActivity.class, bundle);
     }
 

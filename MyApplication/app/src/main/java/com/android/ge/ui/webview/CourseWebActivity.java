@@ -44,6 +44,7 @@ public class CourseWebActivity extends CommonBaseActivity {
     private String LOAD_URL;
 
 
+    //module/index.html?org_id=xxx&course_id=xxxx&token=xxxx&entryId=xxxx&entryType=xxx
     private static final String URL_PRE = "http://static.31academy.cn/module/index.html?";
 
     //
@@ -59,12 +60,12 @@ public class CourseWebActivity extends CommonBaseActivity {
         if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
             mParamCourseId = bundle.getString(CommonConstant.PARAM_COURSE_ID);
-            mParamType = bundle.getString(CommonConstant.PARAM_TYPE);
-            mParamTypeId = bundle.getString(CommonConstant.PARAM_TYPE_ID);
+            mParamType = bundle.getString(CommonConstant.PARAM_ENTRY_TYPE);
+            mParamTypeId = bundle.getString(CommonConstant.PARAM_ENTRY_ID);
             LogUtils.d(getClass(),"mParamCourseId:"+mParamCourseId);
             RequestParams params = new RequestParams();
-            params.put(CommonConstant.PARAM_TYPE, mParamType);
-            params.put(CommonConstant.PARAM_TYPE_ID, mParamTypeId);
+            params.put(CommonConstant.PARAM_ENTRY_TYPE, mParamType);
+            params.put(CommonConstant.PARAM_ENTRY_ID, mParamTypeId);
             params.put(CommonConstant.PARAM_COURSE_ID, mParamCourseId);
             params.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
@@ -73,7 +74,7 @@ public class CourseWebActivity extends CommonBaseActivity {
             StringBuilder builder = new StringBuilder();
             builder.append(URL_PRE);
             builder.append(params.toString());
-            builder.append("#/Detail");
+           // builder.append("#/Detail");
             LOAD_URL = builder.toString();
         } else {
             LOAD_URL = URL_PRE;

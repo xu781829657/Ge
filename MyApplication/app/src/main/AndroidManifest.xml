@@ -94,6 +94,9 @@
         <activity
             android:name=".ui.webview.PathWebActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.webview.ExamWebActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

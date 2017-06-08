@@ -31,7 +31,7 @@ public class CommonConstant {
     public static final String PARAM_TOKEN = "token";
     public static final String PARAM_COURSE_ID = "course_id";
     public static final String PARAM_TIME = "time";
-
+    public static final String PARAM_EXAM_ID = "examinationId";
 
 //    public static final String TASK_COURSE_TYPE_COURSE = "Course";
 //    public static final String TASK_COURSE_TYPE_QUIZ = "Quiz";
@@ -44,7 +44,10 @@ public static final String TASK_COURSE_TYPE_COURSE = "courses";
     public static final String PARAM_TYPE = "type";
     public static final String PARAM_CAT_ID = "cat_id";
     public static final String PARAM_TAG_ID = "tag_id";
-    public static final String PARAM_TYPE_ID = "type_id";
+
+    public static final String PARAM_ENTRY_TYPE = "entryType";
+    public static final String PARAM_ENTRY_ID = "entryId";
+   // public static final String PARAM_TYPE_ID = "type_id";
 
     public static final String TYPE_COURSES = "courses";
     public static final String TYPE_MISSIONS = "missions";

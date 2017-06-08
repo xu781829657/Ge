@@ -15,9 +15,6 @@ import com.android.ge.controller.web.AndroidBridge;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.loopj.android.http.RequestParams;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import butterknife.Bind;
 
 /**
@@ -33,16 +30,16 @@ import butterknife.Bind;
  * 课程id:course_id
  * token:token
  */
-public class PathWebActivity extends CommonBaseActivity {
+public class ExamWebActivity extends CommonBaseActivity {
 
     @Bind(R.id.webview)
     WebView mWebView;
 
     private String LOAD_URL;
 
-    //module/history.html?path_id=xxxx&token=xxxx&entryId=xxx&entryType=xxx
-    private static final String URL_PRE = "http://static.31academy.cn/module/history.html?";
-    private String mParamPathId;
+    //module/exam.html?isFinish=xx&examinationId=xxx&token=xxxx&entryId=xxx&entryType=xxx
+    private static final String URL_PRE = "http://static.31academy.cn/module/exam.html?";
+    private String mParamExamId;
     private String mParamType;
     private String mParamTypeId;
 
@@ -50,14 +47,14 @@ public class PathWebActivity extends CommonBaseActivity {
     protected void initData() {
         if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
-            mParamPathId = bundle.getString(CommonConstant.PARAM_PATH_ID);
+            mParamExamId = bundle.getString(CommonConstant.PARAM_EXAM_ID);
             mParamType = bundle.getString(CommonConstant.PARAM_ENTRY_TYPE);
             mParamTypeId = bundle.getString(CommonConstant.PARAM_ENTRY_ID);
-            LogUtils.d(getClass(), "mParamPathId:" + mParamPathId);
+            LogUtils.d(getClass(), "mParamExamId:" + mParamExamId);
             RequestParams params = new RequestParams();
-            params.put(CommonConstant.PARAM_ENTRY_TYPE, mParamType);
             params.put(CommonConstant.PARAM_ENTRY_ID, mParamTypeId);
-            params.put(CommonConstant.PARAM_PATH_ID, mParamPathId);
+            params.put(CommonConstant.PARAM_ENTRY_TYPE, mParamType);
+            params.put(CommonConstant.PARAM_EXAM_ID, mParamExamId);
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
             params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
             LogUtils.d(getClass(), "111map.string:" + params.toString());
@@ -70,7 +67,7 @@ public class PathWebActivity extends CommonBaseActivity {
         } else {
             LOAD_URL = URL_PRE;
         }
-        LogUtils.d(getClass(), "LOAD_URL:" + LOAD_URL);
+        LogUtils.d(getClass(), "LOAD_URL_EXAM:" + LOAD_URL);
 
 
         mContext = this;

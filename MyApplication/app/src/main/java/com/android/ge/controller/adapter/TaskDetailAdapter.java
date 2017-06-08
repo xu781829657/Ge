@@ -19,6 +19,7 @@ import com.android.ge.model.task.TaskQuestionnaireBean;
 import com.android.ge.model.task.TaskQuizBean;
 import com.android.ge.ui.customview.TaskContentInfoView;
 import com.android.ge.ui.webview.CourseWebActivity;
+import com.android.ge.ui.webview.ExamWebActivity;
 import com.android.ge.widgets.view.RoundProgressBar;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -111,9 +112,15 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
         if (CommonConstant.TASK_COURSE_TYPE_COURSE.equalsIgnoreCase(taskDetailBean.getDetail_type())) {
             Bundle bundle = new Bundle();
             bundle.putString(CommonConstant.PARAM_COURSE_ID, taskDetailBean.courses.getId() + "");
-            bundle.putString(CommonConstant.PARAM_TYPE,CommonConstant.TYPE_MISSIONS);
-            bundle.putString(CommonConstant.PARAM_TYPE_ID,taskDetailBean.courses.getId() + "");
+            bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
+            bundle.putString(CommonConstant.PARAM_ENTRY_ID, taskDetailBean.courses.getId() + "");
             gotoActivity(CourseWebActivity.class, bundle);
+        } else if (CommonConstant.TASK_COURSE_TYPE_QUIZ.equalsIgnoreCase(taskDetailBean.getDetail_type())) {
+            Bundle bundle = new Bundle();
+            bundle.putString(CommonConstant.PARAM_EXAM_ID, taskDetailBean.examinations.getId() + "");
+            bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
+            bundle.putString(CommonConstant.PARAM_ENTRY_ID, taskDetailBean.examinations.getId() + "");
+            gotoActivity(ExamWebActivity.class, bundle);
         }
 
     }
