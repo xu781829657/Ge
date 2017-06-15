@@ -42,6 +42,7 @@ public class ExamWebActivity extends CommonBaseActivity {
     private String mParamExamId;
     private String mParamType;
     private String mParamTypeId;
+    private String mParamIsFinish;
 
     @Override
     protected void initData() {
@@ -50,11 +51,13 @@ public class ExamWebActivity extends CommonBaseActivity {
             mParamExamId = bundle.getString(CommonConstant.PARAM_EXAM_ID);
             mParamType = bundle.getString(CommonConstant.PARAM_ENTRY_TYPE);
             mParamTypeId = bundle.getString(CommonConstant.PARAM_ENTRY_ID);
+            mParamIsFinish = bundle.getString(CommonConstant.PARAM_ISFINISH);
             LogUtils.d(getClass(), "mParamExamId:" + mParamExamId);
             RequestParams params = new RequestParams();
             params.put(CommonConstant.PARAM_ENTRY_ID, mParamTypeId);
             params.put(CommonConstant.PARAM_ENTRY_TYPE, mParamType);
             params.put(CommonConstant.PARAM_EXAM_ID, mParamExamId);
+            params.put(CommonConstant.PARAM_ISFINISH, mParamIsFinish);
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
             params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
             LogUtils.d(getClass(), "111map.string:" + params.toString());

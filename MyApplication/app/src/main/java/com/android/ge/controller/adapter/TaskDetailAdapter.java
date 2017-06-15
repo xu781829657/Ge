@@ -109,17 +109,24 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
     @Override
     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
         TaskDetailBean taskDetailBean = mDatas.get(position);
-        if (CommonConstant.TASK_COURSE_TYPE_COURSE.equalsIgnoreCase(taskDetailBean.getDetail_type())) {
+        if (CommonConstant.TASK_COURSE_TYPE_COURSE.equalsIgnoreCase(taskDetailBean.getDetail_type()) &&
+                taskDetailBean.courses != null) {
             Bundle bundle = new Bundle();
             bundle.putString(CommonConstant.PARAM_COURSE_ID, taskDetailBean.courses.getId() + "");
             bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
             bundle.putString(CommonConstant.PARAM_ENTRY_ID, taskDetailBean.courses.getId() + "");
             gotoActivity(CourseWebActivity.class, bundle);
-        } else if (CommonConstant.TASK_COURSE_TYPE_QUIZ.equalsIgnoreCase(taskDetailBean.getDetail_type())) {
+        } else if (CommonConstant.TASK_COURSE_TYPE_QUIZ.equalsIgnoreCase(taskDetailBean.getDetail_type()) &&
+                taskDetailBean.examinations != null) {
             Bundle bundle = new Bundle();
             bundle.putString(CommonConstant.PARAM_EXAM_ID, taskDetailBean.examinations.getId() + "");
             bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
             bundle.putString(CommonConstant.PARAM_ENTRY_ID, taskDetailBean.examinations.getId() + "");
+            if (taskDetailBean.getProgress() == 100) {
+                bundle.putString(CommonConstant.PARAM_ISFINISH, "1");
+            } else {
+                bundle.putString(CommonConstant.PARAM_ISFINISH, "0");
+            }
             gotoActivity(ExamWebActivity.class, bundle);
         }
 

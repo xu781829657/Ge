@@ -47,6 +47,7 @@ public static final String TASK_COURSE_TYPE_COURSE = "courses";
 
     public static final String PARAM_ENTRY_TYPE = "entryType";
     public static final String PARAM_ENTRY_ID = "entryId";
+    public static final String PARAM_ISFINISH = "isFinish";
    // public static final String PARAM_TYPE_ID = "type_id";
 
     public static final String TYPE_COURSES = "courses";

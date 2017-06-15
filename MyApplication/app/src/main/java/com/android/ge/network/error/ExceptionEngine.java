@@ -1,5 +1,7 @@
 package com.android.ge.network.error;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.ParseException;
 
@@ -53,9 +55,77 @@ public class ExceptionEngine {
                     ex.message = "用户已失效";
                     Intent intent = new Intent();
                     intent.setClass(Base.getContext(), LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     Base.getContext().startActivity(intent);
                     AppManager.create().finishAllActivity();
+                    break;
+                case FORBIDDEN:
+                    ex.message = "请求403错误";
+                    break;
+                case NOT_FOUND:
+                    ex.message = "请求404错误";
+                    break;
+                case REQUEST_TIMEOUT:
+                    ex.message = "请求超时错误";
+                    break;
+                default:
+                    ex.message = "网络错误";  //均视为网络错误
+                    break;
+            }
+            return ex;
+        } else if (e instanceof ServerException) {    //服务器返回的错误
+            ServerException resultException = (ServerException) e;
+            ex = new ApiException(resultException, resultException.code);
+            ex.message = resultException.message;
+            return ex;
+        } else if (e instanceof JsonParseException
+                || e instanceof JSONException
+                || e instanceof ParseException) {
+            ex = new ApiException(e, ErrorCode.PARSE_ERROR);
+            ex.message = "解析错误";            //均视为解析错误
+            return ex;
+        } else if (e instanceof ConnectException) {
+            ex = new ApiException(e, ErrorCode.NETWORD_ERROR);
+            ex.message = "连接失败";  //均视为网络错误
+            return ex;
+        } else if (e instanceof ErrorException) {
+            ex = new ApiException(e, ErrorCode.NETWORD_ERROR);
+            ex.message = ((ErrorException) e).getMessage();  //均视为返回的error错误
+            return ex;
+        } else {
+            ex = new ApiException(e, ErrorCode.UNKNOWN);
+            ex.message = "网络错误";          //未知错误
+            return ex;
+        }
+    }
+
+    public static ApiException handleException(Throwable e, Context context) {
+        ApiException ex;
+        if (e instanceof HttpException) {             //HTTP错误
+            HttpException httpException = (HttpException) e;
+            ex = new ApiException(e, ErrorCode.HTTP_ERROR);
+            switch (httpException.code()) {
+                case INTERNAL_SERVER_ERROR:
+                    ex.message = "请求500错误";
+                    break;
+                case BAD_GATEWAY:
+                    ex.message = "请求502错误";
+                    break;
+                case SERVICE_UNAVAILABLE:
+                    ex.message = "请求503错误";
+                    break;
+                case GATEWAY_TIMEOUT:
+                    ex.message = "请求503错误";
+                    break;
+                case UNAUTHORIZED:
+                    ex.message = "用户已失效";
+                    if (context != null) {
+                        Intent intent = new Intent();
+                        intent.setClass(context, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                        ((Activity) context).finish();
+                    }
                     break;
                 case FORBIDDEN:
                     ex.message = "请求403错误";

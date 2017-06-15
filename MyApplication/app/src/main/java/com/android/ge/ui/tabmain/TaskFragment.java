@@ -166,7 +166,7 @@ public class TaskFragment extends CommonBaseFragment {
         public void onError(Throwable e) {
             LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
             e.printStackTrace();
-            Base.showToast(ExceptionEngine.handleException(e).message);
+            Base.showToast(ExceptionEngine.handleException(e,getActivity()).message);
         }
 
         @Override
