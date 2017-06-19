@@ -52,12 +52,12 @@ public class ExceptionEngine {
                     ex.message = "请求503错误";
                     break;
                 case UNAUTHORIZED:
-                    ex.message = "用户已失效";
-                    Intent intent = new Intent();
-                    intent.setClass(Base.getContext(), LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    Base.getContext().startActivity(intent);
-                    AppManager.create().finishAllActivity();
+                    ex.message = "用户已失效,请退出重新登录";
+//                    Intent intent = new Intent();
+//                    intent.setClass(Base.getContext(), LoginActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    Base.getContext().startActivity(intent);
+//                    AppManager.create().finishAllActivity();
                     break;
                 case FORBIDDEN:
                     ex.message = "请求403错误";
@@ -118,14 +118,14 @@ public class ExceptionEngine {
                     ex.message = "请求503错误";
                     break;
                 case UNAUTHORIZED:
-                    ex.message = "用户已失效";
-                    if (context != null) {
-                        Intent intent = new Intent();
-                        intent.setClass(context, LoginActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                        ((Activity) context).finish();
-                    }
+                    ex.message = "用户已失效,请退出重新登录";
+//                    if (context != null) {
+//                        Intent intent = new Intent();
+//                        intent.setClass(context, LoginActivity.class);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        context.startActivity(intent);
+//                        ((Activity) context).finish();
+//                    }
                     break;
                 case FORBIDDEN:
                     ex.message = "请求403错误";
