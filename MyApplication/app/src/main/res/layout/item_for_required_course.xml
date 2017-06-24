@@ -8,36 +8,36 @@
 
     <RelativeLayout
         android:id="@+id/rel_cover"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
         <ImageView
             android:id="@+id/iv_course_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:background="@drawable/demo_course_loading_icon"/>
+            android:background="@drawable/demo_course_loading_icon"
+            android:scaleType="fitXY" />
 
         <View
             android:id="@+id/view_bg_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent_75"/>
-        
+            android:background="@color/transparent_75" />
+
         <TextView
             android:id="@+id/tv_begin"
             android:layout_width="81dp"
             android:layout_height="23dp"
             android:layout_centerInParent="true"
-            android:textSize="11sp"
-            android:gravity="center"
-            android:textColor="@color/white"
             android:background="@drawable/shape_course_item_start_bg"
-            android:text="@string/begin_learn"/>
+            android:gravity="center"
+            android:text="@string/begin_learn"
+            android:textColor="@color/white"
+            android:textSize="11sp" />
 
 
     </RelativeLayout>
-
 
 
     <TextView
@@ -45,19 +45,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="国际教育，课程学习方法概论"
         android:ellipsize="end"
         android:singleLine="true"
+        android:text="国际教育，课程学习方法概论"
         android:textColor="@color/text_black"
         android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/tv_course_progress"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        android:text="总进度:0%"
-        android:textColor="#45C88A"
-        android:textSize="11sp" />
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/tv_course_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="总进度:0%"
+            android:textColor="#45C88A"
+            android:textSize="11sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_course_auth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="100dp"
+            android:text="作者:许教师"
+            android:textColor="#999999"
+            android:textSize="11sp"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
 
 </LinearLayout>

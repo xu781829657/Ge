@@ -57,11 +57,13 @@ public class PathBean implements Serializable {
     private int examination_total;//测试数量
     private int questionnaire_total;//问卷数量
     public List<SectionBean> sections;
+    private String progress_current;
+    private String progress_total;
     private int progress;
 
+
     public int getProgress() {
-        return 0;
-        //return NumberUtil.getProgress(getProgress_current(),getProgress_total());
+        return NumberUtil.getProgress(getProgress_current(),getProgress_total());
     }
 
     public void setProgress(int progress) {
@@ -91,5 +93,21 @@ public class PathBean implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getProgress_current() {
+        return progress_current;
+    }
+
+    public void setProgress_current(String progress_current) {
+        this.progress_current = progress_current;
+    }
+
+    public String getProgress_total() {
+        return progress_total;
+    }
+
+    public void setProgress_total(String progress_total) {
+        this.progress_total = progress_total;
     }
 }

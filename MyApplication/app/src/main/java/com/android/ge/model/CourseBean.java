@@ -20,24 +20,24 @@ import java.io.Serializable;
  * "survey_count" : 0,  -- 可选部分，问卷数量
  * "progress_current" : "1", --可选部分，课程进度.
  * "progress_total" : "10", --可选部分，课程进度.
- *
- *
- *   "id": 1,
- "org_id": 1,
- "title": "测试课程",
- "cover": "",
- "content": "测试课程001",
- "cat_id": 1,
- "tag_id": 0,
- "type": "",
- "teacher_id": 0,
- "shareable": 1,
- "marketable": 1,
- "created_at": "2017-05-12 02:29:07",
- "updated_at": "2017-05-12 02:29:07"
+ * <p>
+ * <p>
+ * "id": 1,
+ * "org_id": 1,
+ * "title": "测试课程",
+ * "cover": "",
+ * "content": "测试课程001",
+ * "cat_id": 1,
+ * "tag_id": 0,
+ * "type": "",
+ * "teacher_id": 0,
+ * "shareable": 1,
+ * "marketable": 1,
+ * "created_at": "2017-05-12 02:29:07",
+ * "updated_at": "2017-05-12 02:29:07"
  */
 
-public class CourseBean implements Serializable{
+public class CourseBean implements Serializable {
     private String title;
     private String id;
     private String cover;
@@ -48,6 +48,7 @@ public class CourseBean implements Serializable{
     private int part_count;
     private int quiz_count;
     private int survey_count;
+    private String teacher_name;
     private String progress_current;
     private String progress_total;
     private int progress;
@@ -135,5 +136,20 @@ public class CourseBean implements Serializable{
 
     public void setProgress_total(String progress_total) {
         this.progress_total = progress_total;
+    }
+
+    public String getTeacher_name() {
+        if (teacher_name == null) {
+            teacher_name = "";
+        }
+        return teacher_name;
+    }
+
+    public void setTeacher_name(String teacher_name) {
+        this.teacher_name = teacher_name;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 }
