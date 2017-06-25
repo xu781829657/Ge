@@ -5,6 +5,7 @@ package com.android.ge.network.api;
 
 import com.android.ge.model.CourseClassifyInfo;
 import com.android.ge.model.CourseClassifyResultInfo;
+import com.android.ge.model.CourseTypeDetailInfo;
 import com.android.ge.model.HomePageInfo;
 import com.android.ge.model.LearningInfo;
 import com.android.ge.model.base.BaseResponse;
@@ -75,9 +76,15 @@ public interface CourseApi {
     @GET("/api/learningpath/list")
     Observable<BaseResponse<PathListInfo>> getLearningPath(@QueryMap Map<String, String> map);
 
-
+    //任务详情
     @GET("/api/missions/index")
     Observable<BaseResponse<TaskDetailInfo>> getTaskDetailInfo(@QueryMap Map<String, String> map);
+
+
+    //课程分类
+    @GET("/api/coursescat/index")
+    Observable<BaseResponse<ArrayList<CourseTypeDetailInfo>>> getCourseTypeAll(@QueryMap Map<String, String> map);
+
 
 
 //

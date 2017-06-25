@@ -2,6 +2,8 @@ package com.android.ge.utils;
 
 import android.text.TextUtils;
 
+import com.android.base.util.ScreenUtils;
+
 /**
  * Created by xudengwang on 17/4/10.
  */

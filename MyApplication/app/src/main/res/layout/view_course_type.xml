@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#cdabea"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="26dp"
+        android:paddingTop="26dp">
+
+        <TextView
+            android:id="@+id/tv_cat_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="热门课程"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tv_check_all"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_roud_rectangel_bg_btn_check_all_course"
+            android:gravity="center"
+            android:text="查看全部"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <com.android.ge.ui.customview.WordWrapView
+        android:id="@+id/view_word_warp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></com.android.ge.ui.customview.WordWrapView>
+
+    <!--<GridView-->
+    <!--android:id="@+id/gd_course_type"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:nestedScrollingEnabled="true"-->
+    <!--android:visibility="gone"-->
+    <!--android:numColumns="3"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:horizontalSpacing="5dp"-->
+    <!--android:verticalSpacing="10dp"-->
+    <!--android:fadingEdge="none"-->
+    <!--android:divider="@null"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--</GridView>-->
+
+</LinearLayout>

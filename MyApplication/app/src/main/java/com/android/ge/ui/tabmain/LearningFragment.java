@@ -27,6 +27,7 @@ import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseFragment;
+import com.android.ge.ui.course.CourseTypeAllActivity;
 import com.android.ge.ui.task.PathListActivity;
 import com.android.ge.utils.image.GlideImageLoader;
 import com.youth.banner.Banner;
@@ -47,9 +48,12 @@ import rx.schedulers.Schedulers;
 
 /**
  * Created by xudengwang on 17/3/18.
+ * tab学习页
  */
 
 public class LearningFragment extends CommonBaseFragment {
+    @Bind(R.id.lin_course_classify)
+    LinearLayout mLinCourseTypeAll;
     @Bind(R.id.banner)
     Banner mBanner;
     @Bind(R.id.rv_learning)
@@ -73,6 +77,13 @@ public class LearningFragment extends CommonBaseFragment {
             @Override
             public void onClick(View v) {
                 gotoActivity(PathListActivity.class, false);
+            }
+        });
+
+        mLinCourseTypeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(CourseTypeAllActivity.class, false);
             }
         });
         for (int i = 0; i < 3; i++) {
@@ -138,7 +149,7 @@ public class LearningFragment extends CommonBaseFragment {
                 mLearningItemList.add(titleLearningItem);
                 for (int j = 0; j < typeInfo.getCourses().size(); j++) {
                     CourseBean courseBean = typeInfo.getCourses().get(j);
-                    LogUtils.d(getClass(),"cover:"+courseBean.getCover());
+                    LogUtils.d(getClass(), "cover:" + courseBean.getCover());
                     BaseLearningItem courseLearningItem = new BaseLearningItem();
                     courseLearningItem.setCourseBean(courseBean);
                     courseLearningItem.setOriginalPosition(j);
@@ -246,7 +257,7 @@ public class LearningFragment extends CommonBaseFragment {
         public void onError(Throwable e) {
             LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
             e.printStackTrace();
-            Base.showToast(ExceptionEngine.handleException(e,getActivity()).message);
+            Base.showToast(ExceptionEngine.handleException(e, getActivity()).message);
         }
 
         @Override

@@ -46,6 +46,19 @@
     <color name="round_progress_color">#2BC17A</color>
 
 
+    <color name="course_type_child_bg_1">#deffef</color>
+    <color name="course_type_child_bg_2">#fff9e5</color>
+    <color name="course_type_child_bg_3">#f1ecff</color>
+    <color name="course_type_child_bg_4">#fff0dd</color>
+    <color name="course_type_child_bg_5">#e4f8ff</color>
+
+    <color name="course_type_child_tv_1">#14a15c</color>
+    <color name="course_type_child_tv_2">#e1bf00</color>
+    <color name="course_type_child_tv_3">#7246ec</color>
+    <color name="course_type_child_tv_4">#ff7800</color>
+    <color name="course_type_child_tv_5">#0094e9</color>
+
+
 
 
     <!--reds-->

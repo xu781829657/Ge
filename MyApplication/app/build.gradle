@@ -69,6 +69,8 @@ dependencies {
 
     //腾讯bugly
     compile 'com.tencent.bugly:crashreport:latest.release'
+
+    compile 'com.fynn.fluidlayout:fluidlayout:1.0'
     testCompile 'junit:junit:4.12'
     compile project(':AndroidBase')
 }

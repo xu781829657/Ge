@@ -8,6 +8,8 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.android.base.frame.Base;
+
 //获得屏幕相关的辅助类
 public class ScreenUtils
 {
@@ -130,6 +132,13 @@ public class ScreenUtils
                 - statusBarHeight);
         view.destroyDrawingCache();
         return bp;
+
+    }
+
+
+    public static int dpToPx(float dp) {
+
+        return (int) (ScreenUtils.getScreenDensity(Base.getContext()) * dp);
 
     }
 
