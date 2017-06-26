@@ -32,6 +32,7 @@ public class CommonConstant {
     public static final String PARAM_COURSE_ID = "course_id";
     public static final String PARAM_TIME = "time";
     public static final String PARAM_EXAM_ID = "examinationId";
+    public static final String PARAM_NEWS_ID ="newsId";
 
 //    public static final String TASK_COURSE_TYPE_COURSE = "Course";
 //    public static final String TASK_COURSE_TYPE_QUIZ = "Quiz";

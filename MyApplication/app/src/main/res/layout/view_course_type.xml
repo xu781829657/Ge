@@ -3,13 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:paddingTop="10dp"
+    android:paddingBottom="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_gravity="center"
-        android:background="#cdabea"
+        android:background="@drawable/demo_course_loading_icon"
+
         android:gravity="center"
         android:orientation="vertical"
         android:paddingBottom="26dp"
@@ -36,10 +40,19 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <com.android.ge.ui.customview.WordWrapView
-        android:id="@+id/view_word_warp"
+    <!--<com.android.ge.ui.customview.WordWrapView-->
+        <!--android:id="@+id/view_word_warp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"></com.android.ge.ui.customview.WordWrapView>-->
+
+    <com.android.ge.widgets.view.FluidLayout
+        android:id="@+id/view_fluid_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></com.android.ge.ui.customview.WordWrapView>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"></com.android.ge.widgets.view.FluidLayout>
 
     <!--<GridView-->
     <!--android:id="@+id/gd_course_type"-->
