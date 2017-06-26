@@ -91,7 +91,7 @@ public class CourseTypeAllAdapter extends BaseCommonAdapter<CourseTypeDetailInfo
                     public void onClick(View v) {
                         CourseTypeDetailInfo detailInfo = info.child.get(index);
                         Bundle bundle = new Bundle();
-                        bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, detailInfo.getId());
+                        bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, detailInfo.getCat_id());
                         bundle.putInt(CommonConstant.KEY_COURSE_TYPE, ClassifyCourseListActivity.COURSE_CLASSIFY);
                         bundle.putString(CommonConstant.KEY_TITLE, detailInfo.getCat_name());
                         Intent intent = new Intent(mContext, ClassifyCourseListActivity.class);
