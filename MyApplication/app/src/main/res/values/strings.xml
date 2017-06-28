@@ -123,6 +123,8 @@
     <!-- 任务-->
     <string name="format_progress_complete">已完成%d</string>
 
+    <string name="un_start">未开始</string>
+
 
 
 </resources>

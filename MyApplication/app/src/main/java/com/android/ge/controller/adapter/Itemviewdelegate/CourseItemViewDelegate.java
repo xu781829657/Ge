@@ -70,8 +70,18 @@ public class CourseItemViewDelegate implements ItemViewDelegate<BaseLearningItem
 
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
+        //标题
         holder.setText(R.id.tv_course_title, courseBean.getTitle());
-        holder.setText(R.id.tv_course_progress, String.format(Base.getContext().getString(R.string.format_total_progress), courseBean.getProgress()+"%"));
+        //进度
+        if (courseBean.getProgress() == 0) {
+            holder.getView(R.id.rel_cover).setVisibility(View.VISIBLE);
+            holder.setText(R.id.tv_course_progress, Base.string(R.string.un_start));
+        } else {
+            holder.getView(R.id.rel_cover).setVisibility(View.GONE);
+            holder.setText(R.id.tv_course_progress, String.format(Base.string(R.string.format_total_progress),
+                    courseBean.getProgress() + "%"));
+        };
+        //作者
         if (!TextUtils.isEmpty(courseBean.getTeacher_name())) {
             holder.setText(R.id.tv_course_auth, String.format(Base.getContext().getString(R.string.format_auth), courseBean.getTeacher_name()));
             holder.getView(R.id.tv_course_auth).setVisibility(View.VISIBLE);
