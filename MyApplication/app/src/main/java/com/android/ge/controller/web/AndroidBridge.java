@@ -26,7 +26,6 @@ public class AndroidBridge {
      */
     @JavascriptInterface
     public int getNetWorkType() {
-        Base.showToast("获取app网络类型");
         return NetworkUtil.getNetworkType(Base.getContext()).value;
     }
 }

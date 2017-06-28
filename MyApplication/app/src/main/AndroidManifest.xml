@@ -87,19 +87,23 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.webview.CommonWebActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:hardwareAccelerated="true" />
         <activity
             android:name=".ui.webview.CourseWebActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.webview.PathWebActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:hardwareAccelerated="true" />
         <activity
             android:name=".ui.webview.ExamWebActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:hardwareAccelerated="true" />
         <activity
             android:name=".ui.webview.NewsWebActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:hardwareAccelerated="true" />
 
         <activity android:name=".ui.course.CourseTypeAllActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
