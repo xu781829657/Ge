@@ -149,7 +149,7 @@ public class PathWebActivity extends CommonBaseActivity {
         webSettings.setAllowFileAccess(true); // 允许访问文件
         webSettings.setSupportZoom(true); // 支持缩放
         webSettings.setLoadWithOverviewMode(true);
-        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE); // 不加载缓存内容
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT); // 不加载缓存内容
         //mWebView.addJavascriptInterface(new AndroidBridge(), "android");
         mWebView.setWebChromeClient(wvcc);
         WebViewClient wvc = new WebViewClient() {
