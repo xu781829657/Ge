@@ -16,6 +16,9 @@ public class NumberUtil {
         }
         float current = Float.valueOf(progress_current);
         float total = Float.valueOf(progress_total);
+        if(current >total){
+            return 100;
+        }
 
         int progress = (int) (current * 100 / total);
         return progress;

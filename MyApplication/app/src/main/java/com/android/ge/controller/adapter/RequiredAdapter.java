@@ -53,13 +53,22 @@ public class RequiredAdapter extends BaseCommonAdapter<CourseBean> implements Mu
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
         holder.setText(R.id.tv_course_title, courseBean.getTitle());
+
+
         if (!TextUtils.isEmpty(courseBean.getTeacher_name())) {
             holder.setText(R.id.tv_course_auth, String.format(mContext.getString(R.string.format_auth), courseBean.getTeacher_name()));
             holder.getView(R.id.tv_course_auth).setVisibility(View.VISIBLE);
         } else {
             holder.getView(R.id.tv_course_auth).setVisibility(View.GONE);
         }
-        holder.setText(R.id.tv_course_progress,String.format(mContext.getString(R.string.format_total_progress),courseBean.getProgress()+"%"));
+        if (courseBean.getProgress() == 0) {
+            holder.getView(R.id.rel_cover).setVisibility(View.VISIBLE);
+            holder.setText(R.id.tv_course_progress, Base.string(R.string.un_start));
+        } else {
+            holder.getView(R.id.rel_cover).setVisibility(View.GONE);
+            holder.setText(R.id.tv_course_progress, String.format(mContext.getString(R.string.format_total_progress),
+                    courseBean.getProgress() + "%"));
+        }
 //        holder.setText(R.id.tv_course_progress, String.format(Base.string(R.string.format_total_progress), courseBean.getProgress()));
 //        int progress = courseBean.getProgress();
 //        if(progress == 0){
