@@ -41,6 +41,7 @@
     <color name="inditor_color">#2BC17A</color>
     <color name="tab_indicator_color">#bae860</color>
     <color name="tab_select_color">#9dcf3a</color>
+    <color name="tab_unselect_color">#333333</color>
 
     <color name="round_color">#E0E0E0</color>
     <color name="round_progress_color">#2BC17A</color>

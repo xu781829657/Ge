@@ -122,7 +122,10 @@
 
     <!-- 任务-->
     <string name="format_progress_complete">已完成%d</string>
-
-
+    
+    <!--课程详情 -->
+    <string name="tab_course_detail_intro">简介</string>
+    <string name="tab_course_detail_learn_history">学习历史</string>
+    <string name="tab_course_detail_comment">评论</string>
 
 </resources>

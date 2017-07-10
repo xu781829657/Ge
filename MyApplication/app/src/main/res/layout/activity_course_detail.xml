@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_course_detail_header" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs_course_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_white_1000"
+        android:fillViewport="false"
+        android:visibility="visible"
+        app:tabIndicatorColor="@color/tab_indicator_color"
+        app:tabSelectedTextColor="@color/tab_select_color"
+        app:tabTextColor="@color/tab_unselect_color" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#DEE2E7" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_course_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/md_white_1000" />
+
+</LinearLayout>

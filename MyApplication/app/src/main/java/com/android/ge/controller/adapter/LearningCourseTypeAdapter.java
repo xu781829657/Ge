@@ -17,6 +17,7 @@ import com.android.ge.model.learning.BaseLearningItem;
 import com.android.ge.model.learning.TitleItemInfo;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.android.ge.ui.course.ClassifyCourseListActivity;
+import com.android.ge.ui.course.CourseDetailActivity;
 import com.android.ge.ui.webview.CommonWebActivity;
 import com.android.ge.ui.webview.CourseWebActivity;
 import com.android.ge.utils.image.ImageLoader;
@@ -59,12 +60,13 @@ public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearning
             bundle.putString(CommonConstant.KEY_TITLE, titleItemInfo.getTitle());
             gotoActivity(ClassifyCourseListActivity.class, bundle);
         } else if (item.isCourse()) {
-            CourseBean courseBean = item.getCourseBean();
-            Bundle bundle = new Bundle();
-            bundle.putString(CommonConstant.PARAM_COURSE_ID,courseBean.getId());
-            bundle.putString(CommonConstant.PARAM_ENTRY_TYPE,CommonConstant.TYPE_COURSES);
-            bundle.putString(CommonConstant.PARAM_ENTRY_ID,courseBean.getId());
-            gotoActivity(CourseWebActivity.class, bundle);
+            gotoActivity(CourseDetailActivity.class,null);
+//            CourseBean courseBean = item.getCourseBean();
+//            Bundle bundle = new Bundle();
+//            bundle.putString(CommonConstant.PARAM_COURSE_ID,courseBean.getId());
+//            bundle.putString(CommonConstant.PARAM_ENTRY_TYPE,CommonConstant.TYPE_COURSES);
+//            bundle.putString(CommonConstant.PARAM_ENTRY_ID,courseBean.getId());
+//            gotoActivity(CourseWebActivity.class, bundle);
         }
 
     }
