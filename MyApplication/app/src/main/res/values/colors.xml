@@ -39,8 +39,11 @@
 
     <color name="title_bar_bg_course">#2cc07a</color>
     <color name="inditor_color">#2BC17A</color>
-    <color name="tab_indicator_color">#bae860</color>
-    <color name="tab_select_color">#9dcf3a</color>
+    <!--<color name="tab_indicator_color">#bae860</color>-->
+    <color name="tab_indicator_color">#2bc17a</color>
+
+    <color name="tab_select_color">#2bc17a</color>
+    <!--<color name="tab_select_color">#9dcf3a</color>-->
     <color name="tab_unselect_color">#333333</color>
 
     <color name="round_color">#E0E0E0</color>
@@ -58,8 +61,6 @@
     <color name="course_type_child_tv_3">#7246ec</color>
     <color name="course_type_child_tv_4">#ff7800</color>
     <color name="course_type_child_tv_5">#0094e9</color>
-
-
 
 
     <!--reds-->
