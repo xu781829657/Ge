@@ -8,7 +8,10 @@ package com.android.ge.network;
 public class NetWorkConstant {
     //online
     //public static String BASE_URL = "http://106.14.62.138/";
-    public static String BASE_URL = "http://106.14.62.138:81";
+
+    //public static String BASE_URL = "http://106.14.62.138:81";
+    //演示环境
+    public static String BASE_URL = "http://admin.goelite.cn:8090/ ";
     //test
     //public static String BASE_URL = "http://api-staging.iwexun.com";
 
