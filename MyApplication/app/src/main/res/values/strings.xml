@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GE</string>
-    <string name="app_version">3.2.0.4</string>
+    <string name="app_version">3.2.2</string>
 
     <!-- 常用错误提示-->
     <string name="errmsg_network_unavailable">网络不可用</string>
@@ -130,5 +130,9 @@
     <string name="tab_course_detail_intro">简介</string>
     <string name="tab_course_detail_learn_history">学习历史</string>
     <string name="tab_course_detail_comment">评论</string>
+
+
+    <string name="version_about">版本号： %s</string>
+    <string name="version_about_test">版本号： %s test</string>
 
 </resources>

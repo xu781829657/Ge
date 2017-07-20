@@ -190,14 +190,14 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="21dp"
-                    android:src="@drawable/set_password_icon" />
+                    android:src="@drawable/icon_about" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="60dp"
-                    android:text="@string/change_pass"
+                    android:text="@string/about"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 

@@ -72,7 +72,7 @@ public class LearningFragment extends CommonBaseFragment {
 
     @Override
     protected void initData() {
-        EventBus.getDefault().register(this);
+
         mLinLearningPath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,8 +97,17 @@ public class LearningFragment extends CommonBaseFragment {
     public void onResume() {
 //        initFalseData();
 //        refreshAdapter();
+        LogUtils.d(getClass(),"onResume");
+        EventBus.getDefault().register(this);
         getNetDataCourseTypeList();
         super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        LogUtils.d(getClass(),"onPause");
+        EventBus.getDefault().unregister(this);
+        super.onPause();
     }
 
     // 展示app更新
@@ -112,7 +121,7 @@ public class LearningFragment extends CommonBaseFragment {
 
     @Override
     public void onDestroy() {
-        EventBus.getDefault().unregister(this);
+
         super.onDestroy();
     }
 

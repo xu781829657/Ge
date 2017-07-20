@@ -50,7 +50,12 @@ public class AboutActivity extends CommonBaseActivity {
             }
         });
         mTvTitle.setText(Base.string(R.string.title_about));
-        mTvVersion.setText(Base.string(R.string.app_version));
+        if (AppApplication.getInstance().ENVIRONMENT == AppConfig.ENVIRONMENT_PRO) {
+            mTvVersion.setText(String.format(Base.string(R.string.version_about), Base.string(R.string.app_version)));
+        } else {
+            mTvVersion.setText(String.format(Base.string(R.string.version_about_test), Base.string(R.string.app_version)));
+        }
+        //mTvVersion.setText(Base.string(R.string.app_version));
         mIvLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +86,7 @@ public class AboutActivity extends CommonBaseActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         PreferencesUtils.clearUserData(mContext);
-                        gotoActivity(LoginActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        //gotoActivity(LoginActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         AppManager.create().appExit(mContext);
                     }
                 }
