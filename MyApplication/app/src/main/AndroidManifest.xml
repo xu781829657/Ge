@@ -110,6 +110,8 @@
 
         <activity android:name=".ui.course.CourseDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.setting.AboutActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

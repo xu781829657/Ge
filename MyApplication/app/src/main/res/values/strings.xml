@@ -66,6 +66,7 @@
     <string name="title_personal_center">个人中心</string>
     <string name="personal_info">个人资料</string>
     <string name="change_pass">修改密码</string>
+    <string name="about">关于</string>
     <string name="version_update">版本更新</string>
     <string name="logout">退出登录</string>
     <string name="login_out">退出登录</string>
@@ -103,6 +104,7 @@
     <string name="rank_tab_groups">分组排名</string>
 
     <string name="me">我</string>
+    <string name="title_about">关于</string>
 
     <!-- 学习小结-->
     <string name="title_learning_summary">学习小结</string>

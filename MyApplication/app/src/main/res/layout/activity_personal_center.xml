@@ -180,6 +180,45 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rel_about"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:background="@drawable/selector_rel_white_click_bg">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="21dp"
+                    android:src="@drawable/set_password_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="60dp"
+                    android:text="@string/change_pass"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="24dp"
+                    android:src="@drawable/more_enter_icon" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_alignParentBottom="true"
+                    android:background="#f0f0f0" />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
                 android:id="@+id/rel_runmodel"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"

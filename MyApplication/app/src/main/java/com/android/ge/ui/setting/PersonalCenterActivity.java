@@ -73,6 +73,8 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
 
     @Bind(R.id.tv_runmodel)
     TextView mTvRunmodel;
+    @Bind(R.id.rel_about)
+    RelativeLayout mRelAbout;
 
     @Bind(R.id.rel_runmodel)
     RelativeLayout mRlRunmodel;
@@ -154,6 +156,18 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
                 //getNetDataAppUpdate();
             }
         });
+        mRelAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mRelAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(AboutActivity.class, false);
+            }
+        });
 
 
         mLinLogout.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +181,8 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
         });
 
         refreshAvatar();
-        String name = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_FIRST_NAME) + PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_LAST_NAME);
+        String name = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_FIRST_NAME) + PreferencesUtils
+                .getUserData(mContext, PreferencesUtils.KEY_LAST_NAME);
         LogUtils.d(getClass(), "name:" + name);
         mTvName.setText(name);
 
@@ -196,7 +211,8 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
                     //Base.showToast("已切换为测试环境，重启应用生效");
                     PreferencesUtils.saveEnvironment(mContext, AppConfig.ENVIRONMENT_DEV);
                 }
-                ViewDialog.showSingleDialog(mContext, "注意", "当前app环境已切换为" + msg + ",需立即退出再重启后生效!", new DialogInterface.OnClickListener() {
+                ViewDialog.showSingleDialog(mContext, "注意", "当前app环境已切换为" + msg + ",需立即退出再重启后生效!", new
+                        DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         PreferencesUtils.clearUserData(mContext);
@@ -211,7 +227,8 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
         String avatar_url = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_AVATAR_URL);
         LogUtils.d(getClass(), "avatar_url:" + avatar_url);
         if (!TextUtils.isEmpty(avatar_url)) {
-            ImageRequest imageRequest = new ImageRequest.Builder().imgView(mAivAvatar).placeHolder(R.drawable.icon_head).url(avatar_url).create();
+            ImageRequest imageRequest = new ImageRequest.Builder().imgView(mAivAvatar).placeHolder(R.drawable
+                    .icon_head).url(avatar_url).create();
             ImageLoader.getProvider().loadImage(imageRequest);
         }
     }
@@ -248,7 +265,8 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
 //                    if (info.androidVersion == null) {
 //                        return;
 //                    }
-//                    int compareResult = VersionUtil.compareVersion(mContext.getString(R.string.app_version), info.androidVersion);
+//                    int compareResult = VersionUtil.compareVersion(mContext.getString(R.string.app_version), info
+// .androidVersion);
 //                    LogUtils.d(getClass(), "compareResult:" + compareResult);
 //                    if (compareResult < 0) {
 //                        UpdateManager manager = new UpdateManager(mContext);
@@ -296,8 +314,10 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
 //                        @Override
 //                        public rx.Observable<MenberShipsBean> call(File file) {
 //                            LogUtils.d(file.exists() + file.getPath() + file.getName());
-//                            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//                            return Network.getCourseApi("上传头像").uploadFile(Integer.valueOf(PreferencesUtils.getUserData(Base.getContext(), PreferencesUtils.KEY_USER_ID)), requestBody);
+//                            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),
+// file);
+//                            return Network.getCourseApi("上传头像").uploadFile(Integer.valueOf(PreferencesUtils
+// .getUserData(Base.getContext(), PreferencesUtils.KEY_USER_ID)), requestBody);
 //                        }
 //                    })
 //                    .subscribeOn(Schedulers.io())

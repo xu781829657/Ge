@@ -70,7 +70,7 @@ public class MaintabActivity extends CommonBaseActivity {
         mFragments.add(new MeFragment());
 
         PageFragmentAdapter adapter = new PageFragmentAdapter(getSupportFragmentManager(), mFragments);
-        mVpTab.setOffscreenPageLimit(mFragments.size());
+        mVpTab.setOffscreenPageLimit(1);
         mVpTab.setAdapter(adapter);
         mVpTab.setCurrentItem(0);
 

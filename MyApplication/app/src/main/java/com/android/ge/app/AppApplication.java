@@ -5,6 +5,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.android.base.frame.Base;
+import com.android.ge.utils.PreferencesUtils;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import java.io.BufferedReader;
@@ -25,7 +26,7 @@ public class AppApplication extends Application {
         super.onCreate();
         singleton = this;
         Base.initialize(this);
-
+        ENVIRONMENT = PreferencesUtils.getEnvironment(this);
         Context context = getApplicationContext();
         // 获取当前包名
         String packageName = context.getPackageName();
