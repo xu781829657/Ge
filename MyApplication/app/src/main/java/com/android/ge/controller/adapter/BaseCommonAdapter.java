@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 
@@ -30,11 +31,17 @@ public abstract class BaseCommonAdapter<T> extends CommonAdapter<T> {
      * @param url
      */
     public void setImageFromInternet(ImageView iv, String url) {
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
         ImageRequest imageRequest = new ImageRequest.Builder().imgView(iv).url(url).create();
         ImageLoader.getProvider().loadImage(imageRequest);
     }
 
     public void setImageFromInternet(ImageView iv, String url, int defaultDrawableId) {
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
         ImageRequest imageRequest = new ImageRequest.Builder().imgView(iv).placeHolder(defaultDrawableId).url(url).create();
         ImageLoader.getProvider().loadImage(imageRequest);
     }
