@@ -10,7 +10,7 @@ public class LogUtils {
     public static boolean print = true;
     private static final String LOG_FILTER = "123";
 
-    private static final String TAG = "GE";
+    private static final String TAG = "GE----";
     public static void d(String log) {
         if (print) {
             Log.d(TAG, LOG_FILTER + log);
