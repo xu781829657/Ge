@@ -12,6 +12,7 @@ import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.web.AndroidBridge;
+import com.android.ge.network.NetWorkConstant;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.loopj.android.http.RequestParams;
 
@@ -41,7 +42,7 @@ public class NewsWebActivity extends CommonBaseActivity {
 
 
     //module/news.html?newsId=xxx&token=xxxx
-    private static final String URL_PRE = "http://static.31academy.cn/module/news.html?";
+    private static final String URL_PRE = NetWorkConstant.H5_URL+"/module/news.html?";
     private String mParamNewsId;
 
     @Override

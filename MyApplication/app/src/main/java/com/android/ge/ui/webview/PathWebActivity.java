@@ -18,6 +18,7 @@ import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.web.AndroidBridge;
+import com.android.ge.network.NetWorkConstant;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.loopj.android.http.RequestParams;
 
@@ -47,7 +48,7 @@ public class PathWebActivity extends CommonBaseActivity {
     private String LOAD_URL;
 
     //module/history.html?path_id=xxxx&token=xxxx&entryId=xxx&entryType=xxx
-    private static final String URL_PRE = "http://static.31academy.cn/module/history.html?";
+    private static final String URL_PRE = NetWorkConstant.H5_URL+"/module/history.html?";
     private String mParamPathId;
     private String mParamType;
     private String mParamTypeId;

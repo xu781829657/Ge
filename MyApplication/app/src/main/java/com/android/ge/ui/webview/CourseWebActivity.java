@@ -19,6 +19,7 @@ import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.web.AndroidBridge;
+import com.android.ge.network.NetWorkConstant;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.loopj.android.http.RequestParams;
 
@@ -51,7 +52,8 @@ public class CourseWebActivity extends CommonBaseActivity {
 
 
     //module/index.html?org_id=xxx&course_id=xxxx&token=xxxx&entryId=xxxx&entryType=xxx
-    private static final String URL_PRE = "http://static.31academy.cn/module/index.html?";
+//    private static final String URL_PRE = "http://static.31academy.cn/module/index.html?";
+    private static final String URL_PRE = NetWorkConstant.H5_URL+"/module/index.html?";
 
     //
     private static final String FORMAT_COURSE_PARAM = "?path_id={%1$s}&token={%1$s}";
