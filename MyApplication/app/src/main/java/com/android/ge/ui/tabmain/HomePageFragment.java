@@ -75,7 +75,6 @@ public class HomePageFragment extends CommonBaseFragment {
     protected void initData() {
 
 
-
     }
 
     //轮播图更新及初始化
@@ -138,7 +137,12 @@ public class HomePageFragment extends CommonBaseFragment {
         if (news != null && news.size() > 0) {
             mNews.clear();
             mNews.addAll(news);
+            mRvNews.setVisibility(View.VISIBLE);
+        } else {
+            mRvNews.setVisibility(View.GONE);
+            return;
         }
+
         if (mNewsAdapter == null) {
             LinearLayoutManager manager = new LinearLayoutManager(getMContext());
             mRvNews.setLayoutManager(manager);
@@ -159,19 +163,13 @@ public class HomePageFragment extends CommonBaseFragment {
 
     //刷新必读课
     private void refreshRequiredAdapter(final RequiredInfo info) {
-//        if (info == null) {
-//            info = new RequiredInfo();
-//            info.setTitle("光华学校必读课");
-//            info.setTotal_count(4);
-//            ArrayList<CourseBean> beans = new ArrayList<>();
-//            for (int i = 0; i < 4; i++) {
-//                CourseBean bean = new CourseBean();
-//                bean.setTitle("必读课" + i);
-//                bean.setDesc("课程描述" + i);
-//                beans.add(bean);
-//            }
-//            info.setCourses(beans);
-//        }
+
+        if (info == null || info.getCourses() == null || info.getCourses().size() == 0) {
+            mRvRequires.setVisibility(View.GONE);
+            return;
+        } else {
+            mRvRequires.setVisibility(View.VISIBLE);
+        }
         if (mRequiredAdapter == null) {
             GridLayoutManager manager = new GridLayoutManager(getMContext(), 2);
             manager.setOrientation(GridLayoutManager.VERTICAL);
@@ -188,7 +186,7 @@ public class HomePageFragment extends CommonBaseFragment {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-                    bundle.putInt(CommonConstant.KEY_COURSE_TYPE,ClassifyCourseListActivity.COURSE_TAG);
+                    bundle.putInt(CommonConstant.KEY_COURSE_TYPE, ClassifyCourseListActivity.COURSE_TAG);
                     bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, info.getId());
                     bundle.putString(CommonConstant.KEY_TITLE, info.getTitle());
                     gotoActivity(ClassifyCourseListActivity.class, bundle, false);
@@ -205,19 +203,14 @@ public class HomePageFragment extends CommonBaseFragment {
 
     //刷新精品推荐
     private void refreshRecommandAdapter(final RecommandInfo info) {
-//        if (info == null) {
-//            info = new RecommandInfo();
-//            info.setTitle("精品推荐");
-//            info.setTotal_count(4);
-//            ArrayList<CourseBean> beans = new ArrayList<>();
-//            for (int i = 0; i < 4; i++) {
-//                CourseBean bean = new CourseBean();
-//                bean.setTitle("必读课" + i);
-//                bean.setDesc("课程描述" + i);
-//                beans.add(bean);
-//            }
-//            info.setCourses(beans);
-//        }
+
+        if (info == null || info.getCourses() == null || info.getCourses().size() == 0) {
+            mRvRecommand.setVisibility(View.GONE);
+            return;
+        } else {
+            mRvRecommand.setVisibility(View.VISIBLE);
+        }
+
         if (mRecommandAdapter == null) {
             GridLayoutManager manager = new GridLayoutManager(getMContext(), 2);
             manager.setOrientation(GridLayoutManager.VERTICAL);
@@ -235,7 +228,7 @@ public class HomePageFragment extends CommonBaseFragment {
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
                     bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, info.getId());
-                    bundle.putInt(CommonConstant.KEY_COURSE_TYPE,ClassifyCourseListActivity.COURSE_TAG);
+                    bundle.putInt(CommonConstant.KEY_COURSE_TYPE, ClassifyCourseListActivity.COURSE_TAG);
                     bundle.putString(CommonConstant.KEY_TITLE, info.getTitle());
                     gotoActivity(ClassifyCourseListActivity.class, bundle, false);
                 }
@@ -260,7 +253,7 @@ public class HomePageFragment extends CommonBaseFragment {
         public void onError(Throwable e) {
             LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
             e.printStackTrace();
-            Base.showToast(ExceptionEngine.handleException(e,getActivity()).message);
+            Base.showToast(ExceptionEngine.handleException(e, getActivity()).message);
         }
 
         @Override
