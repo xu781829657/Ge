@@ -15,8 +15,6 @@
     <color name="transparent_50">#7D000000</color>
     <color name="transparent_90">#1a000000</color>
     <color name="transparent_75">#3f000000</color>
-    <color name="white">#ffffffff</color>
-    <color name="white_50">#7fffffff</color>
     <color name="text_black">#333333</color>
     <color name="bg_line">#e4e4e4</color>
     <color name="progress_tv_color">#45C88A</color>
@@ -48,6 +46,27 @@
 
     <color name="round_color">#E0E0E0</color>
     <color name="round_progress_color">#2BC17A</color>
+
+    <color name="white">#ffffffff</color>
+    <color name="white_10">#1affffff</color>
+    <color name="white_20">#33ffffff</color>
+    <color name="white_30">#4dffffff</color>
+    <color name="white_40">#66ffffff</color>
+    <color name="white_50">#80ffffff</color>
+    <color name="white_60">#99ffffff</color>
+    <color name="white_70">#b3ffffff</color>
+    <color name="white_80">#ccffffff</color>
+    <color name="white_90">#e6ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_10">#1a000000</color>
+    <color name="black_20">#33000000</color>
+    <color name="black_30">#4d000000</color>
+    <color name="black_40">#66000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="black_60">#99000000</color>
+    <color name="black_70">#b3000000</color>
+    <color name="black_80">#cc000000</color>
+    <color name="black_90">#e6000000</color>
 
 
     <color name="course_type_child_bg_1">#deffef</color>

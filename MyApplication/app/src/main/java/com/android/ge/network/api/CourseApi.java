@@ -8,6 +8,7 @@ import com.android.ge.model.CourseClassifyResultInfo;
 import com.android.ge.model.CourseTypeDetailInfo;
 import com.android.ge.model.HomePageInfo;
 import com.android.ge.model.LearningInfo;
+import com.android.ge.model.NewsBean;
 import com.android.ge.model.base.BaseResponse;
 import com.android.ge.model.login.TokenBean;
 import com.android.ge.model.organ.OrganBean;
@@ -86,6 +87,10 @@ public interface CourseApi {
     Observable<BaseResponse<ArrayList<CourseTypeDetailInfo>>> getCourseTypeAll(@QueryMap Map<String, String> map);
 
 
+    //资讯更多news/list
+    @FormUrlEncoded
+    @POST("/api/news/list")
+    Observable<ArrayList<NewsBean>> getNewslist(@FieldMap Map<String, String> map);
 
 //
 //    //修改个人资料
