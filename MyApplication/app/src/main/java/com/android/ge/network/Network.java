@@ -10,6 +10,7 @@ import com.android.ge.constant.CommonConstant;
 import com.android.ge.network.api.CourseApi;
 import com.android.ge.network.error.ErrorCode;
 import com.android.ge.network.error.ErrorException;
+import com.android.ge.utils.DeviceUtil;
 import com.android.ge.utils.JsonParseUtil;
 import com.android.ge.utils.PreferencesUtils;
 
@@ -126,7 +127,8 @@ public class Network {
             String token = PreferencesUtils.getUserData(Base.getContext(),PreferencesUtils.KEY_TOKEN);
             LogUtils.d(getClass(), "token:" + token);
             Request authorised = request.newBuilder()
-                    .addHeader("Authorization", "Bearer " + token).build();
+                    .addHeader("Authorization", "Bearer " + token)
+                    .addHeader("Language", DeviceUtil.localLanguageIsZh()? "zh ":"en").build();
             int source1 = 0;
             Headers headers = authorised.headers();
             for(int buffer1 = headers.size(); source1 < buffer1; ++source1) {

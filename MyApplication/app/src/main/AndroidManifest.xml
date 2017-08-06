@@ -65,6 +65,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
+            android:label="个人中心"
             android:name=".ui.setting.PersonalCenterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -88,8 +89,8 @@
         <activity
             android:name=".ui.webview.CommonWebActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.webview.CourseWebActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -97,26 +98,32 @@
         <activity
             android:name=".ui.webview.PathWebActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.webview.ExamWebActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.webview.NewsWebActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:hardwareAccelerated="true" />
+            android:hardwareAccelerated="true"
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".ui.course.CourseTypeAllActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.course.CourseTypeAllActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".ui.course.CourseDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.setting.AboutActivity"
-                  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.course.CourseDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.setting.AboutActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.news.NewsListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

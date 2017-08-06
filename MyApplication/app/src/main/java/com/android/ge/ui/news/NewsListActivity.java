@@ -12,10 +12,9 @@ import com.android.base.util.NetworkUtil;
 import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
 import com.android.ge.controller.Store;
-import com.android.ge.controller.adapter.ClassifyCourseListAdapter;
 import com.android.ge.controller.adapter.NewsListAdapter;
-import com.android.ge.model.CourseClassifyInfo;
 import com.android.ge.model.NewsBean;
+import com.android.ge.model.NewsResultInfo;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.network.response.ServerResponseFunc;
@@ -44,7 +43,7 @@ public class NewsListActivity extends CommonBaseActivity {
     RecyclerView mRvNews;
 
     private NewsListAdapter mAdapter;
-    private ArrayList<NewsBean> mNews;
+    private ArrayList<NewsBean> mNews = new ArrayList<>();
 
     @Override
     protected int getContentViewId() {
@@ -62,6 +61,7 @@ public class NewsListActivity extends CommonBaseActivity {
             }
         });
 
+        getNetDataNewsList();
     }
 
     private void refreshAdapter() {
@@ -76,12 +76,10 @@ public class NewsListActivity extends CommonBaseActivity {
         } else {
             mAdapter.notifyDataSetChanged();
         }
-
-
     }
 
     //主页配置
-    Observer<ArrayList<NewsBean>> mClassifyObserver = new Observer<ArrayList<NewsBean>>() {
+    Observer<NewsResultInfo> mNewsObserver = new Observer<NewsResultInfo>() {
         @Override
         public void onCompleted() {
             dismissLoadingDialog();
@@ -96,20 +94,22 @@ public class NewsListActivity extends CommonBaseActivity {
         }
 
         @Override
-        public void onNext(ArrayList<NewsBean> resultInfo) {
+        public void onNext(NewsResultInfo resultInfo) {
             if (resultInfo == null) {
                 Base.showToast(R.string.errmsg_data_error);
                 return;
             }
-
-
-            refreshData(resultInfo);
+            if (resultInfo.news != null && resultInfo.news.size() > 0) {
+                mNews.clear();
+                mNews.addAll(resultInfo.news);
+                refreshAdapter();
+            }
 
         }
     };
 
     //获取主页配置
-    private void getNetDataCourseClassifyInfo() {
+    private void getNetDataNewsList() {
         if (!NetworkUtil.isAvailable(mContext)) {
             Base.showToast(R.string.errmsg_network_unavailable);
             return;
@@ -117,25 +117,14 @@ public class NewsListActivity extends CommonBaseActivity {
         showLoadingDialog(null);
         Map<String, String> map = new HashMap<>();
         map.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
-        if (COURSE_TAG == mCourseFlag) {
-            map.put(CommonConstant.PARAM_TYPE, "tag");
-            map.put(CommonConstant.PARAM_TAG_ID, mArgCourseTypeId);
-        } else if (COURSE_CLASSIFY == mCourseFlag) {
-            map.put(CommonConstant.PARAM_TYPE, "cat");
-            map.put(CommonConstant.PARAM_CAT_ID, mArgCourseTypeId);
 
-        }
-
-
-//        map.put(CommonConstant.PARAM_COURSE_TYPE_ID, mArgCourseTypeId);
-
-        Network.getCourseApi("获取单个课程分类").getNewslist(map)
+        Network.getCourseApi("获取资讯列表").getNewslist(map)
                 .subscribeOn(Schedulers.io())
                 //拦截服务器返回的错误
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new ServerResponseFunc<ArrayList<NewsBean>>())
+                .map(new ServerResponseFunc<NewsResultInfo>())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(mClassifyObserver);
+                .subscribe(mNewsObserver);
 
     }
 }

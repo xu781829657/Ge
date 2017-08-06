@@ -28,6 +28,7 @@ import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseFragment;
 import com.android.ge.ui.course.ClassifyCourseListActivity;
+import com.android.ge.ui.news.NewsListActivity;
 import com.android.ge.utils.image.GlideImageLoader;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.youth.banner.Banner;
@@ -151,6 +152,13 @@ public class HomePageFragment extends CommonBaseFragment {
             RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.view_rv_header);
             TextView tv_title = (TextView) header.findViewById(R.id.tv_type_title);
             tv_title.setText(Base.string(R.string.title_news));
+            RelativeLayout relClassify = (RelativeLayout) header.findViewById(R.id.rel_classify);
+            relClassify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    gotoActivity(NewsListActivity.class, false);
+                }
+            });
 
             header.attachTo(mRvNews);
             mNewsAdapter = new NewsAdapter(getMContext(), mNews);

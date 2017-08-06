@@ -2,21 +2,18 @@
 
 package com.android.ge.network.api;
 
-
 import com.android.ge.model.CourseClassifyInfo;
-import com.android.ge.model.CourseClassifyResultInfo;
 import com.android.ge.model.CourseTypeDetailInfo;
 import com.android.ge.model.HomePageInfo;
 import com.android.ge.model.LearningInfo;
 import com.android.ge.model.NewsBean;
+import com.android.ge.model.NewsResultInfo;
 import com.android.ge.model.base.BaseResponse;
 import com.android.ge.model.login.TokenBean;
 import com.android.ge.model.organ.OrganBean;
 import com.android.ge.model.path.PathListInfo;
-import com.android.ge.model.path.PathResultInfo;
 import com.android.ge.model.task.TaskDetailInfo;
 import com.android.ge.model.task.TaskListInfo;
-import com.android.ge.model.task.TaskListResultInfo;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -88,9 +85,8 @@ public interface CourseApi {
 
 
     //资讯更多news/list
-    @FormUrlEncoded
-    @POST("/api/news/list")
-    Observable<ArrayList<NewsBean>> getNewslist(@FieldMap Map<String, String> map);
+    @GET("/api/news/list")
+    Observable<BaseResponse<NewsResultInfo>> getNewslist(@QueryMap Map<String, String> map);
 
 //
 //    //修改个人资料
