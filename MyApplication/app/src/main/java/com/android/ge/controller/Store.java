@@ -67,6 +67,10 @@ public class Store {
         return 0;
     }
 
+    public static void saveToken(String token){
+        PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, token);
+    }
+
     //获取token
     public static String getToken() {
         String token = PreferencesUtils.getUserData(Base.getContext(), PreferencesUtils.KEY_TOKEN);

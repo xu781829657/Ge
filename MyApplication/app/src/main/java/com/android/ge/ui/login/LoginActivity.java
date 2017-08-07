@@ -164,7 +164,7 @@ public class LoginActivity extends CommonBaseActivity {
 //                //保存token
 //                PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getData().getToken());
 //                getNetDataOrgans();
-//            }
+//            }activity_change_personal_data.xml
 //
 //        }
 //    };

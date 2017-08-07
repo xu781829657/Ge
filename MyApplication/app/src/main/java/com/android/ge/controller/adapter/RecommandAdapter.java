@@ -53,7 +53,7 @@ public class RecommandAdapter extends BaseCommonAdapter<CourseBean> implements M
         holder.setText(R.id.tv_course_title, courseBean.getTitle());
 
         if (courseBean.getProgress() == 0) {
-            holder.getView(R.id.view_bg_cover).setVisibility(View.VISIBLE);
+            holder.getView(R.id.view_bg_cover).setVisibility(View.GONE);
             holder.setText(R.id.tv_course_progress, Base.string(R.string.un_start));
         } else {
             holder.getView(R.id.view_bg_cover).setVisibility(View.GONE);

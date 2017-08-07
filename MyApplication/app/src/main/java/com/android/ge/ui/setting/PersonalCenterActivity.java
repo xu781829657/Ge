@@ -139,14 +139,14 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
         mRelChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //gotoActivity(ChangePasswordActivity.class, false);
+                gotoActivity(ChangePasswordActivity.class, false);
             }
         });
 
         mRelPersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //gotoActivity(ChangePersonalDataActivity.class, false);
+                gotoActivity(ChangePersonalDataActivity.class, false);
             }
         });
         mRelVersionUpdate.setOnClickListener(new View.OnClickListener() {

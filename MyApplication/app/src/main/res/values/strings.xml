@@ -71,7 +71,59 @@
     <string name="logout">退出登录</string>
     <string name="login_out">退出登录</string>
     <string name="commit">提交</string>
-    
+
+    <string name="btn_next">下一步</string>
+    <string name="tips_change_password_verify">如果输入的用户名存在的话，验证码会发出</string>
+
+    <!-- 设置-->
+    <string name="title_change_persona_data">修改个人资料</string>
+    <string name="title_change_password">修改密码</string>
+    <string name="title_find_password">找回密码</string>
+    <string name="title_set_password">设置新密码</string>
+    <string name="title_forgot_password">忘记密码</string>
+
+    <string name="msg_no_data_commit">没有信息提交</string>
+    <string name="msg_modify_success">修改成功~</string>
+
+    <string name="msg_old_password_null">旧密码不能为空!</string>
+    <string name="msg_old_password_length_error">旧密码长度错误!</string>
+    <string name="msg_new_password_null">新密码不能为空!</string>
+    <string name="msg_new_password_length_error">新密码长度错误!</string>
+    <string name="msg_password_null">密码不能为空!</string>
+    <string name="msg_password_length_error">密码长度错误!</string>
+    <string name="msg_password_again_error">2次密码不一致!</string>
+    <string name="msg_change_password_success">修改密码成功,请重新登录~</string>
+    <string name="msg_set_password_success">设置新密码成功,请登录~</string>
+    <string name="msg_send_verify_success">验证码已发送</string>
+    <string name="msg_account_null">请输入账号</string>
+    <string name="msg_vercode_null">请输入验证码</string>
+    <string name="msg_vercode_error">验证码错误</string>
+
+    <string name="send_verify">发送验证码</string>
+    <string name="resend_verify">重发验证码</string>
+    <string name="unit_second"> 秒</string>
+
+    <string name="sett_back">返回</string>
+    <string name="save">保存</string>
+    <string name="personal_data">个人资料</string>
+    <string name="change_password">修改密码</string>
+    <string name="server_address">服务器地址</string>
+    <string name="first_name">名字</string>
+    <string name="last_name">姓氏</string>
+    <string name="phone_number">手机号码</string>
+    <string name="email">电子邮箱</string>
+    <string name="new_password">新密码</string>
+    <string name="verify_password">重复密码</string>
+    <string name="name_null">请填写名字</string>
+    <string name="xing_null">请填写姓氏</string>
+    <string name="phone_null">请填写手机号码</string>
+    <string name="email_null">请填写电子邮箱</string>
+    <string name="save_over">保存成功</string>
+
+    <!--忘记密码 -->
+    <string name="format_resend_verify">重新发送(%d)</string>
+
+
     <!-- 任务-->
     <string name="title_task">我的任务</string>
     <string name="task_unstart">待参加的</string>
