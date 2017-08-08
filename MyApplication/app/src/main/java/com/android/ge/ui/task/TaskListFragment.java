@@ -60,6 +60,12 @@ public class TaskListFragment extends CommonBaseFragment {
     @Bind(R.id.rv_path)
     RecyclerView mRvPath;
 
+    @Bind(R.id.rel_classify)
+    RelativeLayout mRlPathClassify;
+
+    @Bind(R.id.tv_type_title)
+    TextView mTvTypeTitle;
+
     private int TAB_FLAG;
 
     private TaskListAdapter mTaskListAdapter;
@@ -90,8 +96,24 @@ public class TaskListFragment extends CommonBaseFragment {
 
         }
         mTvContent.setText(TAB_FLAG + "");
-        //initFalseData();
+        mTvTypeTitle.setText(Base.string(R.string.title_learning_path));
+        setListener();
 
+    }
+
+    private void setListener() {
+        mRlPathClassify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getMContext(), PathListActivity.class);
+
+                intent.putExtra(CommonConstant.KEY_PATH_BEAN_LIST, (Serializable) mPaths);
+
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -145,40 +167,47 @@ public class TaskListFragment extends CommonBaseFragment {
     }
 
     private void refreshPathAdapter() {
-        if (mTaskListAdapter == null) {
+
+        if (mPaths.size() > 0) {
+            mRlPathClassify.setVisibility(View.VISIBLE);
+            mRvPath.setVisibility(View.VISIBLE);
+        } else {
+            mRlPathClassify.setVisibility(View.GONE);
+            mRvPath.setVisibility(View.GONE);
+            return;
+        }
+        //if (mTaskListAdapter == null) {
+
+
+//        RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.view_rv_header);
+//        TextView tv_title = (TextView) header.findViewById(R.id.tv_type_title);
+//        tv_title.setText(Base.string(R.string.title_learning_path));
+//        RelativeLayout relClassify = (RelativeLayout) header.findViewById(R.id.rel_classify);
+//        relClassify.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent();
+//                intent.setClass(getMContext(), PathListActivity.class);
+//
+//                intent.putExtra(CommonConstant.KEY_PATH_BEAN_LIST, (Serializable) mPaths);
+//
+//                startActivity(intent);
+//
+//            }
+//        });
+//        header.attachTo(mRvPath);
+
+
+        if (mPathAdapter == null) {
             LinearLayoutManager manager = new LinearLayoutManager(getMContext());
             manager.setOrientation(LinearLayoutManager.VERTICAL);
             mRvPath.setLayoutManager(manager);
             mRvPath.setHasFixedSize(true);
             mRvPath.setNestedScrollingEnabled(false);
-
-            RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.view_rv_header);
-            TextView tv_title = (TextView) header.findViewById(R.id.tv_type_title);
-            tv_title.setText(Base.string(R.string.title_learning_path));
-            RelativeLayout relClassify = (RelativeLayout) header.findViewById(R.id.rel_classify);
-            relClassify.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent();
-                    intent.setClass(getMContext(), PathListActivity.class);
-
-                    intent.putExtra(CommonConstant.KEY_PATH_BEAN_LIST, (Serializable) mPaths);
-
-                    startActivity(intent);
-
-                }
-            });
-            header.attachTo(mRvPath);
             mPathAdapter = new LearningPathAdapter(getMContext(), mPaths);
             mRvPath.setAdapter(mPathAdapter);
         } else {
-            mTaskListAdapter.notifyDataSetChanged();
-        }
-
-        if (mPaths.size() > 0) {
-            mRvPath.setVisibility(View.VISIBLE);
-        } else {
-            mRvPath.setVisibility(View.GONE);
+            mPathAdapter.notifyDataSetChanged();
         }
 
     }

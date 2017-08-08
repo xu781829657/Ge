@@ -47,6 +47,12 @@
     <color name="round_color">#E0E0E0</color>
     <color name="round_progress_color">#2BC17A</color>
 
+    <color name="send_verify_normal">#EA0F6B</color>
+    <color name="send_verify_press">#7dEA0F6B</color>
+
+    <color name="btn_next_normal">#A8DA47</color>
+    <color name="btn_next_press">#7DA8DA47</color>
+
     <color name="white">#ffffffff</color>
     <color name="white_10">#1affffff</color>
     <color name="white_20">#33ffffff</color>

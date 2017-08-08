@@ -20,6 +20,7 @@ import com.android.ge.model.task.TaskQuizBean;
 import com.android.ge.ui.customview.TaskContentInfoView;
 import com.android.ge.ui.webview.CourseWebActivity;
 import com.android.ge.ui.webview.ExamWebActivity;
+import com.android.ge.ui.webview.QuestionnaireWebActivity;
 import com.android.ge.widgets.view.RoundProgressBar;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -128,6 +129,18 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
                 bundle.putString(CommonConstant.PARAM_ISFINISH, "0");
             }
             gotoActivity(ExamWebActivity.class, bundle);
+        } else if (CommonConstant.TASK_COURSE_TYPE_SURVEY.equalsIgnoreCase(taskDetailBean.getDetail_type()) &&
+                taskDetailBean.questionnaire != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString(CommonConstant.PARAM_QUESTION_ID, taskDetailBean.questionnaire.getId() + "");
+            bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
+            bundle.putString(CommonConstant.PARAM_ENTRY_ID, taskDetailBean.questionnaire.getId() + "");
+            if (taskDetailBean.getProgress() == 100) {
+                bundle.putString(CommonConstant.PARAM_ISFINISH, "1");
+            } else {
+                bundle.putString(CommonConstant.PARAM_ISFINISH, "0");
+            }
+            gotoActivity(QuestionnaireWebActivity.class, bundle);
         }
 
     }

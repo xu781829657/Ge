@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GE</string>
-    <string name="app_version">3.4.0.1</string>
+    <string name="app_version">3.5.0.1</string>
 
     <!-- 常用错误提示-->
     <string name="errmsg_network_unavailable">网络不可用</string>
@@ -147,7 +147,7 @@
     <string name="title_learning_path">学习路径</string>
     <string name="format_total_progress">总进度:%s</string>
     <string name="format_progress">进度:%d</string>
-    <string name="format_auth">作者:%s</string>
+    <string name="format_auth">讲师:%s</string>
 
     <!--榜单 -->
     <string name="title_rank">榜单</string>
@@ -189,4 +189,21 @@
 
     <string name="title_news_list">资讯</string>
 
+    <!--Reset Password-->
+    <string name="resetPassword">找回密码</string>
+    <string name="enterusername">请输入用户名</string>
+    <string name="code">验证码</string>
+    <string name="get_code">获取验证码</string>
+    <string name="re_code">重发验证码</string>
+    <string name="confirm">确认</string>
+    <string name="verification_code_has_been_sent">验证码已发送</string>
+    <string name="failed_to_get_verification_code">获取验证码失败</string>
+    <string name="setnewpasssword">设置新密码</string>
+    <string name="re_enter_password">请再次输入密码</string>
+    <string name="enter_password">请输入密码(6-20数字和字符)</string>
+
+    <string name="tost_user_true">如果输入的用户名存在，验证码会发出</string>
+    <string name="obtain_verify">获取验证码</string>
+
+    <string name="hint_verification_code">请输入验证码</string>
 </resources>

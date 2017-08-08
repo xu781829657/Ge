@@ -23,7 +23,8 @@
             android:id="@+id/view_bg_cover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent_75" />
+            android:background="@color/transparent_75"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_begin"
@@ -34,7 +35,8 @@
             android:gravity="center"
             android:text="@string/begin_learn"
             android:textColor="@color/white"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:visibility="gone" />
 
 
     </RelativeLayout>

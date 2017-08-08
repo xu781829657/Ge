@@ -14,6 +14,7 @@ import com.android.ge.controller.Store;
 import com.android.ge.controller.web.AndroidBridge;
 import com.android.ge.network.NetWorkConstant;
 import com.android.ge.ui.base.CommonBaseActivity;
+import com.android.ge.utils.DeviceUtil;
 import com.loopj.android.http.RequestParams;
 
 import butterknife.Bind;
@@ -30,6 +31,8 @@ import butterknife.Bind;
  * 机构id:org_id
  * 课程id:course_id
  * token:token
+ *
+ * 考试H5
  */
 public class ExamWebActivity extends CommonBaseActivity {
 
@@ -61,6 +64,7 @@ public class ExamWebActivity extends CommonBaseActivity {
             params.put(CommonConstant.PARAM_ISFINISH, mParamIsFinish);
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
             params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
+            params.put(CommonConstant.PARAM_LANGUAGE, DeviceUtil.localLanguageIsZh()? "zh ":"en");
             LogUtils.d(getClass(), "111map.string:" + params.toString());
             StringBuilder builder = new StringBuilder();
             builder.append(URL_PRE);

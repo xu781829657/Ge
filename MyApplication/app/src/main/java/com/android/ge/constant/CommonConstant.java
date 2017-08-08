@@ -33,11 +33,13 @@ public class CommonConstant {
     public static final String PARAM_TIME = "time";
     public static final String PARAM_EXAM_ID = "examinationId";
     public static final String PARAM_NEWS_ID ="newsId";
+    public static final String PARAM_QUESTION_ID="questionId";
+    public static final String PARAM_LANGUAGE = "Language";
 
 //    public static final String TASK_COURSE_TYPE_COURSE = "Course";
 //    public static final String TASK_COURSE_TYPE_QUIZ = "Quiz";
 //    public static final String TASK_COURSE_TYPE_SURVEY = "Survey";
-public static final String TASK_COURSE_TYPE_COURSE = "courses";
+    public static final String TASK_COURSE_TYPE_COURSE = "courses";
     public static final String TASK_COURSE_TYPE_QUIZ = "examinations";
     public static final String TASK_COURSE_TYPE_SURVEY = "questionnaire";
 
@@ -54,7 +56,6 @@ public static final String TASK_COURSE_TYPE_COURSE = "courses";
     public static final String TYPE_COURSES = "courses";
     public static final String TYPE_MISSIONS = "missions";
     public static final String TYPE_LEARNINGPATH = "learningpath";
-
 
     public static final String ROOT_CACHE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + "com.android.ge";
 }

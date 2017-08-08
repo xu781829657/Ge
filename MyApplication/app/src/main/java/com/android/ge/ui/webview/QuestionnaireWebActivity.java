@@ -22,53 +22,58 @@ import butterknife.Bind;
 /**
  * Created by xudengwang on 2016/6/24.
  * <p>
- * http://static.31academy.cn/module/history.html?path_id={path_id}&token={token}#/Learn
- * 路径id:path_id
- * token:token
- * <p>
- * <p>
- * <p>
- * 机构id:org_id
- * 课程id:course_id
- * token:token
- */
-public class NewsWebActivity extends CommonBaseActivity {
+ module/question.html?isFinish=xx&questionId=xxx&token=xxxx&entryId=xxx&entryType=xxx
 
+ isFinish:问卷是否完成{0:为未完成，1:完成}
+ questionId:问卷id
+ token:token
+ entryId:类型id
+ entryType:类型
+ Language : zh/en
+ * 
+ * 考试H5
+ */
+public class QuestionnaireWebActivity extends CommonBaseActivity {
 
     @Bind(R.id.webview)
     WebView mWebView;
 
-    //url?organization_id=20&id=18&access_token=Bearer%207d6095b557c65a969af3d821fc7954c3d3ab2bb2f634f0780476c6b738a9fd5f
     private String LOAD_URL;
 
-
-    //module/news.html?newsId=xxx&token=xxxx
-    private static final String URL_PRE = NetWorkConstant.H5_URL+"/module/news.html?";
-    private String mParamNewsId;
+    //module/exam.html?isFinish=xx&examinationId=xxx&token=xxxx&entryId=xxx&entryType=xxx
+    private static final String URL_PRE = NetWorkConstant.H5_URL+"/module/question.html?";
+    private String mParamQuestionId;
+    private String mParamType;
+    private String mParamTypeId;
+    private String mParamIsFinish;
 
     @Override
     protected void initData() {
-        //LogUtils.d("new AndroidBridge().getNetWorkType():"+new AndroidBridge().getNetWorkType());
         if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
-            mParamNewsId = bundle.getString(CommonConstant.PARAM_NEWS_ID);
-            LogUtils.d(getClass(),"mParamNewsId:"+mParamNewsId);
+            mParamQuestionId = bundle.getString(CommonConstant.PARAM_QUESTION_ID);
+            mParamType = bundle.getString(CommonConstant.PARAM_ENTRY_TYPE);
+            mParamTypeId = bundle.getString(CommonConstant.PARAM_ENTRY_ID);
+            mParamIsFinish = bundle.getString(CommonConstant.PARAM_ISFINISH);
+            LogUtils.d(getClass(), "mParamQuestionId:" + mParamQuestionId);
             RequestParams params = new RequestParams();
-            params.put(CommonConstant.PARAM_NEWS_ID, mParamNewsId);
-            //params.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
+            params.put(CommonConstant.PARAM_ENTRY_ID, mParamTypeId);
+            params.put(CommonConstant.PARAM_ENTRY_TYPE, mParamType);
+            params.put(CommonConstant.PARAM_QUESTION_ID, mParamQuestionId);
+            params.put(CommonConstant.PARAM_ISFINISH, mParamIsFinish);
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
-            //params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
+            params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
             params.put(CommonConstant.PARAM_LANGUAGE, DeviceUtil.localLanguageIsZh()? "zh ":"en");
             LogUtils.d(getClass(), "111map.string:" + params.toString());
             StringBuilder builder = new StringBuilder();
             builder.append(URL_PRE);
             builder.append(params.toString());
-           // builder.append("#/Detail");
             LOAD_URL = builder.toString();
+
         } else {
             LOAD_URL = URL_PRE;
         }
-        LogUtils.d(getClass(), "LOAD_URL:" + LOAD_URL);
+        LogUtils.d(getClass(), "LOAD_URL_EXAM:" + LOAD_URL);
 
 
         mContext = this;
@@ -117,6 +122,4 @@ public class NewsWebActivity extends CommonBaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
-
 }

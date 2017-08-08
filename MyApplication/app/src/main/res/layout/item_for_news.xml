@@ -14,6 +14,7 @@
         android:layout_marginLeft="11dp"
         android:src="@drawable/information_icon"/>
 
+
     <TextView
         android:id="@+id/tv_news_info"
         android:layout_width="wrap_content"

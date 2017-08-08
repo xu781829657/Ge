@@ -1,0 +1,208 @@
+﻿<resources>
+    <string name="app_name">GE</string>
+    <string name="app_version">3.5.0.1</string>
+
+    <!-- Common Error-->
+    <string name="errmsg_network_unavailable">Network Unavilable</string>
+    <string name="errmsg_data_error">Error</string>
+
+    <string name="alt_cancel">Cancel</string>
+    <string name="alt_ensure">Ok</string>
+    <string name="alt_continue">Continue</string>
+
+    <!-- Start-->
+    <string name="splash_enter">Start</string>
+
+
+    <!-- Home-->
+    <string name="tab_homepage">Home</string>
+    <string name="tab_learning">Learn</string>
+    <string name="tab_task">Task</string>
+    <string name="tab_me">Me</string>
+
+    <string name="more">More</string>
+    <string name="begin_learn">Start</string>
+
+    <string name="title_news">Latest News</string>
+
+    <!-- Me-->
+    <string name="learn_summary">Summary</string>
+    <string name="my_list">Ranking</string>
+    <string name="my_honor">Achievement</string>
+    <string name="my_questionnaire">Survey</string>
+    <string name="my_learning_path">Learning Path</string>
+    <string name="my_degree">Micro-Certification Prog.</string>
+    <string name="my_certificate_centre">Certification</string>
+    <string name="my_message_centre">News</string>
+    <string name="my_help_centre">Help</string>
+    <string name="learning_points">Learning Points</string>
+
+    <!-- Login-->
+    <string name="input_hint_old_password">Enter Old Password</string>
+    <string name="input_hint_new_password">Enter New Password</string>
+    <string name="input_hint_new_password_again">Re-Enter New Password</string>
+    <string name="tips_change_password">Password requires 6-20characters or numbers</string>
+    <string name="input_hint_username">Enter Username</string>
+    <string name="input_hint_password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="forget_passwords">Forgot Password?</string>
+    <string name="login_name_null">Account is missing</string>
+    <string name="login_password_null">Password is missing</string>
+    <string name="login_name_err">Username requires 6-30characters or numbers</string>
+
+    <!-- Organization selection-->
+    <string name="tips_organ_select_1">Your account belongs to multiple organizations</string>
+    <string name="tips_organ_select_2">Please select which organization</string>
+
+    <!--App Update-->
+    <string name="update_dialog_title">Discover new version%s</string>
+    <string name="app_updating">App Update</string>
+    <string name="update_btn">Update Now</string>
+    <string name="update_cancel">Update Later</string>
+    <string name="prompt_is_new_version">This is the latest version!</string>
+    <string name="update_exception">Check version update failed. Please check again!</string>
+
+    <!-- Me-->
+    <string name="title_personal_center">Me</string>
+    <string name="personal_info">My Profile</string>
+    <string name="change_pass">Change Password</string>
+    <string name="about">About</string>
+    <string name="version_update">App Update</string>
+    <string name="logout">Log Out</string>
+    <string name="login_out">Log Out</string>
+    <string name="commit">Submit</string>
+
+    <string name="btn_next">Next</string>
+    <string name="tips_change_password_verify">Verification code is issued when there is a username</string>
+
+    <!-- Settings-->
+    <string name="title_change_persona_data">Change Profile</string>
+    <string name="title_change_password">Change Password</string>
+    <string name="title_find_password">Reset Password</string>
+    <string name="title_set_password">Set New Password</string>
+    <string name="title_forgot_password">Forgot Password</string>
+
+    <string name="msg_no_data_commit">No updated information submitted</string>
+    <string name="msg_modify_success">Successful~</string>
+
+    <string name="msg_old_password_null">Old password cannot be empty!</string>
+    <string name="msg_old_password_length_error">Old password length is incorrect!</string>
+    <string name="msg_new_password_null">New password cannot be empty!</string>
+    <string name="msg_new_password_length_error">New password length is incorrect!</string>
+    <string name="msg_password_null">Password cannot be empty!</string>
+    <string name="msg_password_length_error">Password length is incorrect!</string>
+    <string name="msg_password_again_error">Password does not match!</string>
+    <string name="msg_change_password_success">Password has been successfully reset~</string>
+    <string name="msg_set_password_success">Password has been successfully reset~</string>
+    <string name="msg_send_verify_success">The verification code has been sent</string>
+    <string name="msg_account_null">Enter Username</string>
+    <string name="msg_vercode_null">Enter Verification Code</string>
+    <string name="msg_vercode_error">Invaild Verification Code</string>
+
+    <string name="send_verify">Request Code</string>
+    <string name="resend_verify">Resend Code</string>
+    <string name="unit_second"> s</string>
+
+    <string name="sett_back">Back</string>
+    <string name="save">Save</string>
+    <string name="personal_data">My Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="server_address">Server Address</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Mobile</string>
+    <string name="email">Email</string>
+    <string name="new_password">New Password</string>
+    <string name="verify_password">Confirm Password</string>
+    <string name="name_null">Enter First Name</string>
+    <string name="xing_null">Enter Last Name</string>
+    <string name="phone_null">Enter Mobile number</string>
+    <string name="email_null">Enter Email</string>
+    <string name="save_over">Saved!</string>
+
+    <!-- Task-->
+    <string name="title_task">My Task</string>
+    <string name="task_unstart">New Task</string>
+    <string name="task_ongoing">In Progress</string>
+    <string name="task_finished">Completed</string>
+
+    <!-- Course-->
+    <string name="title_course_classify">Course Category</string>
+    <string name="format_course_course_count">Course:%d</string>
+    <string name="format_course_quiz_count">Quiz:%d</string>
+    <string name="format_course_survey_count">Survey:%d</string>
+
+    <!-- Learn-->
+    <string name="entry_leaning_path">Learning Path</string>
+    <string name="entry_live">Live Stream</string>
+    <string name="entry_micro_degree">Micro-Certification</string>
+    <string name="entry_course_classify">Course Category</string>
+
+    <!-- Learning Path-->
+    <string name="format_deadline_time">Deadline: %s</string>
+    <string name="title_learning_path">Learning Path</string>
+    <string name="format_total_progress">Total Progress:%s</string>
+    <string name="format_progress">Progress:%d</string>
+    <string name="format_auth">Author:%s</string>
+
+    <!-- Ranking-->
+    <string name="title_rank">Ranking</string>
+    <string name="rank_tab_total">Overall</string>
+    <string name="rank_tab_group">Organizational</string>
+    <string name="rank_tab_groups">Group</string>
+
+    <string name="me">Me</string>
+    <string name="title_about">About</string>
+
+    <!-- Summary-->
+    <string name="title_learning_summary">Summary</string>
+    <string name="finish_course">Completed Course</string>
+    <string name="finish_quiz">Completed Quiz</string>
+    <string name="finish_survey">Completed Survey</string>
+    <string name="finish_micro_degree">Micro-Certification</string>
+    <string name="finish_path">Learning Path</string>
+    <string name="finish_task">Completed Task</string>
+
+    <string name="quiz_average">Average Score</string>
+    <string name="points">Learning Points</string>
+    <string name="leraning_total_time">Learning Time</string>
+    <string name="like_count">Liked Courses</string>
+    <string name="comment_count">Comments</string>
+    <string name="share">Shares</string>
+
+    <!-- Task-->
+    <string name="format_progress_complete">Completed%d</string>
+    <string name="un_start">NotStarted</string>
+
+    <!-- Detail-->
+    <string name="tab_course_detail_intro">Description</string>
+    <string name="tab_course_detail_learn_history">History</string>
+    <string name="tab_course_detail_comment">Comment</string>
+
+
+    <string name="version_about">Version： %s</string>
+    <string name="version_about_test">Version： %s test</string>
+
+    <string name="title_news_list">News</string>
+
+
+    <!--忘记密码 -->
+    <string name="format_resend_verify">重新发送(%d)</string>
+    <!--Reset Password-->
+    <string name="resetPassword">找回密码</string>
+    <string name="enterusername">请输入用户名</string>
+    <string name="code">验证码</string>
+    <string name="get_code">获取验证码</string>
+    <string name="re_code">重发验证码</string>
+    <string name="confirm">确认</string>
+    <string name="verification_code_has_been_sent">验证码已发送</string>
+    <string name="failed_to_get_verification_code">获取验证码失败</string>
+    <string name="setnewpasssword">设置新密码</string>
+    <string name="re_enter_password">请再次输入密码</string>
+    <string name="enter_password">请输入密码(6-20数字和字符)</string>
+
+    <string name="tost_user_true">如果输入的用户名存在，验证码会发出</string>
+    <string name="obtain_verify">获取验证码</string>
+
+    <string name="hint_verification_code">请输入验证码</string>
+</resources>

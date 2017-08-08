@@ -20,6 +20,7 @@ import com.android.ge.controller.Store;
 import com.android.ge.controller.web.AndroidBridge;
 import com.android.ge.network.NetWorkConstant;
 import com.android.ge.ui.base.CommonBaseActivity;
+import com.android.ge.utils.DeviceUtil;
 import com.loopj.android.http.RequestParams;
 
 import java.util.HashMap;
@@ -67,6 +68,7 @@ public class PathWebActivity extends CommonBaseActivity {
             params.put(CommonConstant.PARAM_PATH_ID, mParamPathId);
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
             params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
+            params.put(CommonConstant.PARAM_LANGUAGE, DeviceUtil.localLanguageIsZh()? "zh ":"en");
             LogUtils.d(getClass(), "111map.string:" + params.toString());
             StringBuilder builder = new StringBuilder();
             builder.append(URL_PRE);
