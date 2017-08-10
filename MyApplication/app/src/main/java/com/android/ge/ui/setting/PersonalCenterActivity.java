@@ -20,7 +20,12 @@ import com.android.base.util.PhotoUtils;
 import com.android.ge.R;
 import com.android.ge.app.AppApplication;
 import com.android.ge.constant.AppConfig;
+import com.android.ge.model.base.BaseResponse;
+import com.android.ge.model.path.PathListInfo;
+import com.android.ge.model.user.AvatarUploadInfo;
 import com.android.ge.network.Network;
+import com.android.ge.network.error.ExceptionEngine;
+import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.android.ge.ui.login.LoginActivity;
 import com.android.ge.utils.PreferencesUtils;
@@ -213,12 +218,12 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
                 }
                 ViewDialog.showSingleDialog(mContext, "注意", "当前app环境已切换为" + msg + ",需立即退出再重启后生效!", new
                         DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        PreferencesUtils.clearUserData(mContext);
-                        AppManager.create().appExit(mContext);
-                    }
-                });
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                PreferencesUtils.clearUserData(mContext);
+                                AppManager.create().appExit(mContext);
+                            }
+                        });
             }
         });
     }
@@ -308,46 +313,48 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
     public void onAccomplish(Bitmap bitmap, byte[] photoBmpData) {
         if (bitmap != null) {
 
-//            rx.Observable.just(FileUtils.saveBitmap(bitmap, mContext, HEAD_IMAGE_NAME))
-//                    .subscribeOn(Schedulers.io())
-//                    .flatMap(new Func1<File, rx.Observable<MenberShipsBean>>() {
-//                        @Override
-//                        public rx.Observable<MenberShipsBean> call(File file) {
-//                            LogUtils.d(file.exists() + file.getPath() + file.getName());
-//                            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),
-// file);
-//                            return Network.getCourseApi("上传头像").uploadFile(Integer.valueOf(PreferencesUtils
-// .getUserData(Base.getContext(), PreferencesUtils.KEY_USER_ID)), requestBody);
-//                        }
-//                    })
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(mAvatarObserver);
+            rx.Observable.just(FileUtils.saveBitmap(bitmap, mContext, HEAD_IMAGE_NAME))
+                    .subscribeOn(Schedulers.io())
+                    .flatMap(new Func1<File, rx.Observable<BaseResponse<AvatarUploadInfo>>>() {
+                        @Override
+                        public rx.Observable<BaseResponse<AvatarUploadInfo>> call(File file) {
+                            LogUtils.d(file.exists() + file.getPath() + file.getName());
+                            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),
+                                    file);
+                            return Network.getCourseApi("上传头像").uploadFile(requestBody);
+                        }
+                    })
+                    .subscribeOn(Schedulers.io())
+
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map(new ServerResponseFunc<AvatarUploadInfo>())
+                    .subscribe(mAvatarObserver);
 
         }
     }
 
-//    Observer<MenberShipsBean> mAvatarObserver = new Observer<MenberShipsBean>() {
-//        @Override
-//        public void onCompleted() {
-//            dismissLoadingDialog();
-//        }
-//
-//        @Override
-//        public void onError(Throwable e) {
-//            dismissLoadingDialog();
-//            LogUtils.d(getClass(), "observer member e.message:" + e.getMessage());
-//            e.printStackTrace();
-//            Base.showToast(ExceptionEngine.handleException(e).message);
-//        }
-//
-//        @Override
-//        public void onNext(MenberShipsBean bean) {
-//            if (bean != null) {
-//                PreferencesUtils.saveUserDataItem(mContext, PreferencesUtils.KEY_AVATAR_URL, bean.getAvatar_url());
-//                refreshAvatar();
+    Observer<AvatarUploadInfo> mAvatarObserver = new Observer<AvatarUploadInfo>() {
+        @Override
+        public void onCompleted() {
+            dismissLoadingDialog();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            dismissLoadingDialog();
+            LogUtils.d(getClass(), "observer member e.message:" + e.getMessage());
+            e.printStackTrace();
+            Base.showToast(ExceptionEngine.handleException(e).message);
+        }
+
+        @Override
+        public void onNext(AvatarUploadInfo bean) {
+
+            if (bean != null) {
+                PreferencesUtils.saveUserDataItem(mContext, PreferencesUtils.KEY_AVATAR_URL, bean.image_url);
+                refreshAvatar();
 //                EventBus.getDefault().post(new AvatarChangeEventEntry());
-//            }
-//        }
-//    };
+            }
+        }
+    };
 }

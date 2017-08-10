@@ -14,14 +14,19 @@ import com.android.ge.model.organ.OrganBean;
 import com.android.ge.model.path.PathListInfo;
 import com.android.ge.model.task.TaskDetailInfo;
 import com.android.ge.model.task.TaskListInfo;
+import com.android.ge.model.user.AvatarUploadInfo;
 
 import java.util.ArrayList;
 import java.util.Map;
 
+import okhttp3.RequestBody;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.QueryMap;
 import rx.Observable;
 
@@ -87,6 +92,12 @@ public interface CourseApi {
     //资讯更多news/list
     @GET("/api/news/list")
     Observable<BaseResponse<NewsResultInfo>> getNewslist(@QueryMap Map<String, String> map);
+
+    //上传头像
+    @Multipart
+    @POST("/api/account/modifyportrait")
+    Observable<BaseResponse<AvatarUploadInfo>> uploadFile(@Part("portrait\"; filename=\"avatar.jpg") RequestBody file);
+
 
 //
 //    //修改个人资料
