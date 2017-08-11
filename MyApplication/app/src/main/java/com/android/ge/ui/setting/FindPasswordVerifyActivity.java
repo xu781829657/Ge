@@ -13,7 +13,11 @@ import com.android.base.frame.Base;
 import com.android.base.util.LogUtils;
 import com.android.base.util.NetworkUtil;
 import com.android.ge.R;
+import com.android.ge.model.base.BaseResponse;
+import com.android.ge.model.user.AvatarUploadInfo;
+import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
+import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseActivity;
 
 import java.util.HashMap;
@@ -50,7 +54,7 @@ public class FindPasswordVerifyActivity extends CommonBaseActivity {
     protected void initData() {
         ImageView backIv = (ImageView) findViewById(R.id.iv_back);
         TextView titleTv = (TextView) findViewById(R.id.tv_title);
-        titleTv.setText(Base.string(R.string.title_forgot_password));
+        titleTv.setText(Base.string(R.string.title_find_password));
         backIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +72,7 @@ public class FindPasswordVerifyActivity extends CommonBaseActivity {
                     if (mTvTips.getVisibility() == View.GONE) {
                         mTvTips.setVisibility(View.VISIBLE);
                     }
-                    putNetDataSendSms();
+                    postNetDataSendVerifyCode();
                 }
 
             }
@@ -78,7 +82,7 @@ public class FindPasswordVerifyActivity extends CommonBaseActivity {
             @Override
             public void onClick(View view) {
                 if (checkAccountInput() && checkVerifyInput()) {
-                    getNetDataCheckSms();
+                    postNetDataCheckVerifyCode();
                 }
             }
         });
@@ -89,81 +93,8 @@ public class FindPasswordVerifyActivity extends CommonBaseActivity {
         return R.layout.activity_change_password_verify;
     }
 
-    //验证码发送结果
-    Observer<String> mSendResultObserver = new Observer<String>() {
-        @Override
-        public void onCompleted() {
-            dismissLoadingDialog();
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
-            e.printStackTrace();
-            dismissLoadingDialog();
-            Base.showToast(ExceptionEngine.handleException(e).message);
-
-            mTvSend.setText(Base.string(R.string.resend_verify));
-            mTvSend.setClickable(true);
-            mTvSend.setEnabled(true);
-            if (mTimeCount != null) {
-                mTimeCount.cancel();
-                mTimeCount = null;
-            }
-        }
-
-        @Override
-        public void onNext(String bean) {
-            LogUtils.d(getClass(), "bean:" + bean);
-            dismissLoadingDialog();
-
-//            if (!TextUtils.isEmpty(bean)) {
-//                try {
-//                    Base.showToast(JsonParseUtil.jsonToString(bean, TagConstant.TAG_ERROR));
-//                    return;
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//
-//            } else {
-//                Base.showToast(R.string.msg_send_verify_success);
-//            }
-
-
-        }
-    };
-
-    //检查结果
-//    Observer<ResultBean> mCheckResultObserver = new Observer<ResultBean>() {
-//        @Override
-//        public void onCompleted() {
-//            dismissLoadingDialog();
-//        }
-//
-//        @Override
-//        public void onError(Throwable e) {
-//            LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
-//            e.printStackTrace();
-//            dismissLoadingDialog();
-//            Base.showToast(ExceptionEngine.handleException(e).message);
-//        }
-//
-//        @Override
-//        public void onNext(ResultBean bean) {
-//            LogUtils.d(getClass(), "bean:" + bean);
-//            if (bean.getResult()) {
-//                Bundle bundle = new Bundle();
-//                bundle.putString("account", mEtAccount.getText().toString());
-//                bundle.putString("code", mEtCode.getText().toString());
-//                gotoActivity(SetNewPasswordActivity.class, bundle, false);
-//            } else {
-//                Base.showToast(R.string.msg_vercode_error);
-//            }
-//        }
-//    };
-
     //发送验证码
-    private void putNetDataSendSms() {
+    private void postNetDataSendVerifyCode() {
         if (!NetworkUtil.isAvailable(mContext)) {
             Base.showToast(R.string.errmsg_network_unavailable);
             mTimeCount.cancel();
@@ -173,31 +104,79 @@ public class FindPasswordVerifyActivity extends CommonBaseActivity {
             return;
         }
         Map<String, String> map = new HashMap<>();
-        map.put("identity", mEtAccount.getText().toString());
+        map.put("login_name", mEtAccount.getText().toString());
         showLoadingDialog(null);
 
-//        Network.getCourseApi().putSendSms(map)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(mSendResultObserver);
+        Network.getCourseApi().postSendVerifyCode(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<Object>())
+                .subscribe(new Observer<Object>() {
+                    @Override
+                    public void onCompleted() {
+                        dismissLoadingDialog();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
+                        e.printStackTrace();
+                        dismissLoadingDialog();
+                        Base.showToast(ExceptionEngine.handleException(e).message);
+
+                        mTvSend.setText(Base.string(R.string.resend_verify));
+                        mTvSend.setClickable(true);
+                        mTvSend.setEnabled(true);
+                        if (mTimeCount != null) {
+                            mTimeCount.cancel();
+                            mTimeCount = null;
+                        }
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
+                        gotoActivity(SetNewPasswordActivity.class, true);
+                    }
+                });
+
+
     }
 
 
     //检查验证码
-    private void getNetDataCheckSms() {
+    private void postNetDataCheckVerifyCode() {
         if (!NetworkUtil.isAvailable(mContext)) {
             Base.showToast(R.string.errmsg_network_unavailable);
             return;
         }
         Map<String, String> map = new HashMap<>();
-        map.put("identity", mEtAccount.getText().toString());
-        map.put("code", mEtCode.getText().toString());
+        map.put("login_name", mEtAccount.getText().toString());
+        map.put("verifycode", mEtCode.getText().toString());
 
         showLoadingDialog(null);
-//        Network.getCourseApi().getCheckSms(map)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(mCheckResultObserver);
+        Network.getCourseApi().postCheckVerifyCode(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<Object>())
+                .subscribe(new Observer<Object>() {
+                    @Override
+                    public void onCompleted() {
+                        dismissLoadingDialog();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
+                        e.printStackTrace();
+                        dismissLoadingDialog();
+                        Base.showToast(ExceptionEngine.handleException(e).message);
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
+                        Base.showToast(R.string.verification_code_has_been_sent);
+                    }
+                });
     }
 
     private boolean checkAccountInput() {

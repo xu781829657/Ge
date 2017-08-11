@@ -17,7 +17,9 @@ import com.android.base.frame.Base;
 import com.android.base.util.LogUtils;
 import com.android.base.util.NetworkUtil;
 import com.android.ge.R;
+import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
+import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.android.ge.ui.login.LoginActivity;
 import com.android.ge.utils.PreferencesUtils;
@@ -32,6 +34,7 @@ import rx.schedulers.Schedulers;
 
 /**
  * Created by xudengwang on 2016/10/27.
+ * 忘记米阿门-找回密码-设置新密码
  */
 
 public class SetNewPasswordActivity extends CommonBaseActivity {
@@ -51,9 +54,6 @@ public class SetNewPasswordActivity extends CommonBaseActivity {
     @Bind(R.id.btn_commit)
     Button mBtnCommit;
 
-    private String mAccount;
-    private String mVercode;
-
     @Override
     protected int getContentViewId() {
         return R.layout.activity_set_new_password;
@@ -61,20 +61,9 @@ public class SetNewPasswordActivity extends CommonBaseActivity {
 
     @Override
     protected void initData() {
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            mAccount = bundle.getString("account");
-            mVercode = bundle.getString("code");
-        }
-
         ImageView backIv = (ImageView) findViewById(R.id.iv_back);
         TextView titleTv = (TextView) findViewById(R.id.tv_title);
-        if (TextUtils.isEmpty(mVercode)) {
-            titleTv.setText(Base.string(R.string.title_set_password));
-        } else {
-            titleTv.setText(Base.string(R.string.title_find_password));
-        }
-
+        titleTv.setText(Base.string(R.string.title_set_password));
         backIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -193,15 +182,36 @@ public class SetNewPasswordActivity extends CommonBaseActivity {
             return;
         }
         Map<String, String> map = new HashMap<>();
-        map.put("identity", mAccount);
-        map.put("code", mVercode);
-        map.put("password", mEtNew.getText().toString());
-        map.put("password_confirmation", mEtNew.getText().toString());
+        map.put("newpassword", mEtNew.getText().toString());
+        map.put("newpassword_confirm", mEtNewAgain.getText().toString());
 
         showLoadingDialog(null);
-//        Network.getCourseApi().putSetPassword(map)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(mResultObserver);
+        Network.getCourseApi().postSetNewPassword(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<Object>())
+                .subscribe(new Observer<Object>() {
+                    @Override
+                    public void onCompleted() {
+                        dismissLoadingDialog();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
+                        e.printStackTrace();
+                        dismissLoadingDialog();
+                        Base.showToast(ExceptionEngine.handleException(e).message);
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
+                        Base.showToast(R.string.msg_set_password_success);
+                        PreferencesUtils.clearUserData(mContext);
+                        gotoActivity(LoginActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        AppManager.create().finishAllActivity();
+                    }
+                });
+
     }
 }

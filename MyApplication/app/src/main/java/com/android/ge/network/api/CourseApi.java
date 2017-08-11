@@ -113,44 +113,22 @@ public interface CourseApi {
     @POST("/api/account/modifypassword")
     Observable<BaseResponse<Object>> postChangePassword(@FieldMap Map<String, String> map);
 
-//
-//    //修改个人资料
-//    @FormUrlEncoded
-//    @PUT("/api/v1/memberships/{organization_id}")
-//    Observable<MenberShipsBean> putPersonalData(@Path("organization_id") int organization_id, @FieldMap Map<String, String> map);
-//
-//    //修改密码
-//    @FormUrlEncoded
-//    @PUT("/api/v1/account/change_password")
-//    Observable<String> putChangePassword(@FieldMap Map<String, String> map);
-//
-//    //重置密码
-//    @FormUrlEncoded
-//    @PUT("/api/v1/account/reset_password")
-//    Observable<String> putSetPassword(@FieldMap Map<String, String> map);
-//
-//
-//    //发送验证码
-//    @FormUrlEncoded
-//    @PUT("/api/v1/account/send_code_via_sms")
-//    Observable<String> putSendSms(@FieldMap Map<String, String> map);
-//
-//    //检查验证码
-//
-//    @GET("/api/v1/account/check_validation_code")
-//    Observable<ResultBean> getCheckSms(@QueryMap Map<String, String> options);
-//
-//    //获取更新信息
-//    @GET("/api/v1/app_versions")
-//    Observable<AppUpdateResultInfo> getAppUpdate();
-//
-//    //个人资料
-//    @GET("api/v1/memberships")
-//    Observable<ArrayList<MenberShipsBean>> getMemberships();
-//
-//    // 列出我参与的课程
-//    @GET("/api/v1/organizations/{id}/assignments")
-//    Observable<List<OrganizationListItemBean>> getMyCourses(@Path("id") int id);
+    //找回密码发送验证码
+    @FormUrlEncoded
+    @POST("/api/account/verifyCode")
+    Observable<BaseResponse<Object>> postSendVerifyCode(@FieldMap Map<String, String> map);
+
+    //检查验证验证码输入
+    @FormUrlEncoded
+    @POST("api/account/checkVerifyCode")
+    Observable<BaseResponse<Object>> postCheckVerifyCode(@FieldMap Map<String, String> map);
+
+
+    //设置新密码
+    @FormUrlEncoded
+    @POST("/api/account/resetpassword")
+    Observable<BaseResponse<Object>> postSetNewPassword(@FieldMap Map<String, String> map);
+
 //
 //    //获取课程比拼列表
 //    @GET("/api/v1/organizations/{id}/competitions")
