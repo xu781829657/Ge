@@ -3,7 +3,9 @@ package com.android.ge.controller.adapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
@@ -35,6 +37,12 @@ public class NewsAdapter extends BaseCommonAdapter<NewsBean> implements MultiIte
             holder.getView(R.id.view_line).setVisibility(View.GONE);
         } else {
             holder.getView(R.id.view_line).setVisibility(View.VISIBLE);
+        }
+
+        if(TextUtils.isEmpty(newsBean.getCover())){
+            holder.setImageResource(R.id.iv_news_type,R.drawable.information_icon);
+        } else {
+            setImageFromInternet((ImageView) holder.getView(R.id.iv_news_type),newsBean.getCover(),R.drawable.information_icon);
         }
 
     }

@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/bg_common_press"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
-
-    <ImageView
+    <cn.carbs.android.avatarimageview.library.AvatarImageView
         android:id="@+id/iv_news_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginLeft="11dp"
-        android:src="@drawable/information_icon"/>
+        android:src="@drawable/default_user"
+        app:aiv_BoarderColor="#A9D84C"
+        app:aiv_BoarderWidth="1dp"
+        app:aiv_ShowBoarder="false"
+        app:aiv_TextSizeRatio="1" />
+
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_news_type"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="11dp"-->
+        <!--android:src="@drawable/information_icon"/>-->
 
 
     <TextView

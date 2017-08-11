@@ -4,12 +4,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-
-import com.android.base.frame.Base;
-import com.android.base.util.ScreenUtils;
 import com.android.ge.R;
-import com.android.ge.model.CourseBean;
 import com.android.ge.model.learning.BaseLearningItem;
 import com.android.ge.model.learning.TitleItemInfo;
 import com.android.ge.utils.image.ImageLoader;

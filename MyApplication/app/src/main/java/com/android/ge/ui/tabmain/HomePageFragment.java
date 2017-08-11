@@ -89,7 +89,7 @@ public class HomePageFragment extends CommonBaseFragment {
                 mBannerImageUrls.add(galleryBeanList.get(i).getImage_url());
             }
         }
-        EventBus.getDefault().post(new BannerEntry(mBannerImageUrls));
+        //EventBus.getDefault().post(new BannerEntry(mBannerImageUrls));
         //设置图片加载器
         mBanner.setImageLoader(new GlideImageLoader());
         //设置图片集合

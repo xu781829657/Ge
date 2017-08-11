@@ -3,15 +3,12 @@ package com.android.ge.controller.adapter.Itemviewdelegate;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.base.frame.Base;
-import com.android.base.util.LogUtils;
 import com.android.base.util.ScreenUtils;
 import com.android.ge.R;
-import com.android.ge.app.AppApplication;
 import com.android.ge.model.CourseBean;
 import com.android.ge.model.learning.BaseLearningItem;
 import com.android.ge.utils.image.ImageLoader;
@@ -88,7 +85,6 @@ public class CourseItemViewDelegate implements ItemViewDelegate<BaseLearningItem
         } else {
             holder.getView(R.id.tv_course_auth).setVisibility(View.GONE);
         }
-        LogUtils.d(getClass(), "title:" + courseBean.getTitle() + ",---cover:" + courseBean.getCover());
         if (!TextUtils.isEmpty(courseBean.getCover())) {
             setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover), courseBean.getCover(), R.drawable
                     .demo_course_loading_icon);

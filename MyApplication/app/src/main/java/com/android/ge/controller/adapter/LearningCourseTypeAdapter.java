@@ -54,6 +54,9 @@ public class LearningCourseTypeAdapter extends MultiItemTypeAdapter<BaseLearning
         BaseLearningItem item = mDatas.get(position);
         if (item.isTitle()) {
             TitleItemInfo titleItemInfo = item.getTitleItemInfo();
+            if (titleItemInfo.getTotal_count() <= 4) {
+                return;
+            }
             Bundle bundle = new Bundle();
             bundle.putInt(CommonConstant.KEY_COURSE_TYPE,ClassifyCourseListActivity.COURSE_CLASSIFY);
             bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, titleItemInfo.getId());

@@ -62,6 +62,8 @@ public class TaskListFragment extends CommonBaseFragment {
 
     @Bind(R.id.rel_classify)
     RelativeLayout mRlPathClassify;
+    @Bind(R.id.tv_more)
+    TextView mTvMore;
 
     @Bind(R.id.tv_type_title)
     TextView mTvTypeTitle;
@@ -84,6 +86,7 @@ public class TaskListFragment extends CommonBaseFragment {
     @Override
     protected void initData() {
         EventBus.getDefault().register(this);
+
         TAB_FLAG = getArguments().getInt(CommonConstant.KEY_TAB_FALG);
         if (TAB_FLAG == TaskFragment.TAB_UNSTART) {
             mArgState = "ready";
@@ -105,13 +108,13 @@ public class TaskListFragment extends CommonBaseFragment {
         mRlPathClassify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mPaths.size() <= 3) {
+                    return;
+                }
                 Intent intent = new Intent();
                 intent.setClass(getMContext(), PathListActivity.class);
-
                 intent.putExtra(CommonConstant.KEY_PATH_BEAN_LIST, (Serializable) mPaths);
-
                 startActivity(intent);
-
             }
         });
     }
@@ -171,32 +174,16 @@ public class TaskListFragment extends CommonBaseFragment {
         if (mPaths.size() > 0) {
             mRlPathClassify.setVisibility(View.VISIBLE);
             mRvPath.setVisibility(View.VISIBLE);
+            if (mPaths.size() > 3) {
+                mTvMore.setVisibility(View.VISIBLE);
+            } else {
+                mTvMore.setVisibility(View.GONE);
+            }
         } else {
             mRlPathClassify.setVisibility(View.GONE);
             mRvPath.setVisibility(View.GONE);
             return;
         }
-        //if (mTaskListAdapter == null) {
-
-
-//        RecyclerViewHeader header = RecyclerViewHeader.fromXml(getMContext(), R.layout.view_rv_header);
-//        TextView tv_title = (TextView) header.findViewById(R.id.tv_type_title);
-//        tv_title.setText(Base.string(R.string.title_learning_path));
-//        RelativeLayout relClassify = (RelativeLayout) header.findViewById(R.id.rel_classify);
-//        relClassify.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setClass(getMContext(), PathListActivity.class);
-//
-//                intent.putExtra(CommonConstant.KEY_PATH_BEAN_LIST, (Serializable) mPaths);
-//
-//                startActivity(intent);
-//
-//            }
-//        });
-//        header.attachTo(mRvPath);
-
 
         if (mPathAdapter == null) {
             LinearLayoutManager manager = new LinearLayoutManager(getMContext());

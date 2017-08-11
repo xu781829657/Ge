@@ -7,5 +7,6 @@ import java.util.List;
  */
 
 public class LearningInfo {
-    public List<ClassifyCourseTypeInfo> courses;
+    public List<ClassifyCourseTypeInfo> courses;//课程分类列表
+    public List<GalleryBean> advertises;//banner
 }
