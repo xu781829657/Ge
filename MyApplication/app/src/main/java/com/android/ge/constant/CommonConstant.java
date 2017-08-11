@@ -44,6 +44,7 @@ public class CommonConstant {
     public static final String TASK_COURSE_TYPE_SURVEY = "questionnaire";
 
     //单个课程分类
+    public static final String PARAM_PAGE = "page";
     public static final String PARAM_TYPE = "type";
     public static final String PARAM_CAT_ID = "cat_id";
     public static final String PARAM_TAG_ID = "tag_id";

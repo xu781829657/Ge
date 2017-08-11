@@ -28,6 +28,7 @@ public class PreferencesUtils {
     public static final String KEY_PHONE = "key_phone";
     public static final String KEY_LAST_NAME = "key_last_name";
     public static final String KEY_FIRST_NAME = "key_first_name";
+    public static final String KEY_NAME = "key_first_name";
     public static final String KEY_AVATAR_URL = "key_avatar_url";
     public static final String KEY_ORGAN_ID = "key_organization_id";
     public static final String KEY_ORGAN_NAME = "key_organization_name";

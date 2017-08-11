@@ -15,6 +15,7 @@ import com.android.ge.model.path.PathListInfo;
 import com.android.ge.model.task.TaskDetailInfo;
 import com.android.ge.model.task.TaskListInfo;
 import com.android.ge.model.user.AvatarUploadInfo;
+import com.android.ge.model.user.UserInfo;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -98,6 +99,19 @@ public interface CourseApi {
     @POST("/api/account/modifyportrait")
     Observable<BaseResponse<AvatarUploadInfo>> uploadFile(@Part("portrait\"; filename=\"avatar.jpg") RequestBody file);
 
+    //个人资料
+    @GET("/api/account/edit")
+    Observable<BaseResponse<UserInfo>> getUserInfo(@QueryMap Map<String, String> map);
+
+    //修改个人资料
+    @FormUrlEncoded
+    @POST("/api/account/saveEdit")
+    Observable<BaseResponse<Object>> postEditUserInfo(@FieldMap Map<String, String> map);
+
+    //修改密码
+    @FormUrlEncoded
+    @POST("/api/account/modifypassword")
+    Observable<BaseResponse<Object>> postChangePassword(@FieldMap Map<String, String> map);
 
 //
 //    //修改个人资料

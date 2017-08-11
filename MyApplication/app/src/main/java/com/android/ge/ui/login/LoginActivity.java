@@ -142,32 +142,6 @@ public class LoginActivity extends CommonBaseActivity {
         mPassEdt.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
     }
-
-    //课程数观察器
-//    Observer<LoginResultInfo> mTokenObserver = new Observer<LoginResultInfo>() {
-//        @Override
-//        public void onCompleted() {
-//            dismissLoadingDialog();
-//        }
-//
-//        @Override
-//        public void onError(Throwable e) {
-//            LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
-//            e.printStackTrace();
-//            dismissLoadingDialog();
-//            Base.showToast(ExceptionEngine.handleException(e).message);
-//        }
-//
-//        @Override
-//        public void onNext(LoginResultInfo resultInfo) {
-//            if (resultInfo != null) {
-//                //保存token
-//                PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getData().getToken());
-//                getNetDataOrgans();
-//            }activity_change_personal_data.xml
-//
-//        }
-//    };
     Observer<TokenBean> mTokenObserver = new Observer<TokenBean>() {
         @Override
         public void onCompleted() {
@@ -189,7 +163,6 @@ public class LoginActivity extends CommonBaseActivity {
                 PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getAccess_token());
                 getNetDataOrgans();
             }
-
         }
     };
 

@@ -7,11 +7,20 @@
 
     <include layout="@layout/common_view_title_bar_course" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_course"
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:id="@+id/view_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/white" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_course"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white" />
+
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+
+
 
 </LinearLayout>

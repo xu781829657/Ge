@@ -20,6 +20,7 @@ import com.android.base.util.PhotoUtils;
 import com.android.ge.R;
 import com.android.ge.app.AppApplication;
 import com.android.ge.constant.AppConfig;
+import com.android.ge.controller.entry.AvatarEntry;
 import com.android.ge.model.base.BaseResponse;
 import com.android.ge.model.path.PathListInfo;
 import com.android.ge.model.user.AvatarUploadInfo;
@@ -353,7 +354,7 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
             if (bean != null) {
                 PreferencesUtils.saveUserDataItem(mContext, PreferencesUtils.KEY_AVATAR_URL, bean.image_url);
                 refreshAvatar();
-//                EventBus.getDefault().post(new AvatarChangeEventEntry());
+                EventBus.getDefault().post(new AvatarEntry());
             }
         }
     };

@@ -1,6 +1,7 @@
 package com.android.ge.ui.course;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -23,6 +24,11 @@ import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseActivity;
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.lcodecore.tkrefreshlayout.footer.LoadingView;
+import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
+import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,12 +53,16 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
     @Bind(R.id.rv_course)
     RecyclerView mRvCourse;
 
+    @Bind(R.id.view_refresh)
+    TwinklingRefreshLayout mViewRefresh;
+
     private List<CourseBean> mCourses = new ArrayList<>();
     private ClassifyCourseListAdapter mAdapter;
 
     private String mArgCourseTypeId;//课程类型id
     private String mTitle;
     private int mCourseFlag;
+    private int mParamPage = 0;
 
     public static final int COURSE_TAG = 0;
     public static final int COURSE_CLASSIFY = 1;
@@ -75,6 +85,8 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
 //        initFalseData();
 //        refreshAdapter();
         getBundleArgs();
+        setRefreshListener();
+        showLoadingDialog(null);
         getNetDataCourseClassifyInfo();
     }
 
@@ -90,22 +102,38 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
             mTvTitle.setText(mTitle);
         }
 
-
     }
 
-    private void refreshData(CourseClassifyInfo resultInfo) {
-        if (resultInfo.courses != null && resultInfo.courses.size() > 0) {
-            mCourses.addAll(resultInfo.courses);
-        }
-        refreshAdapter();
+    //
+    private void setRefreshListener() {
+//        ProgressLayout headerView = new ProgressLayout(this);
+//        mViewRefresh.setHeaderView(headerView);
+        SinaRefreshView headerView = new SinaRefreshView(this);
+        headerView.setArrowResource(R.drawable.arrow);
+        headerView.setTextColor(0xff745D5C);
+//        TextHeaderView headerView = (TextHeaderView) View.inflate(this,R.layout.header_tv,null);
+        mViewRefresh.setHeaderView(headerView);
 
+        LoadingView loadingView = new LoadingView(this);
+        mViewRefresh.setBottomView(loadingView);
+        mViewRefresh.setOnRefreshListener(new RefreshListenerAdapter() {
+            @Override
+            public void onRefresh(final TwinklingRefreshLayout refreshLayout) {
+                mParamPage = 1;
+                getNetDataCourseClassifyInfo();
+            }
+
+            @Override
+            public void onLoadMore(final TwinklingRefreshLayout refreshLayout) {
+                mParamPage++;
+                getNetDataCourseClassifyInfo();
+            }
+        });
     }
 
-    private void initFalseData() {
-        for (int i = 0; i < 10; i++) {
-            CourseBean bean = new CourseBean();
-            mCourses.add(bean);
-        }
+    private void finishRefreshState() {
+        mViewRefresh.finishRefreshing();
+        mViewRefresh.finishLoadmore();
     }
 
     private void refreshAdapter() {
@@ -120,8 +148,6 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
         } else {
             mAdapter.notifyDataSetChanged();
         }
-
-
     }
 
     //主页配置
@@ -129,6 +155,7 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
         @Override
         public void onCompleted() {
             dismissLoadingDialog();
+            finishRefreshState();
         }
 
         @Override
@@ -137,6 +164,10 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
             e.printStackTrace();
             Base.showToast(ExceptionEngine.handleException(e).message);
             dismissLoadingDialog();
+            if (mParamPage > 0) {
+                mParamPage--;
+            }
+            finishRefreshState();
         }
 
         @Override
@@ -145,9 +176,16 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
                 Base.showToast(R.string.errmsg_data_error);
                 return;
             }
-
-            refreshData(resultInfo);
-
+            if (resultInfo.courses.size() == 0) {
+                mViewRefresh.setEnableLoadmore(false);
+                return;
+            }
+            mViewRefresh.setEnableLoadmore(true);
+            if (mParamPage == 1) {
+                mCourses.clear();
+            }
+            mCourses.addAll(resultInfo.courses);
+            refreshAdapter();
         }
     };
 
@@ -157,7 +195,6 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
             Base.showToast(R.string.errmsg_network_unavailable);
             return;
         }
-        showLoadingDialog(null);
         Map<String, String> map = new HashMap<>();
         map.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
         if (COURSE_TAG == mCourseFlag) {
@@ -166,10 +203,8 @@ public class ClassifyCourseListActivity extends CommonBaseActivity {
         } else if (COURSE_CLASSIFY == mCourseFlag) {
             map.put(CommonConstant.PARAM_TYPE, "cat");
             map.put(CommonConstant.PARAM_CAT_ID, mArgCourseTypeId);
-
         }
-
-
+        map.put(CommonConstant.PARAM_PAGE, mParamPage + "");
 //        map.put(CommonConstant.PARAM_COURSE_TYPE_ID, mArgCourseTypeId);
 
         Network.getCourseApi("获取单个课程分类").getCourseClassify(map)

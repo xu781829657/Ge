@@ -18,6 +18,7 @@ import com.android.ge.R;
 import com.android.ge.controller.Store;
 import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
+import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseActivity;
 import com.android.ge.ui.login.LoginActivity;
 import com.android.ge.utils.PreferencesUtils;
@@ -41,7 +42,6 @@ public class ChangePasswordActivity extends CommonBaseActivity {
     TextInputEditText mEtNew;
     @Bind(R.id.tiedt_new_password_again)
     TextInputEditText mEtNewAgain;
-
 
     @Bind(R.id.check_show_new_pass)
     CheckBox mCheckNewPass;
@@ -154,7 +154,7 @@ public class ChangePasswordActivity extends CommonBaseActivity {
     }
 
     //结果
-    Observer<String> mResultObserver = new Observer<String>() {
+    Observer<Object> mResultObserver = new Observer<Object>() {
         @Override
         public void onCompleted() {
             dismissLoadingDialog();
@@ -169,7 +169,7 @@ public class ChangePasswordActivity extends CommonBaseActivity {
         }
 
         @Override
-        public void onNext(String bean) {
+        public void onNext(Object bean) {
             LogUtils.d(getClass(), "bean:" + bean);
             dismissLoadingDialog();
             Base.showToast(R.string.msg_change_password_success);
@@ -185,17 +185,19 @@ public class ChangePasswordActivity extends CommonBaseActivity {
             Base.showToast(Base.string(R.string.errmsg_network_unavailable));
             return;
         }
-        Map<String, String> map = new HashMap<>();
-        map.put("password", mEtNew.getText().toString());
-        map.put("password_confirmation", mEtNewAgain.getText().toString());
-
-
         showLoadingDialog(null);
+        Map<String, String> map = new HashMap<>();
+        map.put("oldpassword", mEtOld.getText().toString());
+        map.put("newpassword", mEtNew.getText().toString());
+        map.put("newpassword_confirm", mEtNewAgain.getText().toString());
 
-//        Network.getCourseApi().putChangePassword(map)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(mResultObserver);
+        Network.getCourseApi("个人中心-修改密码").postChangePassword(map)
+                .subscribeOn(Schedulers.io())
+                //拦截服务器返回的错误
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<Object>())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(mResultObserver);
     }
 
 }

@@ -56,7 +56,7 @@ public class CourseTypeAllAdapter extends BaseCommonAdapter<CourseTypeDetailInfo
                 Bundle bundle = new Bundle();
                 bundle.putString(CommonConstant.KEY_COURSE_TYPE_ID, info.getId());
                 bundle.putInt(CommonConstant.KEY_COURSE_TYPE, ClassifyCourseListActivity.COURSE_CLASSIFY);
-                bundle.putString(CommonConstant.KEY_TITLE, info.getTitle());
+                bundle.putString(CommonConstant.KEY_TITLE, info.getCat_name());
                 Intent intent = new Intent(mContext, ClassifyCourseListActivity.class);
                 intent.putExtras(bundle);
                 mContext.startActivity(intent);

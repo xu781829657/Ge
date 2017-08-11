@@ -9,7 +9,7 @@ android {
         targetSdkVersion 25
 
         versionCode 11
-        versionName "3.5.0.1"
+        versionName "3.5.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -71,6 +71,7 @@ dependencies {
     compile 'com.tencent.bugly:crashreport:latest.release'
 
     compile 'com.fynn.fluidlayout:fluidlayout:1.0'
+    compile 'com.lcodecorex:tkrefreshlayout:1.0.7'
     testCompile 'junit:junit:4.12'
     compile project(':AndroidBase')
 }

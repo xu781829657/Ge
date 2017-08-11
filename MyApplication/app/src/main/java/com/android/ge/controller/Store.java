@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.android.base.frame.Base;
 import com.android.ge.model.login.OrganResultInfo;
 import com.android.ge.model.organ.OrganBean;
+import com.android.ge.model.user.UserInfo;
 import com.android.ge.utils.PreferencesUtils;
 
 /**
@@ -21,11 +22,13 @@ public class Store {
             PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_ORGAN_LOGO, organBean.getLogo());
 //            //保存客户定制的splash图片
 //            if (!TextUtils.isEmpty(organBean.getOrganization().getSplash_image_url())) {
-//                PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_SPLASH_IMAGE_URL, organBean.getOrganization().getSplash_image_url());
+//                PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_SPLASH_IMAGE_URL, organBean
+// .getOrganization().getSplash_image_url());
 //            }
 //            //保存客户定制的banner图片
 //            if (!TextUtils.isEmpty(organBean.getOrganization().getBanner_url())) {
-//                PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_BANNER_IMAGE_URL, organBean.getOrganization().getBanner_url());
+//                PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_BANNER_IMAGE_URL, organBean
+// .getOrganization().getBanner_url());
 //            }
         }
     }
@@ -37,11 +40,13 @@ public class Store {
             PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_ORGAN_LOGO, organBean.getLogo());
 //            //保存客户定制的splash图片
 //            if (!TextUtils.isEmpty(organBean.getOrganization().getSplash_image_url())) {
-//                PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_SPLASH_IMAGE_URL, organBean.getOrganization().getSplash_image_url());
+//                PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_SPLASH_IMAGE_URL, organBean
+// .getOrganization().getSplash_image_url());
 //            }
 //            //保存客户定制的banner图片
 //            if (!TextUtils.isEmpty(organBean.getOrganization().getBanner_url())) {
-//                PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_BANNER_IMAGE_URL, organBean.getOrganization().getBanner_url());
+//                PreferencesUtils.saveUserDataItem(context, PreferencesUtils.KEY_BANNER_IMAGE_URL, organBean
+// .getOrganization().getBanner_url());
 //            }
         }
     }
@@ -67,7 +72,7 @@ public class Store {
         return 0;
     }
 
-    public static void saveToken(String token){
+    public static void saveToken(String token) {
         PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, token);
     }
 
@@ -77,4 +82,14 @@ public class Store {
         return token;
     }
 
+
+    public static void saveUserInfo(UserInfo info) {
+        if (info == null) {
+            return;
+        }
+        PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_NAME, info.getName());
+        PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_PHONE, info.getMobile());
+        PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_EMAIL, info.getEmail());
+
+    }
 }

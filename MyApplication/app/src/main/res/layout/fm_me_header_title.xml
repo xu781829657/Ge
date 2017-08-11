@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:orientation="vertical">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="vertical">
 
     <cn.carbs.android.avatarimageview.library.AvatarImageView
 
@@ -14,13 +14,15 @@
         android:layout_marginLeft="17dp"
         android:src="@drawable/icon_head"
         app:aiv_BoarderWidth="0dp"
-        app:aiv_ShowBoarder="false" />
+        app:aiv_ShowBoarder="false"/>
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
 
 
     <ImageView
@@ -31,6 +33,6 @@
         android:layout_centerVertical="true"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:src="@drawable/setting_icon" />
+        android:src="@drawable/setting_icon"/>
 
 </RelativeLayout>
