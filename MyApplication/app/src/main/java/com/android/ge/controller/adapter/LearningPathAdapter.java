@@ -36,8 +36,6 @@ public class LearningPathAdapter extends BaseCommonAdapter<PathBean> implements 
 
     @Override
     public void convert(ViewHolder holder, PathBean pathBean, int position) {
-        // holder.setText(R.id.tv_task_name, taskBean.)
-
 
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.getView(R.id.rel_cover).getLayoutParams();
         params.width = (int) (ScreenUtils.getScreenWidth(mContext) - 34 * ScreenUtils.getScreenDensity(mContext));
@@ -56,7 +54,7 @@ public class LearningPathAdapter extends BaseCommonAdapter<PathBean> implements 
         bundle.putString(CommonConstant.PARAM_PATH_ID,pathBean.getId());
         bundle.putString(CommonConstant.PARAM_ENTRY_TYPE,CommonConstant.TYPE_LEARNINGPATH);
         bundle.putString(CommonConstant.PARAM_ENTRY_ID,pathBean.getId());
-        gotoActivity(PathWebActivity.class, bundle);
+        gotoActivity(CourseWebActivity.class, bundle);
     }
 
     @Override

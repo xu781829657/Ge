@@ -58,5 +58,7 @@ public class CommonConstant {
     public static final String TYPE_MISSIONS = "missions";
     public static final String TYPE_LEARNINGPATH = "learningpath";
 
+    public static final String KEY_H5_TYPE = "h5_type";
+
     public static final String ROOT_CACHE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + "com.android.ge";
 }

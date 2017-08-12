@@ -10,6 +10,7 @@ import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
 import com.android.ge.model.task.TaskBean;
 import com.android.ge.ui.customview.TaskContentInfoView;
+import com.android.ge.ui.tabmain.TaskFragment;
 import com.android.ge.ui.task.TaskDetailActivity;
 import com.android.ge.utils.DateUtils;
 import com.android.ge.widgets.view.RoundProgressBar;
@@ -23,13 +24,21 @@ import java.util.List;
  */
 
 public class TaskListAdapter extends BaseCommonAdapter<TaskBean> implements MultiItemTypeAdapter.OnItemClickListener {
-    public TaskListAdapter(Context context, List<TaskBean> datas) {
+    private int mTabFlag = 0;//0待参加,1进行中的,2已完成
+
+    public TaskListAdapter(Context context, List<TaskBean> datas, int tab_flag) {
         super(context, R.layout.item_for_task_list, datas);
+        mTabFlag = tab_flag;
         setOnItemClickListener(this);
     }
 
     @Override
     public void convert(ViewHolder holder, TaskBean taskBean, int position) {
+        if (TaskFragment.TAB_UNSTART == mTabFlag) {
+            holder.setVisible(R.id.rd_progressbar, false);
+        } else {
+            holder.setVisible(R.id.rd_progressbar, true);
+        }
         ((RoundProgressBar) holder.getView(R.id.rd_progressbar)).setProgress(taskBean.getProgress());
         if (taskBean.getProgress() == 100) {
             holder.getView(R.id.tv_complete).setVisibility(View.VISIBLE);
@@ -37,7 +46,7 @@ public class TaskListAdapter extends BaseCommonAdapter<TaskBean> implements Mult
             holder.getView(R.id.tv_complete).setVisibility(View.GONE);
         }
         holder.setText(R.id.tv_task_name, taskBean.getTitle());
-       // holder.setText(R.id.tv_task_deadline_time, String.format(Base.string(R.string.format_deadline_time), DateUtils.getDateToStringCommon(taskBean.getDeadline_timestamp()*1000)));
+        // holder.setText(R.id.tv_task_deadline_time, String.format(Base.string(R.string.format_deadline_time), DateUtils.getDateToStringCommon(taskBean.getDeadline_timestamp()*1000)));
         holder.setText(R.id.tv_task_deadline_time, String.format(Base.string(R.string.format_deadline_time), taskBean.getEnd_at()));
         ((TaskContentInfoView) holder.getView(R.id.view_task_content_info)).setTaskBean(taskBean);
     }

@@ -100,23 +100,8 @@ public class TaskListFragment extends CommonBaseFragment {
         }
         mTvContent.setText(TAB_FLAG + "");
         mTvTypeTitle.setText(Base.string(R.string.title_learning_path));
-        setListener();
+        mTvMore.setVisibility(View.GONE);
 
-    }
-
-    private void setListener() {
-        mRlPathClassify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mPaths.size() <= 3) {
-                    return;
-                }
-                Intent intent = new Intent();
-                intent.setClass(getMContext(), PathListActivity.class);
-                intent.putExtra(CommonConstant.KEY_PATH_BEAN_LIST, (Serializable) mPaths);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -153,7 +138,7 @@ public class TaskListFragment extends CommonBaseFragment {
             mRvTask.setLayoutManager(manager);
             mRvTask.setHasFixedSize(true);
             mRvTask.setNestedScrollingEnabled(false);
-            mTaskListAdapter = new TaskListAdapter(getMContext(), mTasks);
+            mTaskListAdapter = new TaskListAdapter(getMContext(), mTasks, TAB_FLAG);
             mRvTask.setAdapter(mTaskListAdapter);
         } else {
             mTaskListAdapter.notifyDataSetChanged();
@@ -174,14 +159,9 @@ public class TaskListFragment extends CommonBaseFragment {
         if (mPaths.size() > 0) {
             mRlPathClassify.setVisibility(View.VISIBLE);
             mRvPath.setVisibility(View.VISIBLE);
-            if (mPaths.size() > 3) {
-                mTvMore.setVisibility(View.VISIBLE);
-            } else {
-                mTvMore.setVisibility(View.GONE);
-            }
         } else {
             mRlPathClassify.setVisibility(View.GONE);
-            mRvPath.setVisibility(View.GONE);
+            //mRvPath.setVisibility(View.GONE);
             return;
         }
 
