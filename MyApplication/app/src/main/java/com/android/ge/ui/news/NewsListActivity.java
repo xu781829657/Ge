@@ -19,6 +19,10 @@ import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseActivity;
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.lcodecore.tkrefreshlayout.footer.LoadingView;
+import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,9 +45,13 @@ public class NewsListActivity extends CommonBaseActivity {
     TextView mTvTitle;
     @Bind(R.id.rv_news)
     RecyclerView mRvNews;
+    @Bind(R.id.view_refresh)
+    TwinklingRefreshLayout mViewRefresh;
+
 
     private NewsListAdapter mAdapter;
     private ArrayList<NewsBean> mNews = new ArrayList<>();
+    private int mParamPage = 0;
 
     @Override
     protected int getContentViewId() {
@@ -60,7 +68,8 @@ public class NewsListActivity extends CommonBaseActivity {
                 finish();
             }
         });
-
+        setRefreshListener();
+        showLoadingDialog(null);
         getNetDataNewsList();
     }
 
@@ -78,11 +87,41 @@ public class NewsListActivity extends CommonBaseActivity {
         }
     }
 
+    private void setRefreshListener() {
+
+        SinaRefreshView headerView = new SinaRefreshView(this);
+        headerView.setArrowResource(R.drawable.arrow);
+        headerView.setTextColor(0xff745D5C);
+        mViewRefresh.setHeaderView(headerView);
+
+        LoadingView loadingView = new LoadingView(this);
+        mViewRefresh.setBottomView(loadingView);
+        mViewRefresh.setOnRefreshListener(new RefreshListenerAdapter() {
+            @Override
+            public void onRefresh(final TwinklingRefreshLayout refreshLayout) {
+                mParamPage = 1;
+                getNetDataNewsList();
+            }
+
+            @Override
+            public void onLoadMore(final TwinklingRefreshLayout refreshLayout) {
+                mParamPage++;
+                getNetDataNewsList();
+            }
+        });
+    }
+
+    private void finishRefreshState() {
+        mViewRefresh.finishRefreshing();
+        mViewRefresh.finishLoadmore();
+    }
+
     //主页配置
     Observer<NewsResultInfo> mNewsObserver = new Observer<NewsResultInfo>() {
         @Override
         public void onCompleted() {
             dismissLoadingDialog();
+            finishRefreshState();
         }
 
         @Override
@@ -91,6 +130,10 @@ public class NewsListActivity extends CommonBaseActivity {
             e.printStackTrace();
             Base.showToast(ExceptionEngine.handleException(e).message);
             dismissLoadingDialog();
+            if (mParamPage > 0) {
+                mParamPage--;
+            }
+            finishRefreshState();
         }
 
         @Override
@@ -99,11 +142,17 @@ public class NewsListActivity extends CommonBaseActivity {
                 Base.showToast(R.string.errmsg_data_error);
                 return;
             }
-            if (resultInfo.news != null && resultInfo.news.size() > 0) {
-                mNews.clear();
-                mNews.addAll(resultInfo.news);
-                refreshAdapter();
+
+            if (resultInfo.news.size() == 0) {
+                mViewRefresh.setEnableLoadmore(false);
+                return;
             }
+            mViewRefresh.setEnableLoadmore(true);
+            if (mParamPage == 1) {
+                mNews.clear();
+            }
+            mNews.addAll(resultInfo.news);
+            refreshAdapter();
 
         }
     };
@@ -112,11 +161,12 @@ public class NewsListActivity extends CommonBaseActivity {
     private void getNetDataNewsList() {
         if (!NetworkUtil.isAvailable(mContext)) {
             Base.showToast(R.string.errmsg_network_unavailable);
+            dismissLoadingDialog();
             return;
         }
-        showLoadingDialog(null);
         Map<String, String> map = new HashMap<>();
         map.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
+        map.put(CommonConstant.PARAM_PAGE, mParamPage + "");
 
         Network.getCourseApi("获取资讯列表").getNewslist(map)
                 .subscribeOn(Schedulers.io())

@@ -145,7 +145,7 @@
     <!-- 学习路径-->
     <string name="format_deadline_time">截止时间: %s</string>
     <string name="title_learning_path">学习路径</string>
-    <string name="format_total_progress">总进度:%s</string>
+    <string name="format_total_progress">学习进度:%s</string>
     <string name="format_progress">进度:%d</string>
     <string name="format_auth">讲师:%s</string>
 
