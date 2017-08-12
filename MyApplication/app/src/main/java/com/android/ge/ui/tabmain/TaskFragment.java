@@ -106,7 +106,7 @@ public class TaskFragment extends CommonBaseFragment {
 
     @Override
     public void onResume() {
-        getNetDataLearningPath();
+        //getNetDataLearningPath();
         super.onResume();
     }
 
@@ -156,50 +156,50 @@ public class TaskFragment extends CommonBaseFragment {
     }
 
 
-    //学习路径结果
-    Observer<PathListInfo> mPathObserver = new Observer<PathListInfo>() {
-        @Override
-        public void onCompleted() {
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
-            e.printStackTrace();
-            Base.showToast(ExceptionEngine.handleException(e,getActivity()).message);
-        }
-
-        @Override
-        public void onNext(PathListInfo resultInfo) {
-            if (resultInfo == null || resultInfo.learningpath == null) {
-                Base.showToast(R.string.errmsg_data_error);
-            }
-            //EventBus.getDefault().post(new PathEntry(resultInfo));
-
-            for (int i = 0; i < mTaskListFms.size(); i++) {
-                mTaskListFms.get(i).refreshPathData(new PathEntry(resultInfo));
-            }
-
-
-        }
-    };
-
-    //获取学习路径
-    private void getNetDataLearningPath() {
-        if (!NetworkUtil.isAvailable(getMContext())) {
-            Base.showToast(R.string.errmsg_network_unavailable);
-            return;
-        }
-
-        Map<String, String> map = new HashMap<>();
-        map.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
-
-        Network.getCourseApi("学习路径").getLearningPath(map)
-                .subscribeOn(Schedulers.io())
-                //拦截服务器返回的错误
-                .observeOn(AndroidSchedulers.mainThread())
-                .map(new ServerResponseFunc<PathListInfo>())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(mPathObserver);
-    }
+//    //学习路径结果
+//    Observer<PathListInfo> mPathObserver = new Observer<PathListInfo>() {
+//        @Override
+//        public void onCompleted() {
+//        }
+//
+//        @Override
+//        public void onError(Throwable e) {
+//            LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
+//            e.printStackTrace();
+//            Base.showToast(ExceptionEngine.handleException(e,getActivity()).message);
+//        }
+//
+//        @Override
+//        public void onNext(PathListInfo resultInfo) {
+//            if (resultInfo == null || resultInfo.learningpath == null) {
+//                Base.showToast(R.string.errmsg_data_error);
+//            }
+//            //EventBus.getDefault().post(new PathEntry(resultInfo));
+//
+//            for (int i = 0; i < mTaskListFms.size(); i++) {
+//                mTaskListFms.get(i).refreshPathData(new PathEntry(resultInfo));
+//            }
+//
+//
+//        }
+//    };
+//
+//    //获取学习路径
+//    private void getNetDataLearningPath() {
+//        if (!NetworkUtil.isAvailable(getMContext())) {
+//            Base.showToast(R.string.errmsg_network_unavailable);
+//            return;
+//        }
+//
+//        Map<String, String> map = new HashMap<>();
+//        map.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
+//
+//        Network.getCourseApi("学习路径").getLearningPath(map)
+//                .subscribeOn(Schedulers.io())
+//                //拦截服务器返回的错误
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .map(new ServerResponseFunc<PathListInfo>())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(mPathObserver);
+//    }
 }

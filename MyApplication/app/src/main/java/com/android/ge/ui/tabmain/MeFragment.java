@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.base.frame.Base;
@@ -20,6 +21,9 @@ import com.android.ge.network.Network;
 import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseFragment;
+import com.android.ge.ui.setting.AboutActivity;
+import com.android.ge.ui.setting.ChangePasswordActivity;
+import com.android.ge.ui.setting.ChangePersonalDataActivity;
 import com.android.ge.ui.setting.LearningSummaryActivity;
 import com.android.ge.ui.setting.PersonalCenterActivity;
 import com.android.ge.ui.setting.RankActivity;
@@ -58,6 +62,15 @@ public class MeFragment extends CommonBaseFragment {
     @Bind(R.id.lin_learn_summary)
     LinearLayout mLinlearnSummary;
 
+    @Bind(R.id.rel_change_password)
+    RelativeLayout mRelChangePass;
+
+    @Bind(R.id.rel_personal_info)
+    RelativeLayout mRelPersonalInfo;
+
+    @Bind(R.id.rel_about)
+    RelativeLayout mRelAbout;
+
     @Override
     public int getContentViewId() {
         return R.layout.fm_me;
@@ -66,6 +79,11 @@ public class MeFragment extends CommonBaseFragment {
     @Override
     protected void initData() {
         EventBus.getDefault().register(this);
+        setListener();
+        getNetDataUserInfo();
+    }
+
+    private void setListener() {
         mIvSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +102,27 @@ public class MeFragment extends CommonBaseFragment {
                 gotoActivity(LearningSummaryActivity.class, false);
             }
         });
-        getNetDataUserInfo();
+
+
+        mRelChangePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoActivity(ChangePasswordActivity.class, false);
+            }
+        });
+
+        mRelPersonalInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoActivity(ChangePersonalDataActivity.class, false);
+            }
+        });
+        mRelAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(AboutActivity.class, false);
+            }
+        });
     }
 
     @Override

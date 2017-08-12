@@ -71,6 +71,9 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
     @Bind(R.id.rel_version_update)
     RelativeLayout mRelVersionUpdate;
 
+    @Bind(R.id.rel_about)
+    RelativeLayout mRelAbout;
+
     @Bind(R.id.tv_name)
     TextView mTvName;
 
@@ -79,8 +82,7 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
 
     @Bind(R.id.tv_runmodel)
     TextView mTvRunmodel;
-    @Bind(R.id.rel_about)
-    RelativeLayout mRelAbout;
+
 
     @Bind(R.id.rel_runmodel)
     RelativeLayout mRlRunmodel;
@@ -160,12 +162,6 @@ public class PersonalCenterActivity extends CommonBaseActivity implements PhotoU
             public void onClick(View view) {
 
                 //getNetDataAppUpdate();
-            }
-        });
-        mRelAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
         mRelAbout.setOnClickListener(new View.OnClickListener() {

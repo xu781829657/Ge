@@ -85,7 +85,7 @@ public class TaskListFragment extends CommonBaseFragment {
 
     @Override
     protected void initData() {
-        EventBus.getDefault().register(this);
+       // EventBus.getDefault().register(this);
 
         TAB_FLAG = getArguments().getInt(CommonConstant.KEY_TAB_FALG);
         if (TAB_FLAG == TaskFragment.TAB_UNSTART) {
@@ -108,12 +108,13 @@ public class TaskListFragment extends CommonBaseFragment {
     public void onResume() {
         super.onResume();
         getNetDataTaskList();
+        getNetDataLearningPath();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+ //       EventBus.getDefault().unregister(this);
     }
 
 //    private void initFalseData() {
@@ -147,6 +148,9 @@ public class TaskListFragment extends CommonBaseFragment {
 
     private void refreshPathData(PathListInfo info) {
         LogUtils.d(getClass(), "refreshPathData info.data.size():" + info.learningpath.size());
+        if (info == null) {
+            return;
+        }
         if (info.learningpath.size() > 0) {
             mPaths.clear();
             mPaths.addAll(info.learningpath);
@@ -221,13 +225,57 @@ public class TaskListFragment extends CommonBaseFragment {
                 .subscribe(mTaskObserver);
     }
 
-    // 展示app更新
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void refreshPathData(PathEntry eventEntry) {
-        LogUtils.d(getClass(), "refreshPathData:");
-        if (eventEntry.pathListInfo != null) {
-            refreshPathData(eventEntry.pathListInfo);
+//    // 展示app更新
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void refreshPathData(PathEntry eventEntry) {
+//        LogUtils.d(getClass(), "refreshPathData:");
+//        if (eventEntry.pathListInfo != null) {
+//            refreshPathData(eventEntry.pathListInfo);
+//        }
+//    }
+
+    //学习路径结果
+    Observer<PathListInfo> mPathObserver = new Observer<PathListInfo>() {
+        @Override
+        public void onCompleted() {
         }
+
+        @Override
+        public void onError(Throwable e) {
+            LogUtils.d(getClass(), "observer course e.message:" + e.getMessage());
+            e.printStackTrace();
+            Base.showToast(ExceptionEngine.handleException(e, getActivity()).message);
+        }
+
+        @Override
+        public void onNext(PathListInfo resultInfo) {
+            if (resultInfo == null || resultInfo.learningpath == null) {
+                Base.showToast(R.string.errmsg_data_error);
+            }
+            //EventBus.getDefault().post(new PathEntry(resultInfo));
+
+            refreshPathData(resultInfo);
+
+        }
+    };
+
+    //获取学习路径
+    private void getNetDataLearningPath() {
+        if (!NetworkUtil.isAvailable(getMContext())) {
+            Base.showToast(R.string.errmsg_network_unavailable);
+            return;
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
+
+        Network.getCourseApi("学习路径").getLearningPath(map)
+                .subscribeOn(Schedulers.io())
+                //拦截服务器返回的错误
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ServerResponseFunc<PathListInfo>())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(mPathObserver);
     }
 
 }
