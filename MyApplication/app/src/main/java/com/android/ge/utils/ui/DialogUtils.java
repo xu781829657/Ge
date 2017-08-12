@@ -146,4 +146,12 @@ public class DialogUtils {
         alert.setItems(R.array.photo_select,listener).create();
         alert.show();
     }
+
+    public static void showWXShareSlectListDialog(Context context,DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        //alert.setTitle(Base.string(R.string.title_select_photo));
+        //设置普通文本格式的对话框，设置的是普通的Item；
+        alert.setItems(R.array.wx_share_select,listener).create();
+        alert.show();
+    }
 }

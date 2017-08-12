@@ -1,7 +1,10 @@
 package com.android.ge.ui.webview;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -14,20 +17,31 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import com.android.base.frame.Base;
 import com.android.base.util.LogUtils;
 import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
+import com.android.ge.constant.ThirdSDKConstant;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.web.AndroidBridge;
 import com.android.ge.network.NetWorkConstant;
 import com.android.ge.ui.base.CommonBaseActivity;
+import com.android.ge.ui.setting.PersonalCenterActivity;
 import com.android.ge.utils.DeviceUtil;
+import com.android.ge.utils.ui.DialogUtils;
 import com.loopj.android.http.RequestParams;
+import com.mob.MobSDK;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.wechat.friends.Wechat;
+import cn.sharesdk.wechat.moments.WechatMoments;
 
 /**
  * Created by xudengwang on 2016/6/24.
@@ -54,7 +68,7 @@ public class CourseWebActivity extends CommonBaseActivity {
 
     //module/index.html?org_id=xxx&course_id=xxxx&token=xxxx&entryId=xxxx&entryType=xxx
 //    private static final String URL_PRE = "http://static.31academy.cn/module/index.html?";
-    private static final String URL_PRE = NetWorkConstant.H5_URL+"/module/index.html?";
+    private static final String URL_PRE = NetWorkConstant.H5_URL + "/module/index.html?";
 
     //
     private static final String FORMAT_COURSE_PARAM = "?path_id={%1$s}&token={%1$s}";
@@ -63,15 +77,49 @@ public class CourseWebActivity extends CommonBaseActivity {
     private String mParamType;
     private String mParamTypeId;
 
-    /** 视频全屏参数 */
+    /**
+     * 视频全屏参数
+     */
     protected static final FrameLayout.LayoutParams COVER_SCREEN_PARAMS = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     private View customView;
     private FrameLayout fullscreenContainer;
     private WebChromeClient.CustomViewCallback customViewCallback;
 
+
+    private int SHARE_TYPE = 1;
+    private static final int SHARE_TYPE_WECHAT = 1;
+    private static final int SHARE_TYPE_WECHAT_MOMENTS = 2;
+
+    private Handler mHanlder = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            dismissLoadingDialog();
+            switch (msg.what) {
+                case 1:
+                    if (SHARE_TYPE == SHARE_TYPE_WECHAT) {
+                        Base.showToast("微信好友分享成功");
+                    } else {
+                        Base.showToast("微信朋友圈分享成功");
+                    }
+                    break;
+                case 2:
+                    if (SHARE_TYPE == SHARE_TYPE_WECHAT) {
+                        Base.showToast("微信好友分享失败" + (String) msg.obj);
+                    } else {
+                        Base.showToast("微信朋友圈分享失败" + (String) msg.obj);
+                    }
+                    break;
+                case 3:
+                    Base.showToast("分享操作取消!");
+                    break;
+            }
+        }
+    };
+
     @Override
     protected void initData() {
-        //LogUtils.d("new AndroidBridge().getNetWorkType():"+new AndroidBridge().getNetWorkType());
+        MobSDK.init(this, ThirdSDKConstant.MOB_APP_KEY, ThirdSDKConstant.MOB_APP_SECRET);
         if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
             mParamCourseId = bundle.getString(CommonConstant.PARAM_COURSE_ID);
@@ -85,7 +133,7 @@ public class CourseWebActivity extends CommonBaseActivity {
             params.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
             params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
-            params.put(CommonConstant.PARAM_LANGUAGE, DeviceUtil.localLanguageIsZh()? "zh ":"en");
+            params.put(CommonConstant.PARAM_LANGUAGE, DeviceUtil.localLanguageIsZh() ? "zh " : "en");
             LogUtils.d(getClass(), "111map.string:" + params.toString());
             StringBuilder builder = new StringBuilder();
             builder.append(URL_PRE);
@@ -153,7 +201,9 @@ public class CourseWebActivity extends CommonBaseActivity {
     }
 
 
-    /** 展示网页界面 **/
+    /**
+     * 展示网页界面
+     **/
 
     public void initWebView() {
         WebChromeClient wvcc = new WebChromeClient();
@@ -172,6 +222,8 @@ public class CourseWebActivity extends CommonBaseActivity {
                 LogUtils.d(getClass(), "protocol url:" + url);
                 if (url.contains("backapp")) {
                     finish();
+                } else if (url.contains("shareapp")) {
+                    showShareSelect();
                 } else {
                     view.loadUrl(url);
                 }
@@ -281,6 +333,74 @@ public class CourseWebActivity extends CommonBaseActivity {
             default:
                 return super.onKeyUp(keyCode, event);
         }
+    }
+
+
+
+    private void showShareSelect(){
+        DialogUtils.showWXShareSlectListDialog(mContext, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        share(Wechat.NAME);
+                        break;
+                    case 1:
+                        share(WechatMoments.NAME);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    }
+
+    //微信好友或朋友圈分享
+    private void share(final String name) {
+
+        showLoadingDialog(null);
+        if (Wechat.NAME.equalsIgnoreCase(name)) {
+            SHARE_TYPE = SHARE_TYPE_WECHAT;
+        } else {
+            SHARE_TYPE = SHARE_TYPE_WECHAT_MOMENTS;
+        }
+        Platform.ShareParams sp = new Platform.ShareParams();
+        sp.setShareType(Platform.SHARE_WEBPAGE);
+        sp.setTitle("title");
+        sp.setText("sub_title");
+//        sp.setUrl(mShareResultInfo.url);
+//        sp.setImageUrl(mShareResultInfo.img);
+        sp.setSite(Base.string(R.string.app_name));
+
+        Platform wechat = ShareSDK.getPlatform(name);
+        // 设置分享事件回调（注：回调放在不能保证在主线程调用，不可以在里面直接处理UI操作）
+        wechat.setPlatformActionListener(new PlatformActionListener() {
+            public void onError(Platform arg0, int arg1, Throwable arg2) {
+                //失败的回调，arg:平台对象，arg1:表示当前的动作，arg2:异常信息
+                LogUtils.d("onError------" + arg2.getMessage());
+                Message message = new Message();
+                message.what = 2;
+                message.obj = arg2.getMessage();
+                mHanlder.sendMessage(message);
+            }
+
+            public void onComplete(Platform arg0, int arg1, HashMap<String, Object> arg2) {
+                //分享成功的回调
+                LogUtils.d("onComplete------" + arg2.toString() + "openid:" + arg0.getDb().getUserId());
+                Message message = new Message();
+                message.what = 1;
+                mHanlder.sendMessage(message);
+            }
+
+            public void onCancel(Platform arg0, int arg1) {
+                //取消分享的回调
+                LogUtils.d("onCancel------");
+                Message message = new Message();
+                message.what = 3;
+                mHanlder.sendMessage(message);
+            }
+        });
+        wechat.share(sp);
     }
 
 

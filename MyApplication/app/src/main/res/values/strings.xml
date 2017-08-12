@@ -177,7 +177,7 @@
     <!-- 任务-->
     <string name="format_progress_complete">已完成%d</string>
     <string name="un_start">未开始</string>
-    
+
     <!--课程详情 -->
     <string name="tab_course_detail_intro">简介</string>
     <string name="tab_course_detail_learn_history">学习历史</string>
@@ -208,4 +208,14 @@
     <string name="hint_verification_code">请输入验证码</string>
 
     <string name="toast_success_edt_user_info">修改成功~</string>
+
+
+    <!-- 我的荣誉-->
+    <string name="medal_for_testing">测试达人勋章</string>
+    <string name="medal_for_learning">学习达人勋章</string>
+    <string name="format_badges_num">(已获得%d枚)</string>
+    <string name="format_medal_num">(已获得%d枚)</string>
+
+    <string name="format_rank">第%d名</string>
+    <string name="points_rule">积分规则</string>
 </resources>

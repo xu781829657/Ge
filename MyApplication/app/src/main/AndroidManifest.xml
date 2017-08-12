@@ -146,6 +146,22 @@
         <activity
             android:name=".ui.setting.ChangePersonalDataActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 填写您从Mob开发者后台中得到的Appkey和AppSecret -->
+        <meta-data
+            android:name="Mob-AppKey"
+            android:value="201cb9059ff5c" />
+        <meta-data
+            android:name="Mob-AppSecret"
+            android:value="19a4dc01abfb7cbdd6f4f90b1f51a0df" />
     </application>
 
 </manifest>

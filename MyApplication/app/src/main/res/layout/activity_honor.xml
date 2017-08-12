@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/md_white_1000"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/lin_test_medal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <View
+                    android:layout_width="108dp"
+                    android:layout_height="1px"
+                    android:background="#d8d8d8"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#333333"
+                    android:textSize="13sp"
+                    android:text="@string/medal_for_testing"/>
+                <View
+                    android:layout_width="108dp"
+                    android:layout_height="1px"
+                    android:background="#d8d8d8"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_test_medal_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="11sp"
+                android:textColor="#888888"/>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_test_medal"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/md_white_1000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_learn_medal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <View
+                        android:layout_width="108dp"
+                        android:layout_height="1px"
+                        android:background="#d8d8d8"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="#333333"
+                        android:textSize="13sp"
+                        android:text="@string/medal_for_learning"/>
+                    <View
+                        android:layout_width="108dp"
+                        android:layout_height="1px"
+                        android:background="#d8d8d8"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_learn_medal_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="11sp"
+                    android:textColor="#888888"/>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_learn_medal"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/md_white_1000"
+                    android:scrollbars="vertical" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>

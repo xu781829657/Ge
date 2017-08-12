@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DevInfor>
+    <Wechat
+        Id="4"
+        SortId="4"
+        AppId="wx6a5c1ec2c186f3c6"
+        AppSecret="e087cce171b2e3a86b9e894ed131aed6"
+		userName="gh_afb25ac019c9"
+		path="/page/API/pages/share/share"
+        BypassApproval="false"
+        Enable="true" />
+
+    <WechatMoments
+        Id="5"
+        SortId="5"
+		AppId="wx6a5c1ec2c186f3c6"
+		AppSecret="e087cce171b2e3a86b9e894ed131aed6"
+        BypassApproval="false"
+        Enable="true" />
+
+	<WechatFavorite
+        Id="6"
+        SortId="6"
+		AppId="wx6a5c1ec2c186f3c6"
+		AppSecret="e087cce171b2e3a86b9e894ed131aed6"
+        Enable="true" />
+
+</DevInfor>
