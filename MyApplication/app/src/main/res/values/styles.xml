@@ -47,6 +47,11 @@
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
     </style>
+
+    <style name="text_12_ff" parent="@style/singleLine">
+    <item name="android:textSize">12sp</item>
+    <item name="android:textColor">#ffffff</item>
+</style>
     <style name="text_13_33" parent="@style/singleLine">
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">#333333</item>

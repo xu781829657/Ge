@@ -110,4 +110,16 @@ public class PathBean implements Serializable {
     public void setProgress_total(String progress_total) {
         this.progress_total = progress_total;
     }
+
+    public int getCourses_total() {
+        return courses_total;
+    }
+
+    public int getExamination_total() {
+        return examination_total;
+    }
+
+    public int getQuestionnaire_total() {
+        return questionnaire_total;
+    }
 }

@@ -16,6 +16,7 @@ import com.android.ge.constant.CommonConstant;
 import com.android.ge.model.CourseBean;
 import com.android.ge.model.path.PathBean;
 import com.android.ge.model.task.TaskBean;
+import com.android.ge.ui.customview.PathContentInfoView;
 import com.android.ge.ui.webview.CourseWebActivity;
 import com.android.ge.ui.webview.PathWebActivity;
 import com.android.ge.widgets.view.RoundProgressBar;
@@ -28,7 +29,7 @@ import java.util.List;
  * Created by xudengwang on 17/4/8.
  */
 
-public class LearningPathAdapter extends BaseCommonAdapter<PathBean> implements MultiItemTypeAdapter.OnItemClickListener{
+public class LearningPathAdapter extends BaseCommonAdapter<PathBean> implements MultiItemTypeAdapter.OnItemClickListener {
     public LearningPathAdapter(Context context, List<PathBean> datas) {
         super(context, R.layout.item_for_learning_path, datas);
         setOnItemClickListener(this);
@@ -43,7 +44,11 @@ public class LearningPathAdapter extends BaseCommonAdapter<PathBean> implements 
         holder.getView(R.id.rel_cover).setLayoutParams(params);
 
         holder.setText(R.id.tv_path_title, pathBean.getTitle());
-        holder.setText(R.id.tv_path_progress,String.format(Base.string(R.string.format_progress),pathBean.getProgress())+"%");
+        holder.setText(R.id.tv_path_progress, String.format(Base.string(R.string.format_progress), pathBean.getProgress()) + "%");
+
+        holder.setText(R.id.tv_course_count, String.format(Base.string(R.string.format_course_course_count), pathBean.getCourses_total()));
+        holder.setText(R.id.tv_test_count, String.format(Base.string(R.string.format_course_quiz_count), pathBean.getExamination_total()));
+        holder.setText(R.id.tv_survey_count, String.format(Base.string(R.string.format_course_survey_count), pathBean.getQuestionnaire_total()));
         setImageFromInternet((ImageView) holder.getView(R.id.iv_path_cover), pathBean.getCover(), R.drawable.demo_course_loading_icon);
     }
 
@@ -51,9 +56,9 @@ public class LearningPathAdapter extends BaseCommonAdapter<PathBean> implements 
     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
         PathBean pathBean = mDatas.get(position);
         Bundle bundle = new Bundle();
-        bundle.putString(CommonConstant.PARAM_PATH_ID,pathBean.getId());
-        bundle.putString(CommonConstant.PARAM_ENTRY_TYPE,CommonConstant.TYPE_LEARNINGPATH);
-        bundle.putString(CommonConstant.PARAM_ENTRY_ID,pathBean.getId());
+        bundle.putString(CommonConstant.PARAM_PATH_ID, pathBean.getId());
+        bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_LEARNINGPATH);
+        bundle.putString(CommonConstant.PARAM_ENTRY_ID, pathBean.getId());
         gotoActivity(CourseWebActivity.class, bundle);
     }
 
