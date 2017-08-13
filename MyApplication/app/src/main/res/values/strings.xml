@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GE</string>
-    <string name="app_version">3.5.0.3</string>
+    <string name="app_version">3.5.0.4</string>
 
     <!-- 常用错误提示-->
     <string name="errmsg_network_unavailable">网络不可用</string>
@@ -211,6 +211,7 @@
 
 
     <!-- 我的荣誉-->
+    <string name="title_my_honor">我的荣誉</string>
     <string name="medal_for_testing">测试达人勋章</string>
     <string name="medal_for_learning">学习达人勋章</string>
     <string name="format_badges_num">(已获得%d枚)</string>
@@ -218,4 +219,5 @@
 
     <string name="format_rank">第%d名</string>
     <string name="points_rule">积分规则</string>
+
 </resources>
