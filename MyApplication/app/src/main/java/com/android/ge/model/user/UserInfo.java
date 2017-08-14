@@ -17,6 +17,7 @@ public class UserInfo {
     public String name;
     public String email;
     public String mobile;
+    public String image_url;
 
     public String getName() {
         if (TextUtils.isEmpty(name)) {
@@ -37,5 +38,12 @@ public class UserInfo {
             mobile = "";
         }
         return mobile;
+    }
+
+    public String getImage_ur() {
+        if (TextUtils.isEmpty(image_url)) {
+            image_url = "";
+        }
+        return image_url;
     }
 }

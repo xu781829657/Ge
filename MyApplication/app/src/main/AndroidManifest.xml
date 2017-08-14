@@ -146,7 +146,9 @@
         <activity
             android:name=".ui.setting.ChangePersonalDataActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-
+        <activity
+            android:name=".ui.setting.MyHonorActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

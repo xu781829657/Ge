@@ -90,6 +90,7 @@ public class Store {
         PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_NAME, info.getName());
         PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_PHONE, info.getMobile());
         PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_EMAIL, info.getEmail());
+        PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_AVATAR_URL, info.getImage_ur());
 
     }
 }

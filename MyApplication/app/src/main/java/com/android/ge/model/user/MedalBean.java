@@ -12,7 +12,7 @@ package com.android.ge.model.user;
 
 public class MedalBean {
     public String name;
-    public String count;
+    public int count;
     public String image_url;
-
+    public String descrip;
 }

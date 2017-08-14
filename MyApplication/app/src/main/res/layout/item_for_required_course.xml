@@ -73,8 +73,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="100dp"
-            android:text="作者:许教师"
+            android:layout_marginLeft="80dp"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:textColor="#999999"
             android:textSize="11sp"
             android:visibility="visible" />

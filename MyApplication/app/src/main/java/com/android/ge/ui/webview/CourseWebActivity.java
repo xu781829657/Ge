@@ -2,8 +2,10 @@ package com.android.ge.ui.webview;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -78,7 +82,8 @@ public class CourseWebActivity extends CommonBaseActivity {
     /**
      * 视频全屏参数
      */
-    protected static final FrameLayout.LayoutParams COVER_SCREEN_PARAMS = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+    protected static final FrameLayout.LayoutParams COVER_SCREEN_PARAMS = new FrameLayout.LayoutParams(ViewGroup
+            .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     private View customView;
     private FrameLayout fullscreenContainer;
     private WebChromeClient.CustomViewCallback customViewCallback;
@@ -143,7 +148,7 @@ public class CourseWebActivity extends CommonBaseActivity {
             params.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
             params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
-            params.put(CommonConstant.PARAM_LANGUAGE, DeviceUtil.localLanguageIsZh() ? "zh " : "en");
+            params.put(CommonConstant.PARAM_LANGUAGE, DeviceUtil.localLanguageIsZh() ? "zh" : "en");
             LogUtils.d(getClass(), "111map.string:" + params.toString());
             StringBuilder builder = new StringBuilder();
             if (0 == mH5Type) {
@@ -203,6 +208,7 @@ public class CourseWebActivity extends CommonBaseActivity {
         webSettings.setSupportZoom(true); // 支持缩放
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT); // 加载缓存内容
+        webSettings.setAppCacheEnabled(true);
         //mWebView.addJavascriptInterface(new AndroidBridge(), "android");
         mWebView.setWebChromeClient(wvcc);
         WebViewClient wvc = new WebViewClient() {
@@ -221,7 +227,8 @@ public class CourseWebActivity extends CommonBaseActivity {
                         String share_sub_title = uri.getQueryParameter("share_sub_title");
                         // String share_image_url = uri.getQueryParameter("share_image_url");
                         mShareInfo.share_url = COURSE_SHARE_URL.replace("{id}", course_id + "");
-                        LogUtils.d("shareapp:---course_id:" + course_id + " share_title:" + share_title + ",share_sub_title:" + share_sub_title + ",share_url:" + mShareInfo.share_url);
+                        LogUtils.d("shareapp:---course_id:" + course_id + " share_title:" + share_title + "," +
+                                "share_sub_title:" + share_sub_title + ",share_url:" + mShareInfo.share_url);
                         mShareInfo.course_id = course_id;
                         //mShareInfo.share_image_url = share_image_url;
                         mShareInfo.share_sub_title = URLDecoder.decode(share_sub_title, "utf-8");
@@ -238,6 +245,26 @@ public class CourseWebActivity extends CommonBaseActivity {
                 }
                 return true;
             }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+            }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                dismissLoadingDialog();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    return;
+                }
+                Base.showToast("error.code:" + error.getErrorCode() + ",error.descrip:" + error.getDescription());
+            }
         };
         mWebView.setWebViewClient(wvc);
 
@@ -248,7 +275,8 @@ public class CourseWebActivity extends CommonBaseActivity {
             @Override
             public View getVideoLoadingProgressView() {
                 FrameLayout frameLayout = new FrameLayout(CourseWebActivity.this);
-                frameLayout.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+                frameLayout.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT));
                 return frameLayout;
             }
 

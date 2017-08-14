@@ -15,6 +15,13 @@
         app:aiv_BoarderWidth="0dp"
         app:aiv_ShowBoarder="true"
         app:aiv_TextSizeRatio="1" />
+    <!--<ImageView-->
+        <!--android:id="@+id/aiv_learn_medal_photo"-->
+        <!--android:layout_height="55dp"-->
+        <!--android:layout_width="55dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="23dp"-->
+        <!--android:src="@drawable/achievement_default_icon"/>-->
     <TextView
         android:id="@+id/tv_learn_medal_num"
         android:layout_width="wrap_content"

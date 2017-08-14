@@ -25,6 +25,7 @@ import com.android.ge.ui.setting.AboutActivity;
 import com.android.ge.ui.setting.ChangePasswordActivity;
 import com.android.ge.ui.setting.ChangePersonalDataActivity;
 import com.android.ge.ui.setting.LearningSummaryActivity;
+import com.android.ge.ui.setting.MyHonorActivity;
 import com.android.ge.ui.setting.PersonalCenterActivity;
 import com.android.ge.ui.setting.RankActivity;
 import com.android.ge.utils.PreferencesUtils;
@@ -62,6 +63,8 @@ public class MeFragment extends CommonBaseFragment {
     @Bind(R.id.lin_learn_summary)
     LinearLayout mLinlearnSummary;
 
+    @Bind(R.id.lin_my_honor)
+    LinearLayout mLinMyHonor;
     @Bind(R.id.rel_change_password)
     RelativeLayout mRelChangePass;
 
@@ -100,6 +103,12 @@ public class MeFragment extends CommonBaseFragment {
             @Override
             public void onClick(View v) {
                 gotoActivity(LearningSummaryActivity.class, false);
+            }
+        });
+        mLinMyHonor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(MyHonorActivity.class,false);
             }
         });
 

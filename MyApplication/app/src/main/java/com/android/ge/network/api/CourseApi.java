@@ -16,6 +16,7 @@ import com.android.ge.model.task.TaskDetailInfo;
 import com.android.ge.model.task.TaskListInfo;
 import com.android.ge.model.user.AvatarUploadInfo;
 import com.android.ge.model.user.HonorResultInfo;
+import com.android.ge.model.user.SummaryInfo;
 import com.android.ge.model.user.UserInfo;
 
 import java.util.ArrayList;
@@ -131,9 +132,12 @@ public interface CourseApi {
     Observable<BaseResponse<Object>> postSetNewPassword(@FieldMap Map<String, String> map);
 
     //我的荣誉
-    @GET("api/personal/honor")
+    @GET("/api/personal/honor")
     Observable<BaseResponse<HonorResultInfo>> getMyHonor(@QueryMap Map<String, String> map);
 
+    //学些小结
+    @GET("/api/personal/stat")
+    Observable<BaseResponse<SummaryInfo>> getMySummary(@QueryMap Map<String, String> map);
 
 //
 //    //获取课程比拼列表

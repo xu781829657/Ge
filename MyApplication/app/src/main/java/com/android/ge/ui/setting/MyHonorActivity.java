@@ -80,7 +80,7 @@ public class MyHonorActivity extends CommonBaseActivity {
                 finish();
             }
         });
-
+        getNetDataMyHonor();
     }
 
 
@@ -107,7 +107,7 @@ public class MyHonorActivity extends CommonBaseActivity {
         refreshMedalAdapterData();
     }
 
-    //提交重置密码的put请求
+    //我的荣誉
     private void getNetDataMyHonor() {
         if (!NetworkUtil.isAvailable(mContext)) {
             Base.showToast(R.string.errmsg_network_unavailable);
@@ -138,18 +138,22 @@ public class MyHonorActivity extends CommonBaseActivity {
                     @Override
                     public void onNext(HonorResultInfo info) {
                         if (info == null) {
-                            if (info.medals != null && info.medals.size() > 0) {
-                                mTestMedalList.clear();
-                                mTestMedalList.addAll(info.medals);
-                            }
-                            if (info.rewards != null && info.rewards.size() > 0) {
-                                mLearnMedalList.clear();
-                                mLearnMedalList.addAll(info.rewards);
-                            }
-
-                            refreshMedalAdapterData();
-
+                            Base.showToast(R.string.errmsg_data_error);
+                            return;
                         }
+                        if (info.medals != null && info.medals.size() > 0) {
+                            LogUtils.d(" info.medals:" + info.medals.size());
+                            mTestMedalList.clear();
+                            mTestMedalList.addAll(info.medals);
+                            refreshTestMedalCount();
+                        }
+                        if (info.rewards != null && info.rewards.size() > 0) {
+                            LogUtils.d(" info.rewards:" + info.rewards.size());
+                            mLearnMedalList.clear();
+                            mLearnMedalList.addAll(info.rewards);
+                            refreshLearnMedalCount();
+                        }
+                        refreshView();
                     }
                 });
 
@@ -158,9 +162,15 @@ public class MyHonorActivity extends CommonBaseActivity {
 
     private void refreshTestMedalCount() {
         mTestMedalNum = 0;
-        for (int i= 0; i < mTestMedalList.size(); i++){
-
+        for (int i = 0; i < mTestMedalList.size(); i++) {
+            mTestMedalNum += mTestMedalList.get(i).count;
         }
+    }
 
+    private void refreshLearnMedalCount() {
+        mLearnMedalNum = 0;
+        for (int i = 0; i < mLearnMedalList.size(); i++) {
+            mLearnMedalNum += mLearnMedalList.get(i).count;
+        }
     }
 }

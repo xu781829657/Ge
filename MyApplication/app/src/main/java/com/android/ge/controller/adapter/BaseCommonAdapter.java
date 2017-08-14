@@ -46,6 +46,12 @@ public abstract class BaseCommonAdapter<T> extends CommonAdapter<T> {
         ImageLoader.getProvider().loadImage(imageRequest);
     }
 
+    public void setImageFromInternet(ViewHolder holder,int viewId, String url, int defaultDrawableId) {
+        ImageView iv = holder.getView(viewId);
+        ImageRequest imageRequest = new ImageRequest.Builder().imgView(iv).placeHolder(defaultDrawableId).url(url).create();
+        ImageLoader.getProvider().loadImage(imageRequest);
+    }
+
     public void gotoActivity(Class<? extends Activity> clazz, Bundle bundle) {
         Intent intent = new Intent(mContext, clazz);
         if (bundle != null) intent.putExtras(bundle);

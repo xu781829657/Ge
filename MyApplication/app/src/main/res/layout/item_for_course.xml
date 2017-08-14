@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="总进度:0%"
+            android:text=""
             android:textColor="#45C88A"
             android:textSize="11sp"
             android:visibility="visible" />
@@ -72,9 +72,11 @@
             android:id="@+id/tv_course_auth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="80dp"
             android:layout_alignParentRight="true"
-            android:text="作者:许教师"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text=""
             android:textColor="#999999"
             android:textSize="11sp"
             android:visibility="visible" />
