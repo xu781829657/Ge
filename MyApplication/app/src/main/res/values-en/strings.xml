@@ -186,34 +186,53 @@
     <string name="title_news_list">News</string>
 
 
-    <!--忘记密码 -->
-    <string name="format_resend_verify">重新发送(%d)</string>
-    <!--Reset Password-->
-    <string name="resetPassword">找回密码</string>
-    <string name="enterusername">请输入用户名</string>
-    <string name="code">验证码</string>
-    <string name="get_code">获取验证码</string>
-    <string name="re_code">重发验证码</string>
-    <string name="confirm">确认</string>
-    <string name="verification_code_has_been_sent">验证码已发送</string>
-    <string name="failed_to_get_verification_code">获取验证码失败</string>
-    <string name="setnewpasssword">设置新密码</string>
-    <string name="re_enter_password">请再次输入密码</string>
-    <string name="enter_password">请输入密码(6-20数字和字符)</string>
 
-    <string name="tost_user_true">如果输入的用户名存在，验证码会发出</string>
-    <string name="obtain_verify">获取验证码</string>
+       
+    <string name="format_resend_verify">Resend (%d)</string>
+       <!--Reset Password-->
+       
+    <string name="resetPassword">Reset Password</string>
+       
+    <string name="enterusername">Enter Username</string>
+       
+    <string name="code">Verification Code</string>
+       
+    <string name="get_code">Request Code</string>
+       
+    <string name="re_code">Resend Code</string>
+       
+    <string name="confirm"> Confirm </string>
+       
+    <string name="verification_code_has_been_sent"> Verification code has been sent</string>
+       
+    <string name="failed_to_get_verification_code"> Failed to get verification code </string>
+       
+    <string name="setnewpasssword">Set New Password</string>
+       
+    <string name="re_enter_password"> Re-Enter Password </string>
+    <string name="enter_password"> Password requires 6-20characters or numbers </string>
+       
+    <string name="tost_user_true"> Verification code is issued when there is a username </string>
+       
+    <string name="obtain_verify"> Request Code </string>
+       
+    <string name="hint_verification_code"> Enter Verification Code </string>
+       
+    <string name="toast_success_edt_user_info"> Successful ~</string>
 
-    <string name="hint_verification_code">请输入验证码</string>
-    <string name="toast_success_edt_user_info">修改成功~</string>
-
-    <!-- 我的荣誉-->
-    <string name="title_my_honor">我的荣誉</string>
-    <string name="medal_for_testing">测试达人勋章</string>
-    <string name="medal_for_learning">学习达人勋章</string>
-    <string name="format_badges_num">(已获得%d枚)</string>
-    <string name="format_medal_num">(已获得%d枚)</string>
-
-    <string name="format_rank">第%d名</string>
-    <string name="points_rule">积分规则</string>
+    <!-- Achievement -->
+       
+    <string name="title_my_honor"> Achievement </string>
+       
+    <string name="medal_for_testing"> Medal for testing </string>
+       
+    <string name="medal_for_learning"> Medal for learning </string>
+       
+    <string name="format_badges_num">(Achieved %d)</string>
+       
+    <string name="format_medal_num">(Achieved %d)</string>
+       
+    <string name="format_rank">Rank %d </string>
+       
+    <string name="points_rule"> Integration Rule </string>
 </resources>
