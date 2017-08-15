@@ -92,7 +92,7 @@ public class TaskDetailActivity extends CommonBaseActivity {
             LinearLayoutManager manager = new LinearLayoutManager(mContext);
             mRvTaskDetail.setLayoutManager(manager);
             mRvTaskDetail.setHasFixedSize(true);
-            mAdapter = new TaskDetailAdapter(mContext, mTaskDetails);
+            mAdapter = new TaskDetailAdapter(mContext, mTaskDetails,mTaskBean);
             mRvTaskDetail.setAdapter(mAdapter);
         } else {
             mAdapter.notifyDataSetChanged();

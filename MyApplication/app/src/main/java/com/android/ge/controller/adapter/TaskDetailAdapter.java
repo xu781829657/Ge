@@ -33,8 +33,12 @@ import java.util.List;
 
 public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> implements
         MultiItemTypeAdapter.OnItemClickListener {
-    public TaskDetailAdapter(Context context, List<TaskDetailBean> datas) {
+
+    private TaskBean mTaskBean;
+
+    public TaskDetailAdapter(Context context, List<TaskDetailBean> datas, TaskBean taskBean) {
         super(context, R.layout.item_for_task_detail, datas);
+        mTaskBean = taskBean;
         setOnItemClickListener(this);
     }
 
@@ -115,14 +119,14 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
             Bundle bundle = new Bundle();
             bundle.putString(CommonConstant.PARAM_COURSE_ID, taskDetailBean.courses.getId() + "");
             bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
-            bundle.putString(CommonConstant.PARAM_ENTRY_ID, taskDetailBean.getId() + "");
+            bundle.putString(CommonConstant.PARAM_ENTRY_ID, mTaskBean.getId() + "");
             gotoActivity(CourseWebActivity.class, bundle);
         } else if (CommonConstant.TASK_COURSE_TYPE_QUIZ.equalsIgnoreCase(taskDetailBean.getDetail_type()) &&
                 taskDetailBean.examinations != null) {
             Bundle bundle = new Bundle();
             bundle.putString(CommonConstant.PARAM_EXAM_ID, taskDetailBean.examinations.getId() + "");
             bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
-            bundle.putString(CommonConstant.PARAM_ENTRY_ID, taskDetailBean.getId() + "");
+            bundle.putString(CommonConstant.PARAM_ENTRY_ID, mTaskBean.getId() + "");
             if (taskDetailBean.getProgress() == 100) {
                 bundle.putString(CommonConstant.PARAM_ISFINISH, "1");
             } else {
@@ -134,7 +138,7 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
             Bundle bundle = new Bundle();
             bundle.putString(CommonConstant.PARAM_QUESTION_ID, taskDetailBean.questionnaire.getId() + "");
             bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
-            bundle.putString(CommonConstant.PARAM_ENTRY_ID, taskDetailBean.getId() + "");
+            bundle.putString(CommonConstant.PARAM_ENTRY_ID, mTaskBean.getId() + "");
             if (taskDetailBean.getProgress() == 100) {
                 bundle.putString(CommonConstant.PARAM_ISFINISH, "1");
             } else {
@@ -149,4 +153,6 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
     public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
         return false;
     }
+
+
 }
