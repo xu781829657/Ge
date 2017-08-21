@@ -36,7 +36,7 @@ public class CustomSplashActivity extends CommonBaseActivity {
 
     @Override
     protected void initData() {
-        EventBus.getDefault().register(this);
+        //EventBus.getDefault().register(this);
         mContext = this;
         String splash_url = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_SPLASH_IMAGE_URL);
         LogUtils.d(getClass(), "splash_url:" + splash_url);
@@ -44,11 +44,18 @@ public class CustomSplashActivity extends CommonBaseActivity {
 //        if (mContext.getResources().getConfiguration().locale.getCountry().equals("CN")) {
 //            defaultDrawableResId = R.drawable.start_china_bj;
 //        }
-        if (!TextUtils.isEmpty(splash_url)) {
-            Glide.with(Base.getContext()).load(splash_url).error(defaultDrawableResId).into(mIvCustom);
-        } else {
-            mIvCustom.setImageResource(defaultDrawableResId);
+        try {
+            if (!TextUtils.isEmpty(splash_url)) {
+                Glide.with(Base.getContext()).load(splash_url).error(defaultDrawableResId).into(mIvCustom);
+            } else {
+                mIvCustom.setImageResource(defaultDrawableResId);
+            }
+        } catch (Exception e){
+
+        } catch (OutOfMemoryError om){
+
         }
+
         mBtnBiting.setText(R.string.splash_enter);
         mBtnBiting.setVisibility(View.VISIBLE);
 
@@ -84,14 +91,14 @@ public class CustomSplashActivity extends CommonBaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+       // EventBus.getDefault().unregister(this);
     }
-
-    // 展示app更新
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void showAppUpdate(UpdateEventEntry eventEntry) {
-        UpdateManager manager = new UpdateManager(mContext);
-        manager.showUpdateInfo(mContext, eventEntry.info);
-    }
+//
+//    // 展示app更新
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void showAppUpdate(UpdateEventEntry eventEntry) {
+//        UpdateManager manager = new UpdateManager(mContext);
+//        manager.showUpdateInfo(mContext, eventEntry.info);
+//    }
 
 }

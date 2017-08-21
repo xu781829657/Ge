@@ -26,6 +26,7 @@ import com.android.ge.network.error.ExceptionEngine;
 import com.android.ge.network.response.HttpResponseFunc;
 import com.android.ge.network.response.ServerResponseFunc;
 import com.android.ge.ui.base.CommonBaseActivity;
+import com.android.ge.ui.setting.FindPasswordVerifyActivity;
 import com.android.ge.ui.tabmain.MaintabActivity;
 import com.android.ge.utils.PreferencesUtils;
 
@@ -70,7 +71,7 @@ public class LoginActivity extends CommonBaseActivity {
         mForgetTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                gotoActivity(FindPasswordVerifyActivity.class, false);
+                gotoActivity(FindPasswordVerifyActivity.class, false);
             }
         });
 

@@ -14,19 +14,19 @@ import com.bumptech.glide.Glide;
 import butterknife.Bind;
 
 public class SplashActivity extends CommonBaseActivity {
-    private final int SPLASH_DISPLAY_LENGHT = 2000;
-    @Bind(R.id.iv_splash)
-    ImageView mIvSplash;
-
-    @Bind(R.id.iv_custom_splash)
-    ImageView mIvCustomSplash;
-    @Bind(R.id.iv_custom_banner)
-    ImageView mIvCustomBanner;
+    private final int SPLASH_DISPLAY_LENGTH = 2000;
+//    @Bind(R.id.iv_splash)
+//    ImageView mIvSplash;
+//
+//    @Bind(R.id.iv_custom_splash)
+//    ImageView mIvCustomSplash;
+//    @Bind(R.id.iv_custom_banner)
+//    ImageView mIvCustomBanner;
 
     @Override
     protected void initData() {
-        getCustomSplashImg();
-        getBannerImg();
+//        getCustomSplashImg();
+//        getBannerImg();
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
@@ -34,7 +34,7 @@ public class SplashActivity extends CommonBaseActivity {
                 gotoActivity(CustomSplashActivity.class, true);
             }
 
-        }, SPLASH_DISPLAY_LENGHT);
+        }, SPLASH_DISPLAY_LENGTH);
     }
 
     @Override
@@ -102,23 +102,23 @@ public class SplashActivity extends CommonBaseActivity {
 //                .subscribe(mUpdateObserver);
 //    }
 
-
-    //加载启动页
-    private void getCustomSplashImg() {
-        String splash_url = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_SPLASH_IMAGE_URL);
-        LogUtils.d(getClass(), "splash_url:" + splash_url);
-        if (!TextUtils.isEmpty(splash_url)) {
-            Glide.with(Base.getContext()).load(splash_url).into(mIvCustomSplash);
-        }
-    }
-
-    //加载banner图片
-    private void getBannerImg() {
-        String banner_url = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_BANNER_IMAGE_URL);
-        LogUtils.d(getClass(), "banner_url:" + banner_url);
-        if (!TextUtils.isEmpty(banner_url)) {
-            Glide.with(Base.getContext()).load(banner_url).into(mIvCustomBanner);
-        }
-    }
+//
+//    //加载启动页
+//    private void getCustomSplashImg() {
+//        String splash_url = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_SPLASH_IMAGE_URL);
+//        LogUtils.d(getClass(), "splash_url:" + splash_url);
+//        if (!TextUtils.isEmpty(splash_url)) {
+//            Glide.with(Base.getContext()).load(splash_url).into(mIvCustomSplash);
+//        }
+//    }
+//
+//    //加载banner图片
+//    private void getBannerImg() {
+//        String banner_url = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_BANNER_IMAGE_URL);
+//        LogUtils.d(getClass(), "banner_url:" + banner_url);
+//        if (!TextUtils.isEmpty(banner_url)) {
+//            Glide.with(Base.getContext()).load(banner_url).into(mIvCustomBanner);
+//        }
+//    }
 
 }
