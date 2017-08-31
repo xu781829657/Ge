@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="10dp"
-    android:paddingBottom="5dp">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:paddingBottom="5dp"
+              android:paddingTop="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="center"
-        android:background="@drawable/demo_course_loading_icon"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/demo_course_loading_icon"/>
 
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingBottom="26dp"
-        android:paddingTop="26dp">
-
-        <TextView
-            android:id="@+id/tv_cat_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_cover"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="热门课程"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-
-        <TextView
-            android:id="@+id/tv_check_all"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shape_roud_rectangel_bg_btn_check_all_course"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="查看全部"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:paddingBottom="26dp"
+            android:paddingTop="26dp">
+
+            <TextView
+                android:id="@+id/tv_cat_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热门课程"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+
+
+            <TextView
+                android:id="@+id/tv_check_all"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_roud_rectangel_bg_btn_check_all_course"
+                android:gravity="center"
+                android:text="查看全部"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
 
     <!--<com.android.ge.ui.customview.WordWrapView-->
-        <!--android:id="@+id/view_word_warp"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="10dp"></com.android.ge.ui.customview.WordWrapView>-->
+    <!--android:id="@+id/view_word_warp"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="10dp"></com.android.ge.ui.customview.WordWrapView>-->
 
     <com.android.ge.widgets.view.FluidLayout
         android:id="@+id/view_fluid_layout"

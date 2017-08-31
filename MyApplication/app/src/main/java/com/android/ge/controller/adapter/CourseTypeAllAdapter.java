@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -62,6 +63,8 @@ public class CourseTypeAllAdapter extends BaseCommonAdapter<CourseTypeDetailInfo
                 mContext.startActivity(intent);
             }
         });
+
+        setImageFromInternet((ImageView) holder.getView(R.id.iv_cover), info.getCover(), R.drawable.demo_course_loading_icon);
 
         FluidLayout viewFluidLayout = holder.getView(R.id.view_fluid_layout);
 
