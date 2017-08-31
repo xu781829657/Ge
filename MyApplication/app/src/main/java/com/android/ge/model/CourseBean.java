@@ -52,6 +52,7 @@ public class CourseBean implements Serializable {
     private String progress_current;
     private String progress_total;
     private int progress;
+    private String cx;
 
     public int getProgress() {
         return NumberUtil.getProgress(getProgress_current(), getProgress_total());
@@ -151,5 +152,13 @@ public class CourseBean implements Serializable {
 
     public void setProgress(int progress) {
         this.progress = progress;
+    }
+
+    public String getCx() {
+        return cx;
+    }
+
+    public void setCx(String cx) {
+        this.cx = cx;
     }
 }

@@ -47,6 +47,7 @@ public class ClassifyCourseListAdapter extends BaseCommonAdapter<CourseBean> imp
         bundle.putString(CommonConstant.PARAM_COURSE_ID,courseBean.getId());
         bundle.putString(CommonConstant.PARAM_ENTRY_TYPE,CommonConstant.TYPE_COURSES);
         bundle.putString(CommonConstant.PARAM_ENTRY_ID,courseBean.getId());
+        bundle.putString(CommonConstant.PARAM_CX,courseBean.getCx());
         gotoActivity(CourseWebActivity.class, bundle);
     }
 

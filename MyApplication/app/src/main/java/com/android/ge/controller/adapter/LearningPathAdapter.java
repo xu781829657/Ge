@@ -59,6 +59,7 @@ public class LearningPathAdapter extends BaseCommonAdapter<PathBean> implements 
         bundle.putString(CommonConstant.PARAM_PATH_ID, pathBean.getId());
         bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_LEARNINGPATH);
         bundle.putString(CommonConstant.PARAM_ENTRY_ID, pathBean.getId());
+        bundle.putString(CommonConstant.PARAM_CX,pathBean.getCx());
         gotoActivity(CourseWebActivity.class, bundle);
     }
 

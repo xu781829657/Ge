@@ -16,16 +16,26 @@ package com.android.ge.model.task;
 
 public class TaskQuestionnaireBean {
     private String id;
-    private String title;
+    private String name;
     private String cover;
     private String content;
+    private String cx;
 
-    public String getTitle() {
-        return title;
+
+    public String getCx() {
+        return cx;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCx(String cx) {
+        this.cx = cx;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getId() {
@@ -51,4 +61,5 @@ public class TaskQuestionnaireBean {
     public void setContent(String content) {
         this.content = content;
     }
+
 }

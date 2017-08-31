@@ -16,16 +16,17 @@ package com.android.ge.model.task;
 
 public class TaskQuizBean {
     private String id;
-    private String title;
+    private String name;
     private String cover;
     private String content;
+    private String cx;
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getId() {
@@ -50,5 +51,13 @@ public class TaskQuizBean {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getCx() {
+        return cx;
+    }
+
+    public void setCx(String cx) {
+        this.cx = cx;
     }
 }

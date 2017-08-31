@@ -56,10 +56,10 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
             holder.setText(R.id.tv_task_course_type, "类型: 课件");
             TaskCourseBean courseBean = taskDetailBean.courses;
             if (courseBean != null) {
-                if (TextUtils.isEmpty(courseBean.getTitle())) {
-                    courseBean.setTitle("未知");
+                if (TextUtils.isEmpty(courseBean.getName())) {
+                    courseBean.setName("未知");
                 }
-                holder.setText(R.id.tv_course_title, courseBean.getTitle());
+                holder.setText(R.id.tv_course_title, courseBean.getName());
                 if (!TextUtils.isEmpty(courseBean.getCover())) {
                     setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover), courseBean
                             .getCover(), R.drawable.demo_course_loading_icon);
@@ -73,12 +73,12 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
             }
         } else if (CommonConstant.TASK_COURSE_TYPE_QUIZ.equalsIgnoreCase(taskDetailBean.getDetail_type())) {
             holder.setText(R.id.tv_task_course_type, "类型: 考试");
-            TaskQuizBean quizBean = taskDetailBean.examinations;
+            TaskQuizBean quizBean = taskDetailBean.assessment;
             if (quizBean != null) {
-                if (TextUtils.isEmpty(quizBean.getTitle())) {
-                    quizBean.setTitle("未知");
+                if (TextUtils.isEmpty(quizBean.getName())) {
+                    quizBean.setName("未知");
                 }
-                holder.setText(R.id.tv_course_title, quizBean.getTitle());
+                holder.setText(R.id.tv_course_title, quizBean.getName());
                 if (!TextUtils.isEmpty(quizBean.getCover())) {
                     setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover), quizBean
                             .getCover(), R.drawable.demo_course_loading_icon);
@@ -92,12 +92,12 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
 
         } else if (CommonConstant.TASK_COURSE_TYPE_SURVEY.equalsIgnoreCase(taskDetailBean.getDetail_type())) {
             holder.setText(R.id.tv_task_course_type, "类型: 问卷");
-            TaskQuestionnaireBean questionnaireBean = taskDetailBean.questionnaire;
+            TaskQuestionnaireBean questionnaireBean = taskDetailBean.survey;
             if (questionnaireBean != null) {
-                if (TextUtils.isEmpty(questionnaireBean.getTitle())) {
-                    questionnaireBean.setTitle("未知");
+                if (TextUtils.isEmpty(questionnaireBean.getName())) {
+                    questionnaireBean.setName("未知");
                 }
-                holder.setText(R.id.tv_course_title, questionnaireBean.getTitle());
+                holder.setText(R.id.tv_course_title, questionnaireBean.getName());
                 if (!TextUtils.isEmpty(questionnaireBean.getCover())) {
                     setImageFromInternet((ImageView) holder.getView(R.id.iv_course_cover), questionnaireBean
                             .getCover(), R.drawable.demo_course_loading_icon);
@@ -120,11 +120,12 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
             bundle.putString(CommonConstant.PARAM_COURSE_ID, taskDetailBean.courses.getId() + "");
             bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
             bundle.putString(CommonConstant.PARAM_ENTRY_ID, mTaskBean.getId() + "");
+            bundle.putString(CommonConstant.PARAM_CX, taskDetailBean.courses.getCx());
             gotoActivity(CourseWebActivity.class, bundle);
         } else if (CommonConstant.TASK_COURSE_TYPE_QUIZ.equalsIgnoreCase(taskDetailBean.getDetail_type()) &&
-                taskDetailBean.examinations != null) {
+                taskDetailBean.assessment != null) {
             Bundle bundle = new Bundle();
-            bundle.putString(CommonConstant.PARAM_EXAM_ID, taskDetailBean.examinations.getId() + "");
+            bundle.putString(CommonConstant.PARAM_EXAM_ID, taskDetailBean.assessment.getId() + "");
             bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
             bundle.putString(CommonConstant.PARAM_ENTRY_ID, mTaskBean.getId() + "");
             if (taskDetailBean.getProgress() == 100) {
@@ -132,11 +133,12 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
             } else {
                 bundle.putString(CommonConstant.PARAM_ISFINISH, "0");
             }
+            bundle.putString(CommonConstant.PARAM_CX, taskDetailBean.courses.getCx());
             gotoActivity(ExamWebActivity.class, bundle);
         } else if (CommonConstant.TASK_COURSE_TYPE_SURVEY.equalsIgnoreCase(taskDetailBean.getDetail_type()) &&
-                taskDetailBean.questionnaire != null) {
+                taskDetailBean.survey != null) {
             Bundle bundle = new Bundle();
-            bundle.putString(CommonConstant.PARAM_QUESTION_ID, taskDetailBean.questionnaire.getId() + "");
+            bundle.putString(CommonConstant.PARAM_QUESTION_ID, taskDetailBean.survey.getId() + "");
             bundle.putString(CommonConstant.PARAM_ENTRY_TYPE, CommonConstant.TYPE_MISSIONS);
             bundle.putString(CommonConstant.PARAM_ENTRY_ID, mTaskBean.getId() + "");
             if (taskDetailBean.getProgress() == 100) {
@@ -144,6 +146,7 @@ public class TaskDetailAdapter extends BaseCommonAdapter<TaskDetailBean> impleme
             } else {
                 bundle.putString(CommonConstant.PARAM_ISFINISH, "0");
             }
+            bundle.putString(CommonConstant.PARAM_CX, taskDetailBean.courses.getCx());
             gotoActivity(QuestionnaireWebActivity.class, bundle);
         }
 

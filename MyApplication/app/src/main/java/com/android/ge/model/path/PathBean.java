@@ -60,7 +60,15 @@ public class PathBean implements Serializable {
     private String progress_current;
     private String progress_total;
     private int progress;
+    private String cx;
 
+    public String getCx() {
+        return cx;
+    }
+
+    public void setCx(String cx) {
+        this.cx = cx;
+    }
 
     public int getProgress() {
         return NumberUtil.getProgress(getProgress_current(),getProgress_total());

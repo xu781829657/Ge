@@ -50,9 +50,9 @@ public class CustomSplashActivity extends CommonBaseActivity {
             } else {
                 mIvCustom.setImageResource(defaultDrawableResId);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
 
-        } catch (OutOfMemoryError om){
+        } catch (OutOfMemoryError om) {
 
         }
 
@@ -80,18 +80,23 @@ public class CustomSplashActivity extends CommonBaseActivity {
     }
 
     private void skipNext() {
-        String token = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_TOKEN);
-        if (TextUtils.isEmpty(token)) {
+        try {
+            String token = PreferencesUtils.getUserData(mContext, PreferencesUtils.KEY_TOKEN);
+            if (TextUtils.isEmpty(token)) {
+                gotoActivity(LoginActivity.class, true);
+            } else {
+                gotoActivity(MaintabActivity.class, true);
+            }
+        } catch (Exception ex) {
             gotoActivity(LoginActivity.class, true);
-        } else {
-            gotoActivity(MaintabActivity.class, true);
         }
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-       // EventBus.getDefault().unregister(this);
+        // EventBus.getDefault().unregister(this);
     }
 //
 //    // 展示app更新

@@ -28,6 +28,7 @@ import com.android.base.util.LogUtils;
 import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
 import com.android.ge.constant.ThirdSDKConstant;
+import com.android.ge.controller.Session;
 import com.android.ge.controller.Store;
 import com.android.ge.model.share.WxShareInfo;
 import com.android.ge.network.NetWorkConstant;
@@ -75,6 +76,7 @@ public class CourseWebActivity extends CommonBaseActivity {
     private String mParamCourseId;
     private String mParamType;
     private String mParamTypeId;
+    private String mParamCx;
     private int mH5Type;//type = 0课程,1路径
 
     private String COURSE_SHARE_URL = "http://mobile.goelite.cn/share/course/{id}?type=wechat";
@@ -133,6 +135,7 @@ public class CourseWebActivity extends CommonBaseActivity {
             mParamCourseId = bundle.getString(CommonConstant.PARAM_COURSE_ID);
             mParamType = bundle.getString(CommonConstant.PARAM_ENTRY_TYPE);
             mParamTypeId = bundle.getString(CommonConstant.PARAM_ENTRY_ID);
+            mParamCx = bundle.getString(CommonConstant.PARAM_CX);
             LogUtils.d(getClass(), "mParamCourseId:" + mParamCourseId);
             RequestParams params = new RequestParams();
             params.put(CommonConstant.PARAM_ENTRY_TYPE, mParamType);
@@ -147,6 +150,9 @@ public class CourseWebActivity extends CommonBaseActivity {
             }
             params.put(CommonConstant.PARAM_ORG_ID, Store.getOrganId());
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
+            if(!TextUtils.isEmpty(mParamCx)){
+                params.put(CommonConstant.PARAM_CX, mParamCx);
+            }
             params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
             params.put(CommonConstant.PARAM_LANGUAGE, DeviceUtil.localLanguageIsZh() ? "zh" : "en");
             LogUtils.d(getClass(), "111map.string:" + params.toString());
@@ -291,6 +297,9 @@ public class CourseWebActivity extends CommonBaseActivity {
             }
         });
 
+        //webview同步cookie缓存
+        boolean syncCookie = Session.syncCookie(LOAD_URL,Store.getToken());
+        LogUtils.d("syncCookie:"+syncCookie);
         // 加载Web地址
         mWebView.loadUrl(LOAD_URL);
     }

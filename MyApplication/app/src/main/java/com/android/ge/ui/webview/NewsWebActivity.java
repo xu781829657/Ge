@@ -10,6 +10,7 @@ import android.webkit.WebViewClient;
 import com.android.base.util.LogUtils;
 import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
+import com.android.ge.controller.Session;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.web.AndroidBridge;
 import com.android.ge.network.NetWorkConstant;
@@ -95,7 +96,9 @@ public class NewsWebActivity extends CommonBaseActivity {
         });
 
         LogUtils.d(getClass(), "first protocol url:" + LOAD_URL);
-
+        //webview同步cookie缓存
+        boolean syncCookie = Session.syncCookie(LOAD_URL,Store.getToken());
+        LogUtils.d("syncCookie:"+syncCookie);
         mWebView.loadUrl(LOAD_URL);
     }
 

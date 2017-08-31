@@ -16,16 +16,27 @@ package com.android.ge.model.task;
 
 public class TaskCourseBean {
     private String id;
-    private String title;
+    private String name;
     private String cover;
     private String content;
 
-    public String getTitle() {
-        return title;
+    private String cx;
+
+
+    public String getCx() {
+        return cx;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCx(String cx) {
+        this.cx = cx;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getId() {

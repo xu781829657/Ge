@@ -59,8 +59,6 @@ public interface CourseApi {
     Observable<BaseResponse<HomePageInfo>> getHomePageConfig(@QueryMap Map<String, String> map);
 
     //获取课程分类接口
-//    @GET("/api/course_type/list")
-//    Observable<LearningResultInfo> getCourseTypeList(@QueryMap Map<String, String> map);
     @GET("/api/courses/list")
     Observable<BaseResponse<LearningInfo>> getCourseTypeList(@QueryMap Map<String, String> map);
 

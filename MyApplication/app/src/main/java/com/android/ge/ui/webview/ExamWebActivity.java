@@ -1,6 +1,7 @@
 package com.android.ge.ui.webview;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -10,6 +11,7 @@ import android.webkit.WebViewClient;
 import com.android.base.util.LogUtils;
 import com.android.ge.R;
 import com.android.ge.constant.CommonConstant;
+import com.android.ge.controller.Session;
 import com.android.ge.controller.Store;
 import com.android.ge.controller.web.AndroidBridge;
 import com.android.ge.network.NetWorkConstant;
@@ -47,6 +49,7 @@ public class ExamWebActivity extends CommonBaseActivity {
     private String mParamType;
     private String mParamTypeId;
     private String mParamIsFinish;
+    private String mParamCx;
 
     @Override
     protected void initData() {
@@ -56,12 +59,16 @@ public class ExamWebActivity extends CommonBaseActivity {
             mParamType = bundle.getString(CommonConstant.PARAM_ENTRY_TYPE);
             mParamTypeId = bundle.getString(CommonConstant.PARAM_ENTRY_ID);
             mParamIsFinish = bundle.getString(CommonConstant.PARAM_ISFINISH);
+            mParamCx = bundle.getString(CommonConstant.PARAM_CX);
             LogUtils.d(getClass(), "mParamExamId:" + mParamExamId);
             RequestParams params = new RequestParams();
             params.put(CommonConstant.PARAM_ENTRY_ID, mParamTypeId);
             params.put(CommonConstant.PARAM_ENTRY_TYPE, mParamType);
             params.put(CommonConstant.PARAM_EXAM_ID, mParamExamId);
             params.put(CommonConstant.PARAM_ISFINISH, mParamIsFinish);
+            if(!TextUtils.isEmpty(mParamCx)){
+                params.put(CommonConstant.PARAM_CX, mParamCx);
+            }
             params.put(CommonConstant.PARAM_TOKEN, Store.getToken());
             params.put(CommonConstant.PARAM_TIME, String.valueOf(System.currentTimeMillis()));
             params.put(CommonConstant.PARAM_LANGUAGE, DeviceUtil.localLanguageIsZh()? "zh":"en");
@@ -102,7 +109,9 @@ public class ExamWebActivity extends CommonBaseActivity {
         });
 
         LogUtils.d(getClass(), "first protocol url:" + LOAD_URL);
-
+        //webview同步cookie缓存
+        boolean syncCookie = Session.syncCookie(LOAD_URL,Store.getToken());
+        LogUtils.d("syncCookie:"+syncCookie);
         mWebView.loadUrl(LOAD_URL);
     }
 

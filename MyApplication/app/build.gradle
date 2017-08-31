@@ -9,9 +9,14 @@ android {
         targetSdkVersion 25
 
         versionCode 11
-        versionName "3.5.0"
+        versionName "3.6.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -68,7 +73,7 @@ dependencies {
     compile 'com.loopj.android:android-async-http:1.4.9'
 
     //腾讯bugly
-    compile 'com.tencent.bugly:crashreport:latest.release'
+    //compile 'com.tencent.bugly:crashreport:latest.release'
 
     compile 'com.fynn.fluidlayout:fluidlayout:1.0'
     compile 'com.lcodecorex:tkrefreshlayout:1.0.7'

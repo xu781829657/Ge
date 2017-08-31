@@ -161,7 +161,8 @@ public class LoginActivity extends CommonBaseActivity {
         public void onNext(TokenBean resultInfo) {
             if (resultInfo != null) {
                 //保存token
-                PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getAccess_token());
+               // PreferencesUtils.saveUserDataItem(Base.getContext(), PreferencesUtils.KEY_TOKEN, resultInfo.getAccess_token());
+                Store.saveToken(resultInfo.getAccess_token());
                 getNetDataOrgans();
             }
         }
