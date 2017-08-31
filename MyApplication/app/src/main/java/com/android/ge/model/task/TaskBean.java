@@ -44,8 +44,8 @@ public class TaskBean implements Serializable {
     private String title;
     private String end_at;
     private int courses_total;//课件数量
-    private int examination_total;//测试数量
-    private int questionnaire_total;//问卷数量
+    private int assessment_total;//测试数量
+    private int survey_total;//问卷数量
     //private long deadline_timestamp;
 //    private String progress_current;
 //    private String progress_total;
@@ -110,19 +110,19 @@ public class TaskBean implements Serializable {
     }
 
     public int getExamination_total() {
-        return examination_total;
+        return assessment_total;
     }
 
     public void setExamination_total(int examination_total) {
-        this.examination_total = examination_total;
+        this.assessment_total = examination_total;
     }
 
     public int getQuestionnaire_total() {
-        return questionnaire_total;
+        return survey_total;
     }
 
     public void setQuestionnaire_total(int questionnaire_total) {
-        this.questionnaire_total = questionnaire_total;
+        this.survey_total = questionnaire_total;
     }
 
     public List<TaskCourseBean> getCourses() {

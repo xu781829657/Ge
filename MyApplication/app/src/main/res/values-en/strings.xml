@@ -1,6 +1,6 @@
 ﻿<resources>
     <string name="app_name">GoElite</string>
-    <string name="app_version">3.6.0.2</string>
+    <string name="app_version">3.6.0.3</string>
 
     <!-- Common Error-->
     <string name="errmsg_network_unavailable">Network Unavilable</string>

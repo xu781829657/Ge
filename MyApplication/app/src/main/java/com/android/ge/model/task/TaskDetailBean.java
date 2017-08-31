@@ -23,8 +23,6 @@ public class TaskDetailBean {
     private String progress_total;
 
     public TaskCourseBean courses;
-//    public TaskQuizBean examinations;
-//    public TaskQuestionnaireBean questionnaire;
 
     public TaskQuizBean assessment;
     public TaskQuestionnaireBean survey;

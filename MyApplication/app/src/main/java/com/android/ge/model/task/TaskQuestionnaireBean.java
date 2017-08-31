@@ -21,7 +21,6 @@ public class TaskQuestionnaireBean {
     private String content;
     private String cx;
 
-
     public String getCx() {
         return cx;
     }

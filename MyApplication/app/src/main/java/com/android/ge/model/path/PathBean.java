@@ -54,8 +54,8 @@ public class PathBean implements Serializable {
     private String title;
     private String cover;
     private int courses_total;//课件数量
-    private int examination_total;//测试数量
-    private int questionnaire_total;//问卷数量
+    private int assessment_total;//测试数量
+    private int survey_total;//问卷数量
     public List<SectionBean> sections;
     private String progress_current;
     private String progress_total;
@@ -124,10 +124,10 @@ public class PathBean implements Serializable {
     }
 
     public int getExamination_total() {
-        return examination_total;
+        return assessment_total;
     }
 
     public int getQuestionnaire_total() {
-        return questionnaire_total;
+        return survey_total;
     }
 }
